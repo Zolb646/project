@@ -6,7 +6,7 @@ export const PERSONAL = {
   tagline:
     "Building digital experiences with clean code and creative thinking.",
   about:
-    "I'm a passionate software engineer who loves turning complex problems into simple, beautiful solutions. With a strong foundation in modern web technologies, I create performant and user-friendly applications that make a difference.",
+    "I'm a passionate software engineer from Mongolia who loves turning complex problems into simple, beautiful solutions. With a strong foundation in modern web technologies, I create performant and user-friendly applications that make a difference.",
   email: "zolb646@gmail.com",
 };
 
