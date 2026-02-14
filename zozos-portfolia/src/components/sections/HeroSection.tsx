@@ -1,9 +1,35 @@
+"use client";
+
+import { useState, useRef, useCallback } from "react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { PERSONAL } from "@/lib/data";
 import { SECTION_IDS } from "@/lib/constants";
 
+const PROFILE_IMAGES = ["/profile1.jpg", "/profile2.jpg"];
+const HOVER_DELAY = 2000;
+
 export default function HeroSection() {
+  const [imageIndex, setImageIndex] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleMouseEnter = useCallback(() => {
+    setIsHovering(true);
+    timerRef.current = setTimeout(() => {
+      setImageIndex((prev) => (prev + 1) % PROFILE_IMAGES.length);
+      setIsHovering(false);
+    }, HOVER_DELAY);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsHovering(false);
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
+
   return (
     <section
       id={SECTION_IDS.hero}
@@ -37,9 +63,44 @@ export default function HeroSection() {
 
           {/* Photo side */}
           <div className="flex justify-center md:justify-end order-first md:order-last">
-            <div className="relative">
-              {/* Place your photo at public/profile.jpg */}
-              <div className="relative w-64 h-64 sm:w-80 sm:h-80 border-3 border-navy shadow-brutal-lg overflow-hidden bg-accent-yellow/20">
+            <div className="relative ">
+              {/* Border that draws around the image in 2s on hover */}
+              <svg
+                className="absolute inset-0 w-full h-full z-20 pointer-events-none"
+                viewBox="0 0 200 200"
+                preserveAspectRatio="none"
+                style={{ opacity: isHovering ? 1 : 0, transition: "opacity 0.15s" }}>
+                <defs>
+                  <filter id="border-glow">
+                    <feGaussianBlur stdDeviation="4" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+                <rect
+                  x="1"
+                  y="1"
+                  width="198"
+                  height="198"
+                  fill="none"
+                  stroke="#ff6b35"
+                  strokeWidth="3"
+                  strokeDasharray="792"
+                  strokeDashoffset="792"
+                  filter="url(#border-glow)"
+                  style={{
+                    animation: isHovering ? "border-draw 2s linear forwards" : "none",
+                  }}
+                />
+              </svg>
+
+              <div
+                className="relative w-64 h-64 sm:w-80 sm:h-80 border-3 border-navy shadow-brutal-lg overflow-hidden bg-accent-yellow/20 cursor-pointer"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}>
                 {/* Placeholder initial — visible when no photo */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <span className="text-6xl sm:text-7xl font-bold text-navy/30 select-none">
@@ -47,10 +108,11 @@ export default function HeroSection() {
                   </span>
                 </div>
                 {/* Photo sits on top, covering the placeholder */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/1099776.jpg"
+                  src={PROFILE_IMAGES[imageIndex]}
                   alt={PERSONAL.name}
-                  className="relative w-full h-full object-cover z-10"
+                  className="relative w-full h-full object-cover z-10 transition-opacity duration-500"
                 />
               </div>
               {/* Decorative offset block */}

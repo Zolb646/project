@@ -14,7 +14,7 @@ export const SKILLS: SkillCategory[] = [
   {
     title: "Frontend",
     icon: "frontend",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML/CSS"],
+    skills: ["React", "Next.js", "TypeScript"],
   },
   {
     title: "Backend",
@@ -24,74 +24,71 @@ export const SKILLS: SkillCategory[] = [
   {
     title: "Tools & More",
     icon: "tools",
-    skills: ["Git", "Docker", "AWS", "Figma", "CI/CD"],
+    skills: ["Git", "Docker", "Figma"],
   },
 ];
 
 export const PROJECTS: Project[] = [
   {
-    title: "E-Commerce Platform",
+    title: "Galexora",
     description:
-      "A full-stack e-commerce application with real-time inventory management, payment processing, and an intuitive admin dashboard.",
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "Stripe"],
-    liveUrl: "#",
-    githubUrl: "#",
+      "A space-themed interactive website with exploration sections, motion effects, and a NASA APOD area.",
+    tags: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
+    liveUrl: "https://galexora.vercel.app",
+    githubUrl: "https://github.com/Zolb646/galexora",
   },
   {
-    title: "Task Management App",
+    title: "Quiz App",
     description:
-      "A collaborative project management tool with drag-and-drop boards, real-time updates, and team collaboration features.",
-    tags: ["React", "Node.js", "Socket.io", "MongoDB"],
-    liveUrl: "#",
-    githubUrl: "#",
+      "An AI-assisted quiz platform with multi-step gameplay, auth flow, and database-backed quiz data.",
+    tags: ["Next.js", "TypeScript", "Prisma", "Clerk", "Google GenAI"],
+    liveUrl: "https://quiz-app-theta-gilt.vercel.app/",
+    githubUrl: "https://github.com/Zolb646/quiz-app",
   },
   {
-    title: "AI Content Generator",
+    title: "Food Delivery Web",
     description:
-      "An AI-powered content creation tool that helps writers generate, edit, and optimize their content using machine learning.",
-    tags: ["Python", "FastAPI", "React", "OpenAI"],
-    liveUrl: "#",
-    githubUrl: "#",
+      "A food-ordering interface with category-based browsing, smooth scrolling, and interactive cart state.",
+    tags: ["Next.js", "React", "JavaScript", "Radix UI", "Tailwind CSS"],
+    liveUrl: "https://food-delivery-web-ten-henna.vercel.app/",
+    githubUrl: "https://github.com/Zolb646/food-delivery-web",
   },
   {
-    title: "Portfolio Analytics",
+    title: "Movie App",
     description:
-      "A real-time analytics dashboard for tracking website performance, user behavior, and conversion metrics.",
-    tags: ["Next.js", "D3.js", "Tailwind", "Vercel"],
-    liveUrl: "#",
-    githubUrl: "#",
+      "A movie discovery app with upcoming, popular, and top-rated sections, plus search and detail pages.",
+    tags: ["Next.js", "React", "JavaScript", "Tailwind CSS"],
+    githubUrl: "https://github.com/Zolb646/movie-app",
+    liveUrl: "https://moviez-xi.vercel.app/",
   },
 ];
 
 export const EXPERIENCES: Experience[] = [
   {
-    role: "Senior Software Engineer",
-    company: "Tech Corp",
-    period: "2023 - Present",
+    role: "Intern",
+    company: "Pinecone Academy",
+    period: "2026 - Present",
     description:
-      "Leading frontend architecture for the main product. Improved performance by 40% and mentored junior developers.",
-    tags: ["React", "TypeScript", "AWS"],
+      "Working as an intern at Pinecone Academy and gaining hands-on software development experience.",
+    tags: ["Internship", "Software Development", "Teamwork"],
   },
   {
-    role: "Software Engineer",
-    company: "StartupXYZ",
-    period: "2021 - 2023",
+    role: "Bootcamp Student",
+    company: "Pinecone Academy",
+    period: "2025 - 2026",
     description:
-      "Built and shipped core features for a SaaS platform serving 10k+ users. Designed RESTful APIs and database schemas.",
-    tags: ["Node.js", "PostgreSQL", "Docker"],
+      "Attended Pinecone Academy bootcamp to build practical skills in modern software engineering.",
+    tags: ["Bootcamp", "Web Development", "Problem Solving"],
   },
   {
-    role: "Junior Developer",
-    company: "Web Agency",
-    period: "2020 - 2021",
-    description:
-      "Developed responsive websites and web applications for various clients. Collaborated with designers to implement pixel-perfect UIs.",
-    tags: ["JavaScript", "React", "CSS"],
+    role: "High School Graduate",
+    company: "High School",
+    period: "2025",
+    description: "Graduated from high school in 2025.",
+    tags: ["Education", "Graduation"],
   },
 ];
 
 export const SOCIAL_LINKS: SocialLink[] = [
   { label: "GitHub", href: "https://github.com/Zolb646", icon: "github" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/zozo", icon: "linkedin" },
-  { label: "Twitter", href: "https://twitter.com/zozo", icon: "twitter" },
 ];
