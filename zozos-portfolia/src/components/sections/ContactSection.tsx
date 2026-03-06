@@ -16,14 +16,50 @@ export default function ContactSection() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [website, setWebsite] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [statusError, setStatusError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-    );
-    window.location.href = `mailto:${PERSONAL.email}?subject=${subject}&body=${body}`;
+    setIsSubmitting(true);
+    setStatusMessage("");
+    setStatusError(false);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          website,
+        }),
+      });
+
+      const data = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        setStatusError(true);
+        setStatusMessage(data.error ?? "Something went wrong. Please try again.");
+        return;
+      }
+
+      setStatusMessage("Message sent successfully. I will get back to you soon.");
+      setName("");
+      setEmail("");
+      setMessage("");
+      setWebsite("");
+    } catch {
+      setStatusError(true);
+      setStatusMessage("Unable to send right now. Please try again in a moment.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -36,6 +72,18 @@ export default function ContactSection() {
           <AnimateOnScroll>
             <Card hover={false}>
               <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="hidden" aria-hidden="true">
+                  <label htmlFor="website">Website</label>
+                  <input
+                    id="website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                  />
+                </div>
                 <Input
                   label="Name"
                   name="name"
@@ -61,9 +109,18 @@ export default function ContactSection() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                 />
-                <Button type="submit" variant="primary">
-                  Send Message
+                <Button type="submit" variant="primary" disabled={isSubmitting}>
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
+                {statusMessage && (
+                  <p
+                    className={`text-sm font-medium ${
+                      statusError ? "text-accent-orange" : "text-accent-teal"
+                    }`}
+                  >
+                    {statusMessage}
+                  </p>
+                )}
               </form>
             </Card>
           </AnimateOnScroll>

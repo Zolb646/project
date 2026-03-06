@@ -5,6 +5,7 @@ interface ButtonProps {
   className?: string;
   type?: "button" | "submit";
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 const variants = {
@@ -23,8 +24,11 @@ export default function Button({
   className = "",
   type = "button",
   onClick,
+  disabled = false,
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center px-6 py-3 font-semibold transition-all duration-150 ${variants[variant]} ${className}`;
+  const classes = `inline-flex items-center justify-center px-6 py-3 font-semibold transition-all duration-150 ${variants[variant]} ${
+    disabled ? "cursor-not-allowed opacity-60 hover:translate-x-0 hover:translate-y-0 hover:shadow-brutal" : ""
+  } ${className}`;
 
   if (href) {
     return (
@@ -35,7 +39,7 @@ export default function Button({
   }
 
   return (
-    <button type={type} onClick={onClick} className={classes}>
+    <button type={type} onClick={onClick} className={classes} disabled={disabled}>
       {children}
     </button>
   );

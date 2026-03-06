@@ -34,6 +34,7 @@ export const PROJECTS: Project[] = [
     description:
       "A space-themed interactive website with exploration sections, motion effects, and a NASA APOD area.",
     tags: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
+    image: "/projects/galexora.png",
     liveUrl: "https://galexora.vercel.app",
     githubUrl: "https://github.com/Zolb646/galexora",
   },
@@ -42,6 +43,7 @@ export const PROJECTS: Project[] = [
     description:
       "An AI-assisted quiz platform with multi-step gameplay, auth flow, and database-backed quiz data.",
     tags: ["Next.js", "TypeScript", "Prisma", "Clerk", "Google GenAI"],
+    image: "/projects/quiz-app.png",
     liveUrl: "https://quiz-app-theta-gilt.vercel.app/",
     githubUrl: "https://github.com/Zolb646/quiz-app",
   },
@@ -50,6 +52,7 @@ export const PROJECTS: Project[] = [
     description:
       "A food-ordering interface with category-based browsing, smooth scrolling, and interactive cart state.",
     tags: ["Next.js", "React", "JavaScript", "Radix UI", "Tailwind CSS"],
+    image: "/projects/food-delivery.png",
     liveUrl: "https://food-delivery-web-ten-henna.vercel.app/",
     githubUrl: "https://github.com/Zolb646/food-delivery-web",
   },
@@ -58,6 +61,7 @@ export const PROJECTS: Project[] = [
     description:
       "A movie discovery app with upcoming, popular, and top-rated sections, plus search and detail pages.",
     tags: ["Next.js", "React", "JavaScript", "Tailwind CSS"],
+    image: "/projects/movie-app.png",
     githubUrl: "https://github.com/Zolb646/movie-app",
     liveUrl: "https://moviez-xi.vercel.app/",
   },
