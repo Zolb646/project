@@ -95,4 +95,9 @@ export const EXPERIENCES: Experience[] = [
 
 export const SOCIAL_LINKS: SocialLink[] = [
   { label: "GitHub", href: "https://github.com/Zolb646", icon: "github" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/b-zolbayar-a856053b3/",
+    icon: "linkedin",
+  },
 ];
