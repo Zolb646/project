@@ -3,67 +3,106 @@ import { Project, SkillCategory, Experience, SocialLink } from "./types";
 export const PERSONAL = {
   name: "Zozo",
   role: "Software Engineer",
-  tagline:
-    "Building digital experiences with clean code and creative thinking.",
+  location: "Ulaanbaatar, Mongolia",
+  availability:
+    "Seeking internship, junior, and full-stack software engineering roles",
+  summary:
+    "Software engineer building full-stack web products with React, Next.js, TypeScript, Node.js, GraphQL, and PostgreSQL, with strong attention to UI quality and maintainable structure.",
   about:
-    "I'm a driven software engineer from Mongolia who loves turning complex problems into simple, beautiful solutions. With a strong foundation in modern web technologies, I create performant and user-friendly applications that make a difference.",
+    "I am a software engineer from Mongolia who can work across both frontend and backend development. Through Pinecone Academy's bootcamp and internship path, I have been building deployed projects, improving my React and Next.js workflow, and learning how to connect strong interfaces with practical product logic and data-backed features.",
+  aboutHighlights: [
+    "Build responsive frontend interfaces with React, Next.js, TypeScript, and Tailwind CSS.",
+    "Can also handle backend work with Node.js, GraphQL, Prisma, PostgreSQL, and API-driven features.",
+    "Currently seeking internship and junior software engineering roles where I can keep growing across frontend and backend.",
+  ],
+  focus: "Frontend and backend product development",
   email: "zolb646@gmail.com",
+  githubUrl: "https://github.com/Zolb646",
 };
 
 export const SKILLS: SkillCategory[] = [
   {
     title: "Frontend",
     icon: "frontend",
-    skills: ["React", "Next.js", "TypeScript"],
+    skills: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS"],
   },
   {
     title: "Backend",
     icon: "backend",
-    skills: ["Node.js", "Python", "PostgreSQL", "REST APIs", "GraphQL"],
+    skills: ["Node.js", "GraphQL", "Prisma", "PostgreSQL", "REST APIs"],
   },
   {
     title: "Tools & More",
     icon: "tools",
-    skills: ["Git", "Docker", "Figma"],
+    skills: ["Git", "Clerk", "Figma", "Vercel"],
   },
 ];
 
 export const PROJECTS: Project[] = [
   {
     title: "Galexora",
+    role: "Frontend Developer",
+    period: "2026",
     description:
-      "A space-themed interactive website with exploration sections, motion effects, and a NASA APOD area.",
+      "A cinematic space exploration website built to showcase visual storytelling, section-based architecture, and polished motion work.",
     tags: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
-    image: "/projects/galexora.png",
+    highlights: [
+      "Built the experience as reusable sections instead of a single monolithic page.",
+      "Used motion and layered visuals to create a stronger, more branded presentation.",
+      "Included dedicated discoveries, technology, and NASA APOD-inspired content areas.",
+    ],
     liveUrl: "https://galexora.vercel.app",
     githubUrl: "https://github.com/Zolb646/galexora",
+    image: "/projects/galexora.png",
+    featured: true,
   },
   {
-    title: "Quiz App",
+    title: "Sign Language Web",
+    role: "Full-stack Developer",
+    period: "2026",
     description:
-      "An AI-assisted quiz platform with multi-step gameplay, auth flow, and database-backed quiz data.",
-    tags: ["Next.js", "TypeScript", "Prisma", "Clerk", "Google GenAI"],
-    image: "/projects/quiz-app.png",
-    liveUrl: "https://quiz-app-theta-gilt.vercel.app/",
-    githubUrl: "https://github.com/Zolb646/quiz-app",
+      "A team-built sign language platform inside the intern-3c monorepo with real-time ASL and MNSL detection, learning flows, practice modes, and admin-managed vocabulary.",
+    tags: ["Next.js", "GraphQL", "Prisma", "PostgreSQL", "MediaPipe"],
+    highlights: [
+      "Worked in the intern-3c team on the sign-language app inside a shared Nx monorepo.",
+      "Contributed backend work with Apollo GraphQL and Prisma-backed sign data stored in PostgreSQL.",
+      "Supported features such as live detection, practice and learn pages, and admin vocabulary tools with motion sample handling.",
+    ],
+    liveUrl: "https://asl-mnsl.vercel.app/",
+    image: "/projects/sign-language.png",
+    featured: true,
   },
   {
     title: "Food Delivery Web",
+    role: "Frontend Developer",
+    period: "2025",
     description:
-      "A food-ordering interface with category-based browsing, smooth scrolling, and interactive cart state.",
+      "A food ordering interface focused on category browsing, cart interactions, and admin-oriented UI coverage.",
     tags: ["Next.js", "React", "JavaScript", "Radix UI", "Tailwind CSS"],
-    image: "/projects/food-delivery.png",
+    highlights: [
+      "Built category-based browsing with smooth scroll navigation between sections.",
+      "Implemented cart, auth dialog, and order-related interface components.",
+      "Added admin views for category, menu, and order management flows.",
+    ],
     liveUrl: "https://food-delivery-web-ten-henna.vercel.app/",
     githubUrl: "https://github.com/Zolb646/food-delivery-web",
+    image: "/projects/food-delivery.png",
   },
   {
-    title: "Movie App",
+    title: "Quiz App",
+    role: "Full-stack Developer",
+    period: "2025",
     description:
-      "A movie discovery app with upcoming, popular, and top-rated sections, plus search and detail pages.",
-    tags: ["Next.js", "React", "JavaScript", "Tailwind CSS"],
-    image: "/projects/movie-app.png",
-    githubUrl: "https://github.com/Zolb646/movie-app",
-    liveUrl: "https://moviez-xi.vercel.app/",
+      "A quiz platform with authentication, multi-step quiz flow, and database-backed content management.",
+    tags: ["Next.js", "TypeScript", "Prisma", "Clerk", "PostgreSQL"],
+    highlights: [
+      "Implemented home, summary, quiz, and results states for a guided user flow.",
+      "Integrated Clerk authentication and Prisma-backed data modeling and migrations.",
+      "Added API routes and quiz-related data handling for article-based quiz content.",
+    ],
+    liveUrl: "https://quiz-app-theta-gilt.vercel.app/",
+    githubUrl: "https://github.com/Zolb646/quiz-app",
+    image: "/projects/quiz-app.png",
   },
 ];
 
@@ -73,23 +112,38 @@ export const EXPERIENCES: Experience[] = [
     company: "Pinecone Academy",
     period: "2026 - Present",
     description:
-      "Working as an intern at Pinecone Academy and gaining hands-on software development experience.",
-    tags: ["Internship", "Software Development", "Teamwork"],
+      "Continuing hands-on software engineering through Pinecone Academy's internship track and collaborative project work.",
+    tags: ["Internship", "Software Engineering", "Team Collaboration"],
+    highlights: [
+      "Practice component-based implementation, project cleanup, and delivery habits in real projects.",
+      "Work through review feedback, small task ownership, and Git-based collaboration.",
+      "Keep improving both product thinking and technical execution across the stack.",
+    ],
   },
   {
     role: "Bootcamp Student",
     company: "Pinecone Academy",
     period: "2025 - 2026",
     description:
-      "Attended Pinecone Academy bootcamp to build practical skills in modern software engineering.",
+      "Completed intensive web development training and built several deployed projects across different product ideas.",
     tags: ["Bootcamp", "Web Development", "Problem Solving"],
+    highlights: [
+      "Built and deployed portfolio, quiz, movie, and food-ordering projects.",
+      "Practiced both frontend implementation and data-backed full-stack features.",
+      "Improved comfort with component structure, state management, and backend-connected flows.",
+    ],
   },
   {
     role: "High School Graduate",
     company: "High School",
     period: "2025",
-    description: "Graduated from high school in 2025.",
+    description:
+      "Graduated high school in 2025 and chose software development as the path to keep building and learning.",
     tags: ["Education", "Graduation"],
+    highlights: [
+      "Finished high school in 2025.",
+      "Started focusing seriously on software engineering after graduation.",
+    ],
   },
 ];
 

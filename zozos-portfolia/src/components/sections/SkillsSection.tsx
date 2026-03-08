@@ -9,10 +9,11 @@ import { SECTION_IDS } from "@/lib/constants";
 const iconMap: Record<string, React.ReactNode> = {
   frontend: (
     <svg
-      className="w-8 h-8 text-accent-orange"
+      className="h-8 w-8 text-accent-orange"
       fill="none"
       stroke="currentColor"
-      viewBox="0 0 24 24">
+      viewBox="0 0 24 24"
+    >
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -23,10 +24,11 @@ const iconMap: Record<string, React.ReactNode> = {
   ),
   backend: (
     <svg
-      className="w-8 h-8 text-accent-teal"
+      className="h-8 w-8 text-accent-teal"
       fill="none"
       stroke="currentColor"
-      viewBox="0 0 24 24">
+      viewBox="0 0 24 24"
+    >
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -37,10 +39,11 @@ const iconMap: Record<string, React.ReactNode> = {
   ),
   tools: (
     <svg
-      className="w-8 h-8 text-accent-violet"
+      className="h-8 w-8 text-accent-violet"
       fill="none"
       stroke="currentColor"
-      viewBox="0 0 24 24">
+      viewBox="0 0 24 24"
+    >
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -68,17 +71,34 @@ export default function SkillsSection() {
     <section id={SECTION_IDS.skills} className="py-20 sm:py-28">
       <Container>
         <AnimateOnScroll>
-          <SectionHeading color="yellow">Skills</SectionHeading>
+          <SectionHeading
+            color="yellow"
+            eyebrow="Core stack"
+            description="The tools I currently use the most when building frontend and full-stack projects."
+          >
+            Skills
+          </SectionHeading>
         </AnimateOnScroll>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SKILLS.map((category) => (
             <AnimateOnScroll key={category.title}>
-              <Card>
-                <div className="mb-4">{iconMap[category.icon]}</div>
-                <h3 className="text-xl font-bold text-navy mb-4">
-                  {category.title}
-                </h3>
-                <div className="flex flex-wrap gap-2">
+              <Card className="h-full">
+                <div className="mb-5 flex items-center justify-between gap-4">
+                  <div>{iconMap[category.icon]}</div>
+                  <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+                    {category.skills.length} skills
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-navy">{category.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  {category.title === "Frontend"
+                    ? "A strong part of my stack, especially for responsive UI and component architecture."
+                    : category.title === "Backend"
+                      ? "Comfortable building APIs, data models, and logic that support product features."
+                      : "Tools that support design handoff, deployment, and day-to-day collaboration."}
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2">
                   {category.skills.map((skill) => (
                     <Badge key={skill} color={badgeColors[category.icon]}>
                       {skill}

@@ -1,34 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { PERSONAL } from "@/lib/data";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Zozo | Software Engineer",
-  description:
-    "Portfolio of Zozo — a software engineer building digital experiences with clean code and creative thinking.",
+  title: `${PERSONAL.name} | ${PERSONAL.role}`,
+  description: PERSONAL.summary,
   openGraph: {
-    title: "Zozo | Software Engineer",
-    description:
-      "Portfolio of Zozo — a software engineer building digital experiences with clean code and creative thinking.",
+    title: `${PERSONAL.name} | ${PERSONAL.role}`,
+    description: PERSONAL.summary,
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Zozo | Software Engineer",
-    description:
-      "Portfolio of Zozo — a software engineer building digital experiences with clean code and creative thinking.",
   },
 };
 
@@ -38,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -46,22 +28,25 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Zozo",
-              jobTitle: "Software Engineer",
-              url: "https://zozo.dev",
-              sameAs: [
-                "https://github.com/Zolb646",
-                "https://linkedin.com/in/zozo",
-                "https://twitter.com/zozo",
-              ],
+              name: PERSONAL.name,
+              jobTitle: PERSONAL.role,
+              description: PERSONAL.summary,
+              email: PERSONAL.email,
+              address: {
+                "@type": "PostalAddress",
+                addressCountry: "Mongolia",
+              },
+              sameAs: [PERSONAL.githubUrl],
             }),
           }}
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-cream text-navy`}>
+        className="min-h-screen bg-cream text-navy antialiased"
+        suppressHydrationWarning
+      >
         <Navbar />
-        <main>{children}</main>
+        <main className="relative overflow-hidden">{children}</main>
         <Footer />
       </body>
     </html>

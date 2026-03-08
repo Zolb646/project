@@ -26,13 +26,15 @@ export default function Button({
   onClick,
   disabled = false,
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center px-6 py-3 font-semibold transition-all duration-150 ${variants[variant]} ${
-    disabled ? "cursor-not-allowed opacity-60 hover:translate-x-0 hover:translate-y-0 hover:shadow-brutal" : ""
+  const classes = `inline-flex min-h-12 items-center justify-center px-5 py-3 text-sm font-semibold whitespace-nowrap transition-all duration-150 sm:text-base ${variants[variant]} ${
+    disabled
+      ? "cursor-not-allowed opacity-60 hover:translate-x-0 hover:translate-y-0 hover:shadow-brutal"
+      : ""
   } ${className}`;
 
   if (href) {
     return (
-      <a href={href} className={classes}>
+      <a href={href} className={classes} aria-disabled={disabled}>
         {children}
       </a>
     );

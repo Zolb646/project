@@ -1,10 +1,14 @@
 export interface Project {
   title: string;
   description: string;
+  role?: string;
+  period?: string;
   tags: string[];
+  highlights: string[];
   liveUrl?: string;
   githubUrl?: string;
   image?: string;
+  featured?: boolean;
 }
 
 export interface SkillCategory {
@@ -19,6 +23,7 @@ export interface Experience {
   period: string;
   description: string;
   tags: string[];
+  highlights: string[];
 }
 
 export interface NavLink {

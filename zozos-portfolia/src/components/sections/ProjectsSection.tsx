@@ -1,175 +1,210 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Card from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { PROJECTS } from "@/lib/data";
 import { SECTION_IDS } from "@/lib/constants";
-import type { Project } from "@/lib/types";
-import Button from "../ui/Button";
+
+const linkClassName =
+  "inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:text-accent-violet";
+
+function ProjectLinks({
+  liveUrl,
+  githubUrl,
+}: {
+  liveUrl?: string;
+  githubUrl?: string;
+}) {
+  return (
+    <div className="flex flex-wrap gap-4">
+      {liveUrl ? (
+        <a
+          href={liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${linkClassName} text-accent-orange`}>
+          Live Demo
+          <span aria-hidden="true">-&gt;</span>
+        </a>
+      ) : null}
+      {githubUrl ? (
+        <a
+          href={githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${linkClassName} text-navy`}>
+          Source Code
+          <span aria-hidden="true">-&gt;</span>
+        </a>
+      ) : null}
+    </div>
+  );
+}
+
+function ProjectImage({ image, title }: { image?: string; title: string }) {
+  if (!image) {
+    return (
+      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(135deg,rgba(255,107,53,0.24),rgba(78,205,196,0.24))] p-6">
+        <span className="text-center text-2xl font-black uppercase tracking-[0.2em] text-navy/60">
+          {title}
+        </span>
+      </div>
+    );
+  }
+
+  return (
+    <Image
+      src={image}
+      alt={`${title} screenshot`}
+      fill
+      sizes="(min-width: 1280px) 520px, (min-width: 768px) 50vw, 100vw"
+      className="object-cover object-top"
+    />
+  );
+}
 
 export default function ProjectsSection() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  const isDialogOpen = selectedProject !== null;
-
-  const handleOpenChange = (open: boolean) => {
-    if (!open) {
-      setSelectedProject(null);
-    }
-  };
+  const featuredProjects = PROJECTS.filter((project) => project.featured);
+  const otherProjects = PROJECTS.filter((project) => !project.featured);
 
   return (
     <section id={SECTION_IDS.projects} className="py-20 sm:py-28">
       <Container>
         <AnimateOnScroll>
-          <SectionHeading color="orange">Projects</SectionHeading>
+          <SectionHeading
+            color="orange"
+            eyebrow="Selected work"
+            description="These are the projects that best show how I structure frontend work, handle product flows, and turn ideas into shipped interfaces.">
+            Projects
+          </SectionHeading>
         </AnimateOnScroll>
-        <div className="grid md:grid-cols-2 gap-6">
-          {PROJECTS.map((project) => (
+
+        <div className="grid gap-8 xl:grid-cols-2">
+          {featuredProjects.map((project) => (
             <AnimateOnScroll key={project.title}>
-              <div
-                role="button"
-                tabIndex={0}
-                onClick={() => setSelectedProject(project)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    setSelectedProject(project);
-                  }
-                }}
-                className="cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-yellow">
-                <Card>
-                  <h3 className="text-xl font-bold text-navy mb-3">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted mb-4 leading-relaxed">
+              <Card className="group h-full overflow-hidden p-0">
+                <div className="relative aspect-16/10 border-b-3 border-navy bg-navy/5">
+                  <ProjectImage image={project.image} title={project.title} />
+                  <div className="absolute left-5 top-5 inline-flex border-3 border-navy bg-accent-yellow px-3 py-1 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-navy shadow-brutal-sm">
+                    Featured
+                  </div>
+                </div>
+                <div className="space-y-5 p-7">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+                        {project.role}{" "}
+                        {project.period ? `| ${project.period}` : ""}
+                      </p>
+                      <h3 className="mt-2 text-2xl font-black text-navy">
+                        {project.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <p className="text-base leading-relaxed text-muted">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-2 mb-5">
+
+                  <ul className="space-y-3">
+                    {project.highlights.map((highlight) => (
+                      <li
+                        key={highlight}
+                        className="flex gap-3 text-sm leading-relaxed text-muted">
+                        <span className="mt-1.5 h-2.5 w-2.5 shrink-0 border-2 border-navy bg-accent-orange" />
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
                       <Badge key={tag} color="yellow">
                         {tag}
                       </Badge>
                     ))}
                   </div>
-                  <div className="flex gap-4">
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        onClick={(event) => event.stopPropagation()}
-                        className="inline-flex items-center gap-1 text-sm font-semibold text-accent-orange hover:text-accent-violet transition-colors">
-                        <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24">
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                          />
-                        </svg>
-                        Live Demo
-                      </a>
-                    )}
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        onClick={(event) => event.stopPropagation()}
-                        className="inline-flex items-center gap-1 text-sm font-semibold text-navy hover:text-accent-orange transition-colors">
-                        <svg
-                          className="w-4 h-4"
-                          fill="currentColor"
-                          viewBox="0 0 24 24">
-                          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                        </svg>
-                        Source
-                      </a>
-                    )}
-                  </div>
-                </Card>
-              </div>
+
+                  <ProjectLinks
+                    liveUrl={project.liveUrl}
+                    githubUrl={project.githubUrl}
+                  />
+                </div>
+              </Card>
             </AnimateOnScroll>
           ))}
         </div>
 
-        <Dialog open={isDialogOpen} onOpenChange={handleOpenChange}>
-          <DialogContent>
-            {selectedProject && (
-              <>
-                <DialogHeader>
-                  <DialogTitle>{selectedProject.title}</DialogTitle>
-                  <DialogDescription>
-                    Detailed project overview and links.
-                  </DialogDescription>
-                </DialogHeader>
+        {otherProjects.length > 0 ? (
+          <div className="mt-12">
+            <AnimateOnScroll>
+              <div className="mb-6 flex items-center gap-4">
+                <span className="h-3 w-14 border-2 border-navy bg-accent-teal" />
+                <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+                  More Projects
+                </p>
+              </div>
+            </AnimateOnScroll>
 
-                <div className="space-y-4">
-                  {selectedProject.image && (
-                    <div className="overflow-hidden border-3 border-navy">
-                      <Image
-                        src={selectedProject.image}
-                        alt={`${selectedProject.title} preview`}
-                        width={1200}
-                        height={675}
-                        className="h-52 w-full object-cover"
+            <div className="grid gap-6 lg:grid-cols-2">
+              {otherProjects.map((project) => (
+                <AnimateOnScroll key={project.title}>
+                  <Card className="group flex h-full flex-col overflow-hidden p-0">
+                    <div className="relative aspect-video border-b-3 border-navy bg-navy/5">
+                      <ProjectImage
+                        image={project.image}
+                        title={project.title}
                       />
                     </div>
-                  )}
-                  <p className="text-muted leading-relaxed">
-                    {selectedProject.description}
-                  </p>
+                    <div className="flex h-full flex-col space-y-4 p-6">
+                      <div>
+                        <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+                          {project.role}{" "}
+                          {project.period ? `| ${project.period}` : ""}
+                        </p>
+                        <h3 className="mt-2 text-2xl font-black text-navy">
+                          {project.title}
+                        </h3>
+                      </div>
 
-                  <div>
-                    <p className="mb-2 text-sm font-semibold text-navy">
-                      Tech Stack
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedProject.tags.map((tag) => (
-                        <Badge
-                          key={`dialog-${selectedProject.title}-${tag}`}
-                          color="yellow">
-                          {tag}
-                        </Badge>
-                      ))}
+                      <p className="text-sm leading-relaxed text-muted">
+                        {project.description}
+                      </p>
+
+                      <ul className="space-y-2">
+                        {project.highlights.slice(0, 2).map((highlight) => (
+                          <li
+                            key={highlight}
+                            className="flex gap-3 text-sm leading-relaxed text-muted">
+                            <span className="mt-1.5 h-2.5 w-2.5 shrink-0 border-2 border-navy bg-accent-teal" />
+                            <span>{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="flex flex-wrap gap-2 pt-1">
+                        {project.tags.map((tag) => (
+                          <Badge key={tag} color="teal">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+
+                      <div className="pt-2">
+                        <ProjectLinks
+                          liveUrl={project.liveUrl}
+                          githubUrl={project.githubUrl}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </div>
-
-                <DialogFooter>
-                  {selectedProject.liveUrl && (
-                    <Button
-                      onClick={() => window.open(selectedProject.liveUrl)}
-                      variant={`primary`}>
-                      Live Demo
-                    </Button>
-                  )}
-                  {selectedProject.githubUrl && (
-                    <Button
-                      onClick={() => window.open(selectedProject.githubUrl)}
-                      variant={`outline`}>
-                      Source Code
-                    </Button>
-                  )}
-                </DialogFooter>
-              </>
-            )}
-          </DialogContent>
-        </Dialog>
+                  </Card>
+                </AnimateOnScroll>
+              ))}
+            </div>
+          </div>
+        ) : null}
       </Container>
     </section>
   );

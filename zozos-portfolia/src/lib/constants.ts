@@ -10,7 +10,7 @@ export const SECTION_IDS = {
 } as const;
 
 export const NAV_LINKS: NavLink[] = [
-  // { label: "About", href: `#${SECTION_IDS.about}` },
+  { label: "About", href: `#${SECTION_IDS.about}` },
   { label: "Skills", href: `#${SECTION_IDS.skills}` },
   { label: "Projects", href: `#${SECTION_IDS.projects}` },
   { label: "Experience", href: `#${SECTION_IDS.experience}` },

@@ -12,6 +12,12 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { PERSONAL, SOCIAL_LINKS } from "@/lib/data";
 import { SECTION_IDS } from "@/lib/constants";
 
+const contactFacts = [
+  "Based in Mongolia",
+  "Seeking internship and junior roles",
+  "Interested in frontend and full-stack teams",
+];
+
 export default function ContactSection() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -45,7 +51,9 @@ export default function ContactSection() {
 
       if (!response.ok) {
         setStatusError(true);
-        setStatusMessage(data.error ?? "Something went wrong. Please try again.");
+        setStatusMessage(
+          data.error ?? "Something went wrong. Please try again.",
+        );
         return;
       }
 
@@ -66,11 +74,71 @@ export default function ContactSection() {
     <section id={SECTION_IDS.contact} className="py-20 sm:py-28">
       <Container>
         <AnimateOnScroll>
-          <SectionHeading color="teal">Get In Touch</SectionHeading>
+          <SectionHeading
+            color="teal"
+            eyebrow="Contact"
+            description="If you have an internship or junior software engineering opening, I would be glad to talk."
+          >
+            Get In Touch
+          </SectionHeading>
         </AnimateOnScroll>
-        <div className="grid md:grid-cols-2 gap-10">
+
+        <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
           <AnimateOnScroll>
-            <Card hover={false}>
+            <Card hover={false} className="h-full">
+              <span className="inline-flex border-3 border-navy bg-accent-yellow px-3 py-1 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-navy shadow-brutal-sm">
+                {PERSONAL.availability}
+              </span>
+              <h3 className="mt-5 text-3xl font-black text-navy">
+                Open to the right role.
+              </h3>
+              <p className="mt-4 text-lg leading-relaxed text-muted">
+                I am looking for a team where I can contribute to real product work, keep improving across frontend and backend, and grow as a software engineer.
+              </p>
+
+              <div className="mt-6 space-y-4">
+                <a
+                  href={`mailto:${PERSONAL.email}`}
+                  className="inline-flex items-center gap-2 text-base font-semibold text-accent-orange transition-colors hover:text-accent-violet"
+                >
+                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                  {PERSONAL.email}
+                </a>
+
+                <div className="flex flex-wrap gap-6 pt-2">
+                  {SOCIAL_LINKS.map((link) => (
+                    <IconLink
+                      key={link.label}
+                      href={link.href}
+                      label={link.label}
+                      icon={link.icon}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {contactFacts.map((fact) => (
+                  <div
+                    key={fact}
+                    className="border-3 border-navy bg-white/70 px-4 py-3 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-navy shadow-brutal-sm"
+                  >
+                    {fact}
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll>
+            <Card hover={false} className="h-full">
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="hidden" aria-hidden="true">
                   <label htmlFor="website">Website</label>
@@ -104,7 +172,7 @@ export default function ContactSection() {
                 <Textarea
                   label="Message"
                   name="message"
-                  placeholder="Your message..."
+                  placeholder="Tell me about the role, project, or opportunity"
                   required
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
@@ -112,7 +180,7 @@ export default function ContactSection() {
                 <Button type="submit" variant="primary" disabled={isSubmitting}>
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
-                {statusMessage && (
+                {statusMessage ? (
                   <p
                     className={`text-sm font-medium ${
                       statusError ? "text-accent-orange" : "text-accent-teal"
@@ -120,42 +188,9 @@ export default function ContactSection() {
                   >
                     {statusMessage}
                   </p>
-                )}
+                ) : null}
               </form>
             </Card>
-          </AnimateOnScroll>
-          <AnimateOnScroll>
-            <div className="flex flex-col justify-center h-full">
-              <h3 className="text-2xl font-bold text-navy mb-4">
-                Let&apos;s work together
-              </h3>
-              <p className="text-muted text-lg leading-relaxed mb-8">
-                I&apos;m always interested in hearing about new projects and
-                opportunities. Whether you have a question or just want to say
-                hi, feel free to reach out!
-              </p>
-              <div className="space-y-4">
-                <a
-                  href={`mailto:${PERSONAL.email}`}
-                  className="inline-flex items-center gap-2 text-accent-orange hover:text-accent-violet font-semibold transition-colors"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  {PERSONAL.email}
-                </a>
-                <div className="flex flex-wrap gap-6 pt-4">
-                  {SOCIAL_LINKS.map((link) => (
-                    <IconLink
-                      key={link.label}
-                      href={link.href}
-                      label={link.label}
-                      icon={link.icon}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
           </AnimateOnScroll>
         </div>
       </Container>
