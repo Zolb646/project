@@ -6,6 +6,9 @@ interface ButtonProps {
   type?: "button" | "submit";
   onClick?: () => void;
   disabled?: boolean;
+  download?: boolean | string;
+  target?: "_self" | "_blank" | "_parent" | "_top";
+  rel?: string;
 }
 
 const variants = {
@@ -25,6 +28,9 @@ export default function Button({
   type = "button",
   onClick,
   disabled = false,
+  download,
+  target,
+  rel,
 }: ButtonProps) {
   const classes = `inline-flex min-h-12 items-center justify-center px-5 py-3 text-sm font-semibold whitespace-nowrap transition-all duration-150 sm:text-base ${variants[variant]} ${
     disabled
@@ -34,14 +40,24 @@ export default function Button({
 
   if (href) {
     return (
-      <a href={href} className={classes} aria-disabled={disabled}>
+      <a
+        href={href}
+        className={classes}
+        download={download}
+        target={target}
+        rel={rel}
+        aria-disabled={disabled}>
         {children}
       </a>
     );
   }
 
   return (
-    <button type={type} onClick={onClick} className={classes} disabled={disabled}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={classes}
+      disabled={disabled}>
       {children}
     </button>
   );

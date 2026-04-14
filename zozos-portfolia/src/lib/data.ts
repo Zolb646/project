@@ -8,6 +8,9 @@ export const PERSONAL = {
     "Seeking internship, junior, and full-stack software engineering roles",
   summary:
     "Software engineer building full-stack web products with React, Next.js, TypeScript, Node.js, GraphQL, and PostgreSQL, with strong attention to UI quality and maintainable structure.",
+  resumeUrl: "/Zozo-Resume.pdf",
+  tagline:
+    "Building digital experiences with clean code and creative thinking.",
   about:
     "I am a software engineer from Mongolia who can work across both frontend and backend development. Through Pinecone Academy's bootcamp and internship path, I have been building deployed projects, improving my React and Next.js workflow, and learning how to connect strong interfaces with practical product logic and data-backed features.",
   aboutHighlights: [
@@ -22,19 +25,63 @@ export const PERSONAL = {
 
 export const SKILLS: SkillCategory[] = [
   {
-    title: "Frontend",
+    title: "Frontend & Mobile",
     icon: "frontend",
-    skills: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS"],
+    description:
+      "The UI stack I use most often for responsive product work across web and mobile.",
+    skills: [
+      "React",
+      "React Native",
+      "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Expo",
+    ],
   },
   {
-    title: "Backend",
+    title: "Backend & APIs",
     icon: "backend",
-    skills: ["Node.js", "GraphQL", "Prisma", "PostgreSQL", "REST APIs"],
+    description:
+      "Used for application logic, API integration, authentication, and data-backed features.",
+    skills: [
+      "Node.js",
+      "REST APIs",
+      "GraphQL",
+      "Apollo Client",
+      "Apollo Server",
+      "Prisma",
+    ],
   },
   {
-    title: "Tools & More",
-    icon: "tools",
-    skills: ["Git", "Clerk", "Figma", "Vercel"],
+    title: "Data & Cloud",
+    icon: "cloud",
+    description:
+      "The databases and platform tools behind the full-stack products I have been building.",
+    skills: [
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
+      "Supabase",
+      "Firebase",
+      "Cloudflare",
+      "Docker",
+      "Git",
+    ],
+  },
+  {
+    title: "Testing & Detection",
+    icon: "testing",
+    description:
+      "Experience with test coverage, camera-based detection flows, and dataset-driven features.",
+    skills: [
+      "Jest",
+      "Unit Testing",
+      "Integration Testing",
+      "E2E Testing",
+      "MediaPipe",
+    ],
   },
 ];
 

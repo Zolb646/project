@@ -37,7 +37,7 @@ const iconMap: Record<string, React.ReactNode> = {
       />
     </svg>
   ),
-  tools: (
+  cloud: (
     <svg
       className="h-8 w-8 text-accent-violet"
       fill="none"
@@ -58,12 +58,28 @@ const iconMap: Record<string, React.ReactNode> = {
       />
     </svg>
   ),
+  testing: (
+    <svg
+      className="h-8 w-8 text-accent-yellow"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M9 12l2 2 4-4m5 2a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </svg>
+  ),
 };
 
 const badgeColors: Record<string, "yellow" | "teal" | "orange" | "violet"> = {
   frontend: "orange",
   backend: "teal",
-  tools: "violet",
+  cloud: "violet",
+  testing: "yellow",
 };
 
 export default function SkillsSection() {
@@ -74,13 +90,13 @@ export default function SkillsSection() {
           <SectionHeading
             color="yellow"
             eyebrow="Core stack"
-            description="The tools I currently use the most when building frontend and full-stack projects."
+            description="A resume-aligned snapshot of the frontend, backend, data, testing, and detection tools I have been using in recent projects."
           >
             Skills
           </SectionHeading>
         </AnimateOnScroll>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {SKILLS.map((category) => (
             <AnimateOnScroll key={category.title}>
               <Card className="h-full">
@@ -92,11 +108,7 @@ export default function SkillsSection() {
                 </div>
                 <h3 className="text-xl font-bold text-navy">{category.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
-                  {category.title === "Frontend"
-                    ? "A strong part of my stack, especially for responsive UI and component architecture."
-                    : category.title === "Backend"
-                      ? "Comfortable building APIs, data models, and logic that support product features."
-                      : "Tools that support design handoff, deployment, and day-to-day collaboration."}
+                  {category.description}
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {category.skills.map((skill) => (

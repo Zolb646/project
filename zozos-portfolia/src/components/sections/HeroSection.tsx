@@ -46,6 +46,14 @@ export default function HeroSection() {
               <Button href={`#${SECTION_IDS.projects}`} variant="primary">
                 View Projects
               </Button>
+              <Button
+                href={PERSONAL.resumeUrl}
+                variant="secondary"
+                download
+                target="_blank"
+                rel="noreferrer">
+                Download Resume
+              </Button>
               <Button href={`#${SECTION_IDS.contact}`} variant="outline">
                 Email Me
               </Button>
@@ -66,7 +74,7 @@ export default function HeroSection() {
 
             <div className="relative z-10 ml-auto aspect-4/5 w-full max-w-[420px] overflow-hidden border-3 border-navy bg-cream shadow-brutal-lg transition-[transform,box-shadow] duration-300 ease-out group-hover:z-30 group-hover:-translate-y-2 group-hover:rotate-[1.25deg] group-hover:shadow-[12px_12px_0_0_#1a1a2e]">
               <Image
-                src="/profile1.jpg"
+                src="/profile.jpg"
                 alt={`${PERSONAL.name} portrait`}
                 fill
                 priority
@@ -93,7 +101,7 @@ export default function HeroSection() {
               </div>
             </div>
 
-            <div className="absolute left-0 top-8 z-20 max-w-[220px] border-3 border-navy bg-cream px-4 py-3 shadow-brutal-sm transition-transform duration-300 ease-out group-hover:z-10 group-hover:-translate-x-1 group-hover:-translate-y-2 sm:-right-6 sm:left-auto sm:top-10">
+            <div className="absolute left-0 bottom-3 hidden sm:block z-20 rotate-[7deg] max-w-[220px] border-3 border-navy bg-cream px-4 py-3 shadow-brutal-sm transition-transform duration-300 ease-out group-hover:z-10 group-hover:translate-x-1 group-hover:translate-y-2 sm:-right-6 sm:left-auto sm:bottom-5">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
                 Status
               </p>
