@@ -120,20 +120,19 @@ export const PROJECTS: Project[] = [
     featured: true,
   },
   {
-    title: "Food Delivery Web",
-    role: "Frontend Developer",
-    period: "2025",
+    title: "WordGym Mobile App",
+    role: "Mobile App Developer",
+    period: "2026",
     description:
-      "A food ordering interface focused on category browsing, cart interactions, and admin-oriented UI coverage.",
-    tags: ["Next.js", "React", "JavaScript", "Radix UI", "Tailwind CSS"],
+      "A team-built vocabulary learning app for mobile with deck creation, AI-assisted card generation, offline-first study flows, and mini-games for practice.",
+    tags: ["Expo", "React Native", "TypeScript", "SQLite", "Clerk"],
     highlights: [
-      "Built category-based browsing with smooth scroll navigation between sections.",
-      "Implemented cart, auth dialog, and order-related interface components.",
-      "Added admin views for category, menu, and order management flows.",
+      "Built on Expo Router with React Native to support a polished mobile study experience across deck, study, and game flows.",
+      "Used local SQLite deck storage with authenticated user handling and AI-powered card generation for practical offline-first usage.",
+      "Included vocabulary game modes such as memory match, scramble, speed quiz, falling words, and hangman.",
     ],
-    liveUrl: "https://food-delivery-web-ten-henna.vercel.app/",
-    githubUrl: "https://github.com/Zolb646/food-delivery-web",
-    image: "/projects/food-delivery.png",
+    githubUrl: "https://github.com/Zolb646/team-project",
+    image: "/projects/wordgym-mobile.jpg",
   },
   {
     title: "Quiz App",
@@ -172,12 +171,12 @@ export const EXPERIENCES: Experience[] = [
     company: "Pinecone Academy",
     period: "2025 - 2026",
     description:
-      "Completed intensive web development training and built several deployed projects across different product ideas.",
+      "Completed intensive web development training, built deployed projects, and worked on collaborative web and mobile product development.",
     tags: ["Bootcamp", "Web Development", "Problem Solving"],
     highlights: [
-      "Built and deployed portfolio, quiz, movie, and food-ordering projects.",
-      "Practiced both frontend implementation and data-backed full-stack features.",
-      "Improved comfort with component structure, state management, and backend-connected flows.",
+      "Built and deployed quiz, movie, and other learning-focused product projects during the bootcamp period.",
+      "Worked on the WordGym mobile app with Expo and React Native across deck, study, and vocabulary game flows.",
+      "Practiced both frontend implementation and data-backed full-stack features, including offline-first and backend-connected flows.",
     ],
   },
   {
