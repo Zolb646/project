@@ -12,12 +12,12 @@ const detailCards = [
     tone: "bg-accent-orange",
   },
   {
-    title: "Looking for",
-    value: "Internship, junior, and full-stack software engineering roles",
+    title: "Targeting",
+    value: "Internship and junior software engineering roles",
     tone: "bg-accent-teal",
   },
   {
-    title: "Strongest with",
+    title: "Best fit",
     value: PERSONAL.focus,
     tone: "bg-accent-yellow",
   },
@@ -31,7 +31,7 @@ export default function AboutSection() {
           <SectionHeading
             color="teal"
             eyebrow="Profile"
-            description="A little more context on how I work, what I am learning, and the kind of software engineering role I am looking for."
+            description="A clearer snapshot of how I work, where I add value, and why I am a strong fit for frontend-heavy and full-stack product teams."
           >
             About Me
           </SectionHeading>
@@ -41,7 +41,7 @@ export default function AboutSection() {
           <AnimateOnScroll>
             <Card hover={false} className="h-full">
               <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-accent-orange">
-                Who I am
+                What I bring
               </p>
               <p className="mt-5 text-lg leading-relaxed text-muted">
                 {PERSONAL.about}

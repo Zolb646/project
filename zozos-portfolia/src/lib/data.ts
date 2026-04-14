@@ -5,20 +5,20 @@ export const PERSONAL = {
   role: "Software Engineer",
   location: "Ulaanbaatar, Mongolia",
   availability:
-    "Seeking internship, junior, and full-stack software engineering roles",
+    "Actively seeking internship and junior software engineering roles",
   summary:
-    "Software engineer building full-stack web products with React, Next.js, TypeScript, Node.js, GraphQL, and PostgreSQL, with strong attention to UI quality and maintainable structure.",
-  resumeUrl: "/Zozo-Resume.pdf",
+    "Junior software engineer building polished web products with React, Next.js, TypeScript, Node.js, GraphQL, and PostgreSQL, with a strong bias for clean UI, practical product thinking, and reliable implementation.",
+  resumeUrl: "/Zozo-resume.pdf",
   tagline:
-    "Building digital experiences with clean code and creative thinking.",
+    "Frontend-sharp, full-stack capable, and ready to contribute to real product teams.",
   about:
-    "I am a software engineer from Mongolia who can work across both frontend and backend development. Through Pinecone Academy's bootcamp and internship path, I have been building deployed projects, improving my React and Next.js workflow, and learning how to connect strong interfaces with practical product logic and data-backed features.",
+    "I am a software engineer from Mongolia who enjoys building the full shape of a product, from interface polish to application logic. Through Pinecone Academy's bootcamp and internship track, I have shipped web and mobile projects, worked inside team codebases, and built experience turning design ideas into responsive interfaces backed by real data and usable flows.",
   aboutHighlights: [
-    "Build responsive frontend interfaces with React, Next.js, TypeScript, and Tailwind CSS.",
-    "Can also handle backend work with Node.js, GraphQL, Prisma, PostgreSQL, and API-driven features.",
-    "Currently seeking internship and junior software engineering roles where I can keep growing across frontend and backend.",
+    "Build responsive frontend experiences with React, Next.js, TypeScript, and a strong eye for layout, motion, and hierarchy.",
+    "Handle backend features with Node.js, GraphQL, Prisma, PostgreSQL, and API-driven product workflows.",
+    "Work comfortably across solo builds and team projects, with a focus on shipping clear, maintainable product work.",
   ],
-  focus: "Frontend and backend product development",
+  focus: "Product-focused frontend and full-stack development",
   email: "zolb646@gmail.com",
   githubUrl: "https://github.com/Zolb646",
 };
@@ -28,7 +28,7 @@ export const SKILLS: SkillCategory[] = [
     title: "Frontend & Mobile",
     icon: "frontend",
     description:
-      "The UI stack I use most often for responsive product work across web and mobile.",
+      "My strongest build surface for shipping responsive interfaces, interaction flows, and mobile-friendly product experiences.",
     skills: [
       "React",
       "React Native",
@@ -44,7 +44,7 @@ export const SKILLS: SkillCategory[] = [
     title: "Backend & APIs",
     icon: "backend",
     description:
-      "Used for application logic, API integration, authentication, and data-backed features.",
+      "The tools I use for application logic, authentication, API integration, and the parts of a product that need real structure behind the UI.",
     skills: [
       "Node.js",
       "REST APIs",
@@ -58,7 +58,7 @@ export const SKILLS: SkillCategory[] = [
     title: "Data & Cloud",
     icon: "cloud",
     description:
-      "The databases and platform tools behind the full-stack products I have been building.",
+      "The storage and deployment layer behind the full-stack work I have been building and shipping.",
     skills: [
       "PostgreSQL",
       "MySQL",
@@ -74,7 +74,7 @@ export const SKILLS: SkillCategory[] = [
     title: "Testing & Detection",
     icon: "testing",
     description:
-      "Experience with test coverage, camera-based detection flows, and dataset-driven features.",
+      "Experience with verification, detection workflows, and data-backed features that need more than static UI work.",
     skills: [
       "Jest",
       "Unit Testing",
@@ -91,12 +91,18 @@ export const PROJECTS: Project[] = [
     role: "Frontend Developer",
     period: "2026",
     description:
-      "A cinematic space exploration website built to showcase visual storytelling, section-based architecture, and polished motion work.",
+      "A cinematic space exploration site designed to prove strong frontend storytelling, section architecture, and polished interaction work.",
     tags: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
+    challenge:
+      "Build a portfolio-style product experience that felt branded and immersive instead of reading like another generic landing page.",
+    ownership:
+      "Owned the frontend build, section system, visual pacing, and motion choices that made the site feel intentional from top to bottom.",
+    outcome:
+      "Shipped a more memorable, presentation-first web experience that demonstrates how I handle hierarchy, reusable sections, and visual polish.",
     highlights: [
-      "Built the experience as reusable sections instead of a single monolithic page.",
-      "Used motion and layered visuals to create a stronger, more branded presentation.",
-      "Included dedicated discoveries, technology, and NASA APOD-inspired content areas.",
+      "Built the experience as reusable sections instead of one monolithic page so the site stayed scalable and easier to refine.",
+      "Used motion, layered imagery, and tighter pacing to create a stronger branded feel without overwhelming the content.",
+      "Added dedicated discoveries, technology, and NASA APOD-inspired sections to make the narrative feel like a real product journey.",
     ],
     liveUrl: "https://galexora.vercel.app",
     githubUrl: "https://github.com/Zolb646/galexora",
@@ -108,12 +114,18 @@ export const PROJECTS: Project[] = [
     role: "Full-stack Developer",
     period: "2026",
     description:
-      "A team-built sign language platform inside the intern-3c monorepo with real-time ASL and MNSL detection, learning flows, practice modes, and admin-managed vocabulary.",
+      "A team-built sign language platform in a shared monorepo with live ASL and MNSL detection, practice flows, and admin-managed vocabulary.",
     tags: ["Next.js", "GraphQL", "Prisma", "PostgreSQL", "MediaPipe"],
+    challenge:
+      "Contribute meaningful full-stack work inside a team monorepo where the product included live detection, learning flows, and admin-managed sign data.",
+    ownership:
+      "Contributed backend and product-facing features with Apollo GraphQL, Prisma, and PostgreSQL while supporting practice, learn, and admin workflows.",
+    outcome:
+      "Helped ship a more complete learning platform that shows I can work beyond the UI layer and contribute inside a collaborative codebase.",
     highlights: [
-      "Worked in the intern-3c team on the sign-language app inside a shared Nx monorepo.",
-      "Contributed backend work with Apollo GraphQL and Prisma-backed sign data stored in PostgreSQL.",
-      "Supported features such as live detection, practice and learn pages, and admin vocabulary tools with motion sample handling.",
+      "Worked inside the intern-3c team on the sign-language app within a shared Nx monorepo and collaborative workflow.",
+      "Implemented backend-facing work with Apollo GraphQL, Prisma, and PostgreSQL-backed sign data handling.",
+      "Supported live detection, practice and learning pages, and admin vocabulary tooling with motion sample management.",
     ],
     liveUrl: "https://asl-mnsl.vercel.app/",
     image: "/projects/sign-language.png",
@@ -124,12 +136,12 @@ export const PROJECTS: Project[] = [
     role: "Mobile App Developer",
     period: "2026",
     description:
-      "A team-built vocabulary learning app for mobile with deck creation, AI-assisted card generation, offline-first study flows, and mini-games for practice.",
+      "A team-built mobile vocabulary app with deck creation, AI-assisted card generation, offline-first study flows, and practice mini-games.",
     tags: ["Expo", "React Native", "TypeScript", "SQLite", "Clerk"],
     highlights: [
-      "Built on Expo Router with React Native to support a polished mobile study experience across deck, study, and game flows.",
-      "Used local SQLite deck storage with authenticated user handling and AI-powered card generation for practical offline-first usage.",
-      "Included vocabulary game modes such as memory match, scramble, speed quiz, falling words, and hangman.",
+      "Built with Expo Router and React Native to support a polished study flow across deck, learning, and game screens.",
+      "Used local SQLite storage, authenticated users, and AI-assisted card generation to support practical offline-first use.",
+      "Included game modes such as memory match, scramble, speed quiz, falling words, and hangman.",
     ],
     githubUrl: "https://github.com/Zolb646/team-project",
     image: "/projects/wordgym-mobile.jpg",
@@ -139,12 +151,12 @@ export const PROJECTS: Project[] = [
     role: "Full-stack Developer",
     period: "2025",
     description:
-      "A quiz platform with authentication, multi-step quiz flow, and database-backed content management.",
+      "A quiz platform with authentication, guided quiz flow, and database-backed content management.",
     tags: ["Next.js", "TypeScript", "Prisma", "Clerk", "PostgreSQL"],
     highlights: [
-      "Implemented home, summary, quiz, and results states for a guided user flow.",
-      "Integrated Clerk authentication and Prisma-backed data modeling and migrations.",
-      "Added API routes and quiz-related data handling for article-based quiz content.",
+      "Implemented home, summary, quiz, and results states for a guided user experience.",
+      "Integrated Clerk authentication and Prisma-backed data modeling, migrations, and backend setup.",
+      "Added API routes and quiz-related data handling for article-driven content.",
     ],
     liveUrl: "https://quiz-app-theta-gilt.vercel.app/",
     githubUrl: "https://github.com/Zolb646/quiz-app",
@@ -158,12 +170,12 @@ export const EXPERIENCES: Experience[] = [
     company: "Pinecone Academy",
     period: "2026 - Present",
     description:
-      "Continuing hands-on software engineering through Pinecone Academy's internship track and collaborative project work.",
+      "Building hands-on engineering experience through Pinecone Academy's internship track and collaborative product work.",
     tags: ["Internship", "Software Engineering", "Team Collaboration"],
     highlights: [
-      "Practice component-based implementation, project cleanup, and delivery habits in real projects.",
-      "Work through review feedback, small task ownership, and Git-based collaboration.",
-      "Keep improving both product thinking and technical execution across the stack.",
+      "Contribute to real project work through component implementation, cleanup, iteration, and delivery-focused tasks.",
+      "Work through review feedback, Git-based collaboration, and small-task ownership inside shared codebases.",
+      "Strengthen both frontend execution and full-stack product thinking through regular team project work.",
     ],
   },
   {
@@ -171,10 +183,10 @@ export const EXPERIENCES: Experience[] = [
     company: "Pinecone Academy",
     period: "2025 - 2026",
     description:
-      "Completed intensive web development training, built deployed projects, and worked on collaborative web and mobile product development.",
+      "Completed intensive web development training while shipping deployed projects across web and mobile.",
     tags: ["Bootcamp", "Web Development", "Problem Solving"],
     highlights: [
-      "Built and deployed quiz, movie, and other learning-focused product projects during the bootcamp period.",
+      "Built and deployed product projects during the bootcamp period instead of stopping at tutorial-style exercises.",
       "Worked on the WordGym mobile app with Expo and React Native across deck, study, and vocabulary game flows.",
       "Practiced both frontend implementation and data-backed full-stack features, including offline-first and backend-connected flows.",
     ],
@@ -184,7 +196,7 @@ export const EXPERIENCES: Experience[] = [
     company: "High School",
     period: "2025",
     description:
-      "Graduated high school in 2025 and chose software development as the path to keep building and learning.",
+      "Graduated high school in 2025 and committed early to software engineering as the path I wanted to build in.",
     tags: ["Education", "Graduation"],
     highlights: [
       "Finished high school in 2025.",

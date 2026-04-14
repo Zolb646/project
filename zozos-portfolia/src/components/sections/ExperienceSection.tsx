@@ -13,8 +13,8 @@ export default function ExperienceSection() {
         <AnimateOnScroll>
           <SectionHeading
             color="violet"
-            eyebrow="Timeline"
-            description="The path from graduation into bootcamp work and ongoing internship experience at Pinecone Academy."
+            eyebrow="Recent path"
+            description="The fastest way to understand how I moved from early training into shipped work, team collaboration, and product-focused engineering habits."
           >
             Experience
           </SectionHeading>

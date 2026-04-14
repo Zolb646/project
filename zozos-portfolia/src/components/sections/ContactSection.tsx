@@ -15,7 +15,7 @@ import { SECTION_IDS } from "@/lib/constants";
 const contactFacts = [
   "Based in Mongolia",
   "Seeking internship and junior roles",
-  "Interested in frontend and full-stack teams",
+  "Best fit for frontend and full-stack teams",
 ];
 
 export default function ContactSection() {
@@ -57,14 +57,18 @@ export default function ContactSection() {
         return;
       }
 
-      setStatusMessage("Message sent successfully. I will get back to you soon.");
+      setStatusMessage(
+        "Message sent successfully. I will get back to you soon.",
+      );
       setName("");
       setEmail("");
       setMessage("");
       setWebsite("");
     } catch {
       setStatusError(true);
-      setStatusMessage("Unable to send right now. Please try again in a moment.");
+      setStatusMessage(
+        "Unable to send right now. Please try again in a moment.",
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -77,8 +81,7 @@ export default function ContactSection() {
           <SectionHeading
             color="teal"
             eyebrow="Contact"
-            description="If you have an internship or junior software engineering opening, I would be glad to talk."
-          >
+            description="If you are hiring for an internship or junior software engineering role, I would love to hear about the team and the product.">
             Get In Touch
           </SectionHeading>
         </AnimateOnScroll>
@@ -90,18 +93,23 @@ export default function ContactSection() {
                 {PERSONAL.availability}
               </span>
               <h3 className="mt-5 text-3xl font-black text-navy">
-                Open to the right role.
+                Ready for the right team.
               </h3>
               <p className="mt-4 text-lg leading-relaxed text-muted">
-                I am looking for a team where I can contribute to real product work, keep improving across frontend and backend, and grow as a software engineer.
+                I am looking for a team where I can contribute to real product
+                work, grow through strong feedback, and keep building across
+                frontend and backend.
               </p>
 
               <div className="mt-6 space-y-4">
                 <a
                   href={`mailto:${PERSONAL.email}`}
-                  className="inline-flex items-center gap-2 text-base font-semibold text-accent-orange transition-colors hover:text-accent-violet"
-                >
-                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  className="inline-flex items-center gap-2 text-base font-semibold text-accent-orange transition-colors hover:text-accent-violet">
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -128,8 +136,7 @@ export default function ContactSection() {
                 {contactFacts.map((fact) => (
                   <div
                     key={fact}
-                    className="border-3 border-navy bg-white/70 px-4 py-3 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-navy shadow-brutal-sm"
-                  >
+                    className="border-3 border-navy bg-white/70 px-4 py-3 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-navy shadow-brutal-sm">
                     {fact}
                   </div>
                 ))}
@@ -184,8 +191,7 @@ export default function ContactSection() {
                   <p
                     className={`text-sm font-medium ${
                       statusError ? "text-accent-orange" : "text-accent-teal"
-                    }`}
-                  >
+                    }`}>
                     {statusMessage}
                   </p>
                 ) : null}

@@ -90,13 +90,13 @@ export default function SkillsSection() {
           <SectionHeading
             color="yellow"
             eyebrow="Core stack"
-            description="A resume-aligned snapshot of the frontend, backend, data, testing, and detection tools I have been using in recent projects."
+            description="The stack behind the projects on this site, from polished interfaces and mobile flows to backend logic, data, and detection work."
           >
             Skills
           </SectionHeading>
         </AnimateOnScroll>
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-6 md:grid-cols-2">
           {SKILLS.map((category) => (
             <AnimateOnScroll key={category.title}>
               <Card className="h-full">

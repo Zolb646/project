@@ -5,6 +5,9 @@ export interface Project {
   period?: string;
   tags: string[];
   highlights: string[];
+  challenge?: string;
+  ownership?: string;
+  outcome?: string;
   liveUrl?: string;
   githubUrl?: string;
   image?: string;
