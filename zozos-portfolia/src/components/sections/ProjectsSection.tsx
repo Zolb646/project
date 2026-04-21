@@ -71,15 +71,18 @@ function ProjectLinks({
 function ProjectDialogImage({
   images,
   activeIndex,
+  layout = "desktop",
   onSelectImage,
   title,
 }: {
   images: string[];
   activeIndex: number;
+  layout?: "desktop" | "mobile";
   onSelectImage: (index: number) => void;
   title: string;
 }) {
   const image = images[activeIndex];
+  const isMobileLayout = layout === "mobile";
 
   if (!image) {
     return (
@@ -93,7 +96,10 @@ function ProjectDialogImage({
 
   return (
     <div className="space-y-4 bg-[radial-gradient(circle_at_top,rgba(78,205,196,0.18),transparent_55%),linear-gradient(180deg,rgba(255,255,255,0.72),rgba(255,255,255,0.18))] p-4 sm:p-6">
-      <div className="relative mx-auto w-full max-w-[720px] overflow-hidden border-2 border-navy/80 bg-white shadow-[8px_8px_0_0_rgba(22,34,57,0.16)]">
+      <div
+        className={`relative mx-auto overflow-hidden border-2 border-navy/80 bg-white shadow-[8px_8px_0_0_rgba(22,34,57,0.16)] ${
+          isMobileLayout ? "w-full max-w-[320px] rounded-[2rem]" : "w-full max-w-[720px]"
+        }`}>
         <div className="flex items-center justify-between gap-3 border-b border-navy/15 bg-cream px-4 py-3">
           <div className="flex items-center gap-2">
             <span className="h-3 w-3 rounded-full border border-navy/20 bg-accent-orange/80" />
@@ -106,12 +112,19 @@ function ProjectDialogImage({
             </p>
           ) : null}
         </div>
-        <div className="relative aspect-video bg-white">
+        <div
+          className={`relative bg-white ${
+            isMobileLayout ? "aspect-[9/19.5]" : "aspect-video"
+          }`}>
           <Image
             src={image}
             alt={`${title} screenshot ${activeIndex + 1}`}
             fill
-            sizes="(min-width: 1280px) 700px, (min-width: 1024px) 58vw, 100vw"
+            sizes={
+              isMobileLayout
+                ? "(min-width: 1024px) 320px, 80vw"
+                : "(min-width: 1280px) 700px, (min-width: 1024px) 58vw, 100vw"
+            }
             className="object-contain object-center"
           />
 
@@ -145,29 +158,38 @@ function ProjectDialogImage({
       </div>
 
       {images.length > 1 ? (
-        <div className="mx-auto grid max-w-[720px] grid-cols-2 gap-3 sm:grid-cols-4">
+        <div className="mx-auto max-w-[720px] overflow-x-auto pb-2">
+          <div className="flex w-max gap-3 pr-2">
           {images.map((galleryImage, index) => (
             <button
               key={`${title}-thumb-${index}`}
               type="button"
               onClick={() => onSelectImage(index)}
-              className={`relative overflow-hidden border-2 bg-white text-left transition-all duration-150 ${
+              className={`relative shrink-0 overflow-hidden border-2 bg-white text-left transition-all duration-150 ${
                 index === activeIndex
                   ? "border-navy shadow-brutal-sm"
                   : "border-navy/30 hover:border-navy/70"
               }`}
               aria-label={`Show screenshot ${index + 1} for ${title}`}>
-              <div className="relative aspect-[4/3] bg-white">
+              <div
+                className={`relative bg-white ${
+                  isMobileLayout ? "h-36 w-20" : "h-24 w-40"
+                }`}>
                 <Image
                   src={galleryImage}
                   alt=""
                   fill
-                  sizes="(min-width: 768px) 160px, 50vw"
+                  sizes={
+                    isMobileLayout
+                      ? "(min-width: 768px) 80px, 80px"
+                      : "(min-width: 768px) 160px, 160px"
+                  }
                   className="object-cover object-top"
                 />
               </div>
             </button>
           ))}
+        </div>
         </div>
       ) : null}
     </div>
@@ -412,6 +434,7 @@ export default function ProjectsSection() {
                     <ProjectDialogImage
                       images={activeProjectImages}
                       activeIndex={activeImageIndex}
+                      layout={activeProject.imageLayout}
                       onSelectImage={setActiveImageIndex}
                       title={activeProject.title}
                     />
