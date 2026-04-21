@@ -194,7 +194,7 @@ function DialogContent({
         role="dialog"
         aria-modal="true"
         className={cx(
-          "fixed left-1/2 top-1/2 z-60 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 border-3 border-navy bg-cream p-6 text-navy shadow-brutal-lg",
+          "fixed left-1/2 top-1/2 z-60 max-h-[calc(100vh-1.5rem)] w-[calc(100vw-1.5rem)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto border-3 border-navy bg-cream p-5 text-navy shadow-brutal-lg sm:max-h-[calc(100vh-3rem)] sm:p-6 scrollbar-hide",
           className,
         )}
         {...props}>

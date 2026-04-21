@@ -107,6 +107,11 @@ export const PROJECTS: Project[] = [
     liveUrl: "https://galexora.vercel.app",
     githubUrl: "https://github.com/Zolb646/galexora",
     image: "/projects/galexora.png",
+    images: [
+      "/projects/galexora.png",
+      "/projects/wordgym-mobile.jpg",
+      "/projects/wordgym-showcase.jpg",
+    ],
     featured: true,
   },
   {
@@ -129,6 +134,11 @@ export const PROJECTS: Project[] = [
     ],
     liveUrl: "https://asl-mnsl.vercel.app/",
     image: "/projects/sign-language.png",
+    images: [
+      "/projects/sign-language.png",
+      "/projects/wordgym-mobile.jpg",
+      "/projects/wordgym-showcase.jpg",
+    ],
     featured: true,
   },
   {
@@ -145,6 +155,7 @@ export const PROJECTS: Project[] = [
     ],
     githubUrl: "https://github.com/Zolb646/team-project",
     image: "/projects/wordgym-mobile.jpg",
+    images: ["/projects/wordgym-mobile.jpg", "/projects/wordgym-showcase.jpg"],
   },
   {
     title: "Quiz App",
@@ -161,6 +172,7 @@ export const PROJECTS: Project[] = [
     liveUrl: "https://quiz-app-theta-gilt.vercel.app/",
     githubUrl: "https://github.com/Zolb646/quiz-app",
     image: "/projects/quiz-app.png",
+    images: ["/projects/quiz-app.png"],
   },
 ];
 

@@ -11,6 +11,7 @@ export interface Project {
   liveUrl?: string;
   githubUrl?: string;
   image?: string;
+  images?: string[];
   featured?: boolean;
 }
 
