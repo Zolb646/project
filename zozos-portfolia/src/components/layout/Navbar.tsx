@@ -1,16 +1,25 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/lib/constants";
 import Container from "@/components/ui/Container";
 import MobileMenu from "./MobileMenu";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const [activeSection, setActiveSection] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const displayedActiveSection = isHomePage ? activeSection : "";
+  const useSolidNav = !isHomePage || scrolled;
 
   useEffect(() => {
+    if (!isHomePage) {
+      return;
+    }
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
@@ -32,19 +41,21 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHomePage]);
 
   return (
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-          scrolled
+          useSolidNav
             ? "bg-cream/95 backdrop-blur-sm border-b-3 border-navy"
             : "bg-transparent"
         }`}>
         <Container>
           <div className="flex items-center justify-between h-16">
-            <a href="#hero" className="text-xl font-bold text-navy">
+            <a
+              href={isHomePage ? "#hero" : "/#hero"}
+              className="text-xl font-bold text-navy">
               Zozo<span className="text-accent-orange">.</span>
             </a>
 
@@ -52,9 +63,9 @@ export default function Navbar() {
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={isHomePage ? link.href : `/${link.href}`}
                   className={`text-sm font-semibold transition-colors duration-200 ${
-                    activeSection === link.href
+                    displayedActiveSection === link.href
                       ? "text-accent-orange"
                       : "text-navy hover:text-accent-orange"
                   }`}>
@@ -87,7 +98,8 @@ export default function Navbar() {
       <MobileMenu
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
-        activeSection={activeSection}
+        activeSection={displayedActiveSection}
+        isHomePage={isHomePage}
       />
     </>
   );

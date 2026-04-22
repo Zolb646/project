@@ -5,6 +5,7 @@ import { PERSONAL } from "@/lib/data";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://zozo.dev"),
   title: `${PERSONAL.name} | ${PERSONAL.role}`,
   description: PERSONAL.summary,
   openGraph: {
@@ -43,8 +44,7 @@ export default function RootLayout({
       </head>
       <body
         className="min-h-screen bg-cream text-navy antialiased"
-        suppressHydrationWarning
-      >
+        suppressHydrationWarning>
         <Navbar />
         <main className="relative overflow-hidden">{children}</main>
         <Footer />

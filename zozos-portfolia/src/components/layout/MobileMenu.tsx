@@ -6,9 +6,15 @@ interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
   activeSection: string;
+  isHomePage: boolean;
 }
 
-export default function MobileMenu({ isOpen, onClose, activeSection }: MobileMenuProps) {
+export default function MobileMenu({
+  isOpen,
+  onClose,
+  activeSection,
+  isHomePage,
+}: MobileMenuProps) {
   if (!isOpen) return null;
 
   return (
@@ -30,7 +36,7 @@ export default function MobileMenu({ isOpen, onClose, activeSection }: MobileMen
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={isHomePage ? link.href : `/${link.href}`}
               onClick={onClose}
               className={`py-3 text-lg font-semibold border-b-2 border-navy/10 transition-colors duration-200 ${
                 activeSection === link.href

@@ -46,6 +46,15 @@
   border-width: 3px;
 }
 
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 ::selection {
   background-color: #ffe66d;
   color: #1a1a2e;

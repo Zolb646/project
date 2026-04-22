@@ -1,4 +1,5 @@
 export interface Project {
+  slug: string;
   title: string;
   description: string;
   role?: string;
@@ -14,6 +15,9 @@ export interface Project {
   images?: string[];
   imageLayout?: "desktop" | "mobile";
   featured?: boolean;
+  process?: string[];
+  lessons?: string[];
+  architecture?: string;
 }
 
 export interface SkillCategory {
