@@ -1,5 +1,3 @@
-import { NavLink } from "./types";
-
 export const SECTION_IDS = {
   hero: "hero",
   about: "about",
@@ -9,10 +7,13 @@ export const SECTION_IDS = {
   contact: "contact",
 } as const;
 
-export const NAV_LINKS: NavLink[] = [
-  { label: "About", href: `#${SECTION_IDS.about}` },
-  { label: "Skills", href: `#${SECTION_IDS.skills}` },
-  { label: "Projects", href: `#${SECTION_IDS.projects}` },
-  { label: "Experience", href: `#${SECTION_IDS.experience}` },
-  { label: "Contact", href: `#${SECTION_IDS.contact}` },
+export const NAV_SECTIONS: Array<{
+  key: "about" | "skills" | "projects" | "experience" | "contact";
+  href: string;
+}> = [
+  { key: "about", href: `#${SECTION_IDS.about}` },
+  { key: "skills", href: `#${SECTION_IDS.skills}` },
+  { key: "projects", href: `#${SECTION_IDS.projects}` },
+  { key: "experience", href: `#${SECTION_IDS.experience}` },
+  { key: "contact", href: `#${SECTION_IDS.contact}` },
 ];

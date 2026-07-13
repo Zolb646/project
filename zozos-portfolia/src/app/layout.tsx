@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
+import { JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { PERSONAL } from "@/lib/data";
+import { LanguageProvider } from "@/lib/i18n/LanguageContext";
+import { CONTENT } from "@/lib/content";
 import "./globals.css";
+
+const PERSONAL = CONTENT.en.personal;
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://zozo.dev"),
@@ -21,7 +31,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`scroll-smooth ${jetbrainsMono.variable}`}
+      suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -45,9 +58,11 @@ export default function RootLayout({
       <body
         className="min-h-screen bg-cream text-navy antialiased"
         suppressHydrationWarning>
-        <Navbar />
-        <main className="relative overflow-hidden">{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Navbar />
+          <main className="relative overflow-hidden">{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

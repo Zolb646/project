@@ -1,15 +1,17 @@
+"use client";
+
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Card from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-import { SKILLS } from "@/lib/data";
+import { useContent } from "@/lib/i18n/useContent";
 import { SECTION_IDS } from "@/lib/constants";
 
 const iconMap: Record<string, React.ReactNode> = {
   frontend: (
     <svg
-      className="h-8 w-8 text-accent-orange"
+      className="h-8 w-8 text-accent-orange-ink"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -24,7 +26,7 @@ const iconMap: Record<string, React.ReactNode> = {
   ),
   backend: (
     <svg
-      className="h-8 w-8 text-accent-teal"
+      className="h-8 w-8 text-accent-teal-ink"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -60,7 +62,7 @@ const iconMap: Record<string, React.ReactNode> = {
   ),
   testing: (
     <svg
-      className="h-8 w-8 text-accent-yellow"
+      className="h-8 w-8 text-accent-yellow-ink"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -83,16 +85,18 @@ const badgeColors: Record<string, "yellow" | "teal" | "orange" | "violet"> = {
 };
 
 export default function SkillsSection() {
+  const { skills: SKILLS, ui } = useContent();
+
   return (
     <section id={SECTION_IDS.skills} className="py-20 sm:py-28">
       <Container>
         <AnimateOnScroll>
           <SectionHeading
             color="yellow"
-            eyebrow="Core stack"
-            description="The stack behind the projects on this site, from polished interfaces and mobile flows to backend logic, data, and detection work."
+            eyebrow={ui.skills.eyebrow}
+            description={ui.skills.description}
           >
-            Skills
+            {ui.skills.heading}
           </SectionHeading>
         </AnimateOnScroll>
 
@@ -103,7 +107,7 @@ export default function SkillsSection() {
                 <div className="mb-5 flex items-center justify-between gap-4">
                   <div>{iconMap[category.icon]}</div>
                   <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-                    {category.skills.length} skills
+                    {ui.skills.skillsCount(category.skills.length)}
                   </span>
                 </div>
                 <h3 className="text-xl font-bold text-navy">{category.title}</h3>

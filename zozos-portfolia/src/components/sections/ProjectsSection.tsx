@@ -6,15 +6,18 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Card from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-import { PROJECTS } from "@/lib/data";
+import { useContent } from "@/lib/i18n/useContent";
 import { SECTION_IDS } from "@/lib/constants";
+import type { UIDictionary } from "@/lib/i18n/ui";
 import type { Project } from "@/lib/types";
 
 function ProjectPreview({
   project,
+  ui,
   featured = false,
 }: {
   project: Project;
+  ui: UIDictionary;
   featured?: boolean;
 }) {
   if (featured) {
@@ -28,7 +31,7 @@ function ProjectPreview({
                   {project.role} {project.period ? `| ${project.period}` : ""}
                 </p>
                 <div className="inline-flex border-3 border-navy bg-accent-yellow px-3 py-1 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-navy shadow-brutal-sm">
-                  Featured
+                  {ui.projects.featured}
                 </div>
               </div>
               <h3 className="mt-2 text-2xl font-black text-navy">
@@ -60,8 +63,8 @@ function ProjectPreview({
             ))}
           </div>
 
-          <div className="inline-flex items-center gap-2 border-b border-transparent pb-1 text-sm font-semibold text-accent-orange transition-all duration-200 group-hover:translate-x-1 group-hover:border-current">
-            View case study
+          <div className="inline-flex items-center gap-2 border-b border-transparent pb-1 text-sm font-semibold text-accent-orange-ink transition-all duration-200 group-hover:translate-x-1 group-hover:border-current">
+            {ui.projects.viewCaseStudy}
             <span aria-hidden="true">-&gt;</span>
           </div>
         </div>
@@ -104,8 +107,8 @@ function ProjectPreview({
           ))}
         </div>
 
-        <div className="inline-flex items-center gap-2 border-b border-transparent pb-1 text-sm font-semibold text-accent-orange transition-all duration-200 group-hover:translate-x-1 group-hover:border-current">
-          View case study
+        <div className="inline-flex items-center gap-2 border-b border-transparent pb-1 text-sm font-semibold text-accent-orange-ink transition-all duration-200 group-hover:translate-x-1 group-hover:border-current">
+          {ui.projects.viewCaseStudy}
           <span aria-hidden="true">-&gt;</span>
         </div>
       </div>
@@ -114,6 +117,7 @@ function ProjectPreview({
 }
 
 export default function ProjectsSection() {
+  const { projects: PROJECTS, ui } = useContent();
   const featuredProjects = PROJECTS.filter((project) => project.featured);
   const otherProjects = PROJECTS.filter((project) => !project.featured);
 
@@ -123,9 +127,9 @@ export default function ProjectsSection() {
         <AnimateOnScroll>
           <SectionHeading
             color="orange"
-            eyebrow="Selected work"
-            description="These are the projects that best show how I structure frontend work, handle product flows, and turn ideas into shipped interfaces.">
-            Projects
+            eyebrow={ui.projects.eyebrow}
+            description={ui.projects.description}>
+            {ui.projects.heading}
           </SectionHeading>
         </AnimateOnScroll>
 
@@ -135,8 +139,8 @@ export default function ProjectsSection() {
               <Link
                 href={`/projects/${project.slug}`}
                 className="block h-full"
-                aria-label={`View case study for ${project.title}`}>
-                <ProjectPreview project={project} featured />
+                aria-label={ui.common.viewCaseStudyFor(project.title)}>
+                <ProjectPreview project={project} ui={ui} featured />
               </Link>
             </AnimateOnScroll>
           ))}
@@ -148,7 +152,7 @@ export default function ProjectsSection() {
               <div className="mb-6 flex items-center gap-4">
                 <span className="h-3 w-14 border-2 border-navy bg-accent-teal" />
                 <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-                  More Projects
+                  {ui.projects.moreProjects}
                 </p>
               </div>
             </AnimateOnScroll>
@@ -159,8 +163,8 @@ export default function ProjectsSection() {
                   <Link
                     href={`/projects/${project.slug}`}
                     className="block h-full"
-                    aria-label={`View case study for ${project.title}`}>
-                    <ProjectPreview project={project} />
+                    aria-label={ui.common.viewCaseStudyFor(project.title)}>
+                    <ProjectPreview project={project} ui={ui} />
                   </Link>
                 </AnimateOnScroll>
               ))}
@@ -171,13 +175,12 @@ export default function ProjectsSection() {
         <AnimateOnScroll>
           <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t-3 border-navy/15 pt-8">
             <p className="max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
-              Each project now has a dedicated case study page with deeper
-              context, outcomes, and screenshots.
+              {ui.projects.footerNote}
             </p>
             <Link
               href="/#contact"
-              className="inline-flex items-center gap-2 border-b border-transparent pb-1 text-sm font-semibold text-accent-orange transition-all duration-200 hover:translate-x-1 hover:border-current">
-              Let&apos;s talk about building something
+              className="inline-flex items-center gap-2 border-b border-transparent pb-1 text-sm font-semibold text-accent-orange-ink transition-all duration-200 hover:translate-x-1 hover:border-current">
+              {ui.projects.talkCta}
               <span aria-hidden="true">-&gt;</span>
             </Link>
           </div>

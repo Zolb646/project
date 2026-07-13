@@ -1,16 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import { PERSONAL } from "@/lib/data";
+import { useContent } from "@/lib/i18n/useContent";
 import { SECTION_IDS } from "@/lib/constants";
 
-const quickFacts = [
-  PERSONAL.location,
-  "Frontend + backend capable",
-  "Product-focused workflow",
-];
-
 export default function HeroSection() {
+  const { personal: PERSONAL, ui } = useContent();
+  const quickFacts = [
+    PERSONAL.location,
+    ui.hero.quickFactCapable,
+    ui.hero.quickFactWorkflow,
+  ];
+
   return (
     <section
       id={SECTION_IDS.hero}
@@ -18,8 +21,8 @@ export default function HeroSection() {
       <Container>
         <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="max-w-2xl">
-            <p className="font-mono text-accent-orange font-semibold uppercase tracking-[0.2em]">
-              Hi, my name is
+            <p className="font-mono text-accent-orange-ink font-semibold uppercase tracking-[0.2em]">
+              {ui.hero.greeting}
             </p>
             <h1 className="mt-4 text-5xl font-extrabold leading-[0.95] tracking-tight text-navy sm:text-6xl lg:text-7xl">
               Zozo.
@@ -28,10 +31,7 @@ export default function HeroSection() {
               {PERSONAL.role}
             </h2>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
-              I&apos;m a driven {PERSONAL.role} from Mongolia who loves turning
-              complex problems into simple, beautiful solutions. With a strong
-              foundation in modern web technologies, I create performant and
-              user-friendly applications that make a difference.
+              {ui.hero.intro(PERSONAL.role)}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               {quickFacts.map((fact) => (
@@ -44,7 +44,7 @@ export default function HeroSection() {
             </div>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Button href={`#${SECTION_IDS.projects}`} variant="primary">
-                View Projects
+                {ui.hero.viewProjects}
               </Button>
               <Button
                 href={PERSONAL.resumeUrl}
@@ -52,17 +52,17 @@ export default function HeroSection() {
                 download
                 target="_blank"
                 rel="noreferrer">
-                Download Resume
+                {ui.hero.downloadResume}
               </Button>
               <Button href={`#${SECTION_IDS.contact}`} variant="outline">
-                Email Me
+                {ui.hero.emailMe}
               </Button>
               <a
                 href={PERSONAL.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-accent-orange sm:text-base">
-                View GitHub
+                className="inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-accent-orange-ink sm:text-base">
+                {ui.hero.viewGithub}
                 <span aria-hidden="true">-&gt;</span>
               </a>
             </div>
@@ -83,7 +83,7 @@ export default function HeroSection() {
               />
               <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-navy/80 via-navy/30 to-transparent p-6 text-cream transition-transform duration-300 ease-out group-hover:translate-y-1">
                 <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-yellow">
-                  Current focus
+                  {ui.hero.currentFocus}
                 </p>
                 <p className="mt-2 text-lg font-semibold">{PERSONAL.focus}</p>
               </div>
@@ -103,7 +103,7 @@ export default function HeroSection() {
 
             <div className="absolute left-0 bottom-3 hidden sm:block z-20 rotate-[7deg] max-w-[220px] border-3 border-navy bg-cream px-4 py-3 shadow-brutal-sm transition-transform duration-300 ease-out group-hover:z-10 group-hover:translate-x-1 group-hover:translate-y-2 sm:-right-6 sm:left-auto sm:bottom-5">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-                Status
+                {ui.hero.status}
               </p>
               <p className="mt-1 font-semibold text-navy">
                 {PERSONAL.availability}

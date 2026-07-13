@@ -31,18 +31,37 @@ export interface Experience {
   role: string;
   company: string;
   period: string;
+  current?: boolean;
   description: string;
   tags: string[];
   highlights: string[];
-}
-
-export interface NavLink {
-  label: string;
-  href: string;
 }
 
 export interface SocialLink {
   label: string;
   href: string;
   icon: string;
+}
+
+export interface PersonalInfo {
+  name: string;
+  role: string;
+  location: string;
+  availability: string;
+  summary: string;
+  resumeUrl: string;
+  tagline: string;
+  about: string;
+  aboutHighlights: string[];
+  focus: string;
+  email: string;
+  githubUrl: string;
+}
+
+export interface SiteContent {
+  personal: PersonalInfo;
+  skills: SkillCategory[];
+  projects: Project[];
+  experiences: Experience[];
+  socialLinks: SocialLink[];
 }

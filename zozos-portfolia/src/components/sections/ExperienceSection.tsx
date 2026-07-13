@@ -1,22 +1,26 @@
+"use client";
+
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Card from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-import { EXPERIENCES } from "@/lib/data";
+import { useContent } from "@/lib/i18n/useContent";
 import { SECTION_IDS } from "@/lib/constants";
 
 export default function ExperienceSection() {
+  const { experiences: EXPERIENCES, ui } = useContent();
+
   return (
     <section id={SECTION_IDS.experience} className="py-20 sm:py-28">
       <Container>
         <AnimateOnScroll>
           <SectionHeading
             color="violet"
-            eyebrow="Recent path"
-            description="The fastest way to understand how I moved from early training into shipped work, team collaboration, and product-focused engineering habits."
+            eyebrow={ui.experience.eyebrow}
+            description={ui.experience.description}
           >
-            Experience
+            {ui.experience.heading}
           </SectionHeading>
         </AnimateOnScroll>
 
@@ -32,7 +36,7 @@ export default function ExperienceSection() {
                   <Card hover={false} className="h-full">
                     <div className="flex flex-wrap items-start justify-between gap-4">
                       <div>
-                        <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-accent-orange">
+                        <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-accent-orange-ink">
                           {exp.period}
                         </p>
                         <h3 className="mt-2 text-2xl font-black text-navy">
@@ -42,9 +46,9 @@ export default function ExperienceSection() {
                           {exp.company}
                         </p>
                       </div>
-                      {exp.period.includes("Present") ? (
+                      {exp.current ? (
                         <span className="inline-flex border-3 border-navy bg-accent-yellow px-3 py-1 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-navy shadow-brutal-sm">
-                          Current
+                          {ui.experience.current}
                         </span>
                       ) : null}
                     </div>
