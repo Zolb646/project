@@ -3,6 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { useContent } from "@/lib/i18n/useContent";
 
 interface ProjectGalleryProps {
   images: string[];
@@ -15,13 +16,17 @@ export default function ProjectGallery({
   layout = "desktop",
   title,
 }: ProjectGalleryProps) {
+  const { ui } = useContent();
   const [activeIndex, setActiveIndex] = React.useState(0);
+  const [previousImages, setPreviousImages] = React.useState(images);
   const isMobileLayout = layout === "mobile";
-  const activeImage = images[activeIndex];
 
-  React.useEffect(() => {
+  if (images !== previousImages) {
+    setPreviousImages(images);
     setActiveIndex(0);
-  }, [images]);
+  }
+
+  const activeImage = images[activeIndex];
 
   if (!activeImage) {
     return (
@@ -50,15 +55,15 @@ export default function ProjectGallery({
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-            Visual walkthrough
+            {ui.gallery.visualWalkthrough}
           </p>
           <h2 className="mt-2 text-3xl font-black leading-[0.96] text-navy sm:text-4xl">
-            Screens, flow, and feel.
+            {ui.gallery.screensFlowFeel}
           </h2>
         </div>
         {images.length > 1 ? (
           <div className="inline-flex border-3 border-navy bg-accent-yellow px-3 py-2 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-navy shadow-brutal-sm">
-            Shot {activeIndex + 1} / {images.length}
+            {ui.gallery.shotOf(activeIndex + 1, images.length)}
           </div>
         ) : null}
       </div>
@@ -66,12 +71,12 @@ export default function ProjectGallery({
       {isMobileLayout ? (
         <div className="mx-auto w-full max-w-[22rem] space-y-4 sm:max-w-[24rem] lg:max-w-[26rem]">
           <div className="flex items-center justify-between gap-3">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
-              Mobile walkthrough
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-muted">
+              {ui.gallery.mobileWalkthrough}
             </p>
             {images.length > 1 ? (
-              <div className="inline-flex border-2 border-navy bg-cream px-2.5 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-muted shadow-brutal-sm">
-                Screen {String(activeIndex + 1).padStart(2, "0")} / {images.length}
+              <div className="inline-flex border-2 border-navy bg-cream px-2.5 py-1.5 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-muted shadow-brutal-sm">
+                {ui.gallery.screenOf(activeIndex + 1, images.length)}
               </div>
             ) : null}
           </div>
@@ -96,15 +101,15 @@ export default function ProjectGallery({
                   <button
                     type="button"
                     onClick={showPrevious}
-                    className="inline-flex h-10 w-10 items-center justify-center border-2 border-navy bg-cream text-lg text-navy shadow-brutal-sm transition-transform duration-150 hover:translate-y-[2px] hover:shadow-none"
-                    aria-label={`Show previous ${title} screenshot`}>
+                    className="inline-flex h-11 w-11 items-center justify-center border-2 border-navy bg-cream text-lg text-navy shadow-brutal-sm transition-transform duration-150 hover:translate-y-[2px] hover:shadow-none"
+                    aria-label={ui.gallery.showPrevious(title)}>
                     <FiChevronLeft />
                   </button>
                   <button
                     type="button"
                     onClick={showNext}
-                    className="inline-flex h-10 w-10 items-center justify-center border-2 border-navy bg-cream text-lg text-navy shadow-brutal-sm transition-transform duration-150 hover:translate-y-[2px] hover:shadow-none"
-                    aria-label={`Show next ${title} screenshot`}>
+                    className="inline-flex h-11 w-11 items-center justify-center border-2 border-navy bg-cream text-lg text-navy shadow-brutal-sm transition-transform duration-150 hover:translate-y-[2px] hover:shadow-none"
+                    aria-label={ui.gallery.showNext(title)}>
                     <FiChevronRight />
                   </button>
                 </div>
@@ -120,8 +125,8 @@ export default function ProjectGallery({
               <span className="h-3 w-3 rounded-full border border-navy/20 bg-accent-yellow/80" />
               <span className="h-3 w-3 rounded-full border border-navy/20 bg-accent-teal/80" />
             </div>
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
-              Desktop layout
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-muted">
+              {ui.gallery.desktopLayout}
             </p>
           </div>
 
@@ -142,14 +147,14 @@ export default function ProjectGallery({
                     type="button"
                     onClick={showPrevious}
                     className="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border-2 border-navy bg-cream/95 text-xl text-navy shadow-brutal-sm transition-transform duration-150 hover:translate-y-[calc(-50%+2px)] sm:left-4"
-                    aria-label={`Show previous ${title} screenshot`}>
+                    aria-label={ui.gallery.showPrevious(title)}>
                     <FiChevronLeft />
                   </button>
                   <button
                     type="button"
                     onClick={showNext}
                     className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border-2 border-navy bg-cream/95 text-xl text-navy shadow-brutal-sm transition-transform duration-150 hover:translate-y-[calc(-50%+2px)] sm:right-4"
-                    aria-label={`Show next ${title} screenshot`}>
+                    aria-label={ui.gallery.showNext(title)}>
                     <FiChevronRight />
                   </button>
                 </>
@@ -180,7 +185,7 @@ export default function ProjectGallery({
                     ? "border-navy shadow-brutal-sm -translate-y-1"
                     : "border-navy/20 opacity-80 hover:border-navy/60 hover:opacity-100"
                 }`}
-                aria-label={`Show screenshot ${index + 1} for ${title}`}>
+                aria-label={ui.gallery.showScreenshot(index + 1, title)}>
                 <div
                   className={`relative bg-white ${
                     isMobileLayout

@@ -6,8 +6,8 @@ interface BadgeProps {
 const colors = {
   yellow: "bg-accent-yellow text-navy",
   teal: "bg-accent-teal text-navy",
-  orange: "bg-accent-orange text-white",
-  violet: "bg-accent-violet text-white",
+  orange: "bg-accent-orange text-navy",
+  violet: "bg-accent-violet-ink text-white",
 };
 
 export default function Badge({ children, color = "yellow" }: BadgeProps) {

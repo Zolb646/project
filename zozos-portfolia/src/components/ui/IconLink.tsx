@@ -42,7 +42,7 @@ export default function IconLink({ href, label, icon }: IconLinkProps) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 text-navy hover:text-accent-orange transition-colors duration-200 font-medium"
+      className="inline-flex items-center gap-2 text-navy hover:text-accent-orange-ink transition-colors duration-200 font-medium"
       aria-label={label}
     >
       {IconComponent ? <IconComponent /> : null}

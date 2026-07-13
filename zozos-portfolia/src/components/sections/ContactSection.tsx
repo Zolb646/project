@@ -9,16 +9,12 @@ import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 import IconLink from "@/components/ui/IconLink";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-import { PERSONAL, SOCIAL_LINKS } from "@/lib/data";
+import { useContent } from "@/lib/i18n/useContent";
 import { SECTION_IDS } from "@/lib/constants";
 
-const contactFacts = [
-  "Based in Mongolia",
-  "Seeking internship and junior roles",
-  "Best fit for frontend and full-stack teams",
-];
-
 export default function ContactSection() {
+  const { personal: PERSONAL, socialLinks: SOCIAL_LINKS, ui } = useContent();
+  const contactFacts = ui.contact.facts;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -47,28 +43,20 @@ export default function ContactSection() {
         }),
       });
 
-      const data = (await response.json()) as { error?: string };
-
       if (!response.ok) {
         setStatusError(true);
-        setStatusMessage(
-          data.error ?? "Something went wrong. Please try again.",
-        );
+        setStatusMessage(ui.contact.genericError);
         return;
       }
 
-      setStatusMessage(
-        "Message sent successfully. I will get back to you soon.",
-      );
+      setStatusMessage(ui.contact.successMessage);
       setName("");
       setEmail("");
       setMessage("");
       setWebsite("");
     } catch {
       setStatusError(true);
-      setStatusMessage(
-        "Unable to send right now. Please try again in a moment.",
-      );
+      setStatusMessage(ui.contact.networkError);
     } finally {
       setIsSubmitting(false);
     }
@@ -80,9 +68,9 @@ export default function ContactSection() {
         <AnimateOnScroll>
           <SectionHeading
             color="teal"
-            eyebrow="Contact"
-            description="If you are hiring for an internship or junior software engineering role, I would love to hear about the team and the product.">
-            Get In Touch
+            eyebrow={ui.contact.eyebrow}
+            description={ui.contact.description}>
+            {ui.contact.heading}
           </SectionHeading>
         </AnimateOnScroll>
 
@@ -93,18 +81,16 @@ export default function ContactSection() {
                 {PERSONAL.availability}
               </span>
               <h3 className="mt-5 text-3xl font-black text-navy">
-                Ready for the right team.
+                {ui.contact.readyHeading}
               </h3>
               <p className="mt-4 text-lg leading-relaxed text-muted">
-                I am looking for a team where I can contribute to real product
-                work, grow through strong feedback, and keep building across
-                frontend and backend.
+                {ui.contact.intro}
               </p>
 
               <div className="mt-6 space-y-4">
                 <a
                   href={`mailto:${PERSONAL.email}`}
-                  className="inline-flex items-center gap-2 text-base font-semibold text-accent-orange transition-colors hover:text-accent-violet">
+                  className="inline-flex items-center gap-2 text-base font-semibold text-accent-orange-ink transition-colors hover:text-accent-violet-ink">
                   <svg
                     className="h-5 w-5"
                     fill="none"
@@ -160,37 +146,39 @@ export default function ContactSection() {
                   />
                 </div>
                 <Input
-                  label="Name"
+                  label={ui.contact.formNameLabel}
                   name="name"
-                  placeholder="Your name"
+                  placeholder={ui.contact.formNamePlaceholder}
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
                 <Input
-                  label="Email"
+                  label={ui.contact.formEmailLabel}
                   name="email"
                   type="email"
-                  placeholder="your@email.com"
+                  placeholder={ui.contact.formEmailPlaceholder}
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <Textarea
-                  label="Message"
+                  label={ui.contact.formMessageLabel}
                   name="message"
-                  placeholder="Tell me about the role, project, or opportunity"
+                  placeholder={ui.contact.formMessagePlaceholder}
                   required
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                 />
                 <Button type="submit" variant="primary" disabled={isSubmitting}>
-                  {isSubmitting ? "Sending..." : "Send Message"}
+                  {isSubmitting ? ui.contact.sending : ui.contact.send}
                 </Button>
                 {statusMessage ? (
                   <p
                     className={`text-sm font-medium ${
-                      statusError ? "text-accent-orange" : "text-accent-teal"
+                      statusError
+                        ? "text-accent-orange-ink"
+                        : "text-accent-teal-ink"
                     }`}>
                     {statusMessage}
                   </p>

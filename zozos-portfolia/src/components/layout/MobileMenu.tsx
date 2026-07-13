@@ -1,6 +1,7 @@
 "use client";
 
-import { NAV_LINKS } from "@/lib/constants";
+import { NAV_SECTIONS } from "@/lib/constants";
+import { useContent } from "@/lib/i18n/useContent";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -15,6 +16,8 @@ export default function MobileMenu({
   activeSection,
   isHomePage,
 }: MobileMenuProps) {
+  const { ui } = useContent();
+
   if (!isOpen) return null;
 
   return (
@@ -24,8 +27,8 @@ export default function MobileMenu({
         <div className="flex items-center justify-end p-4">
           <button
             onClick={onClose}
-            className="p-2 text-navy"
-            aria-label="Close menu"
+            className="p-2.5 text-navy"
+            aria-label={ui.common.closeMenu}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
@@ -33,18 +36,18 @@ export default function MobileMenu({
           </button>
         </div>
         <nav className="flex flex-col gap-2 px-6">
-          {NAV_LINKS.map((link) => (
+          {NAV_SECTIONS.map((link) => (
             <a
               key={link.href}
               href={isHomePage ? link.href : `/${link.href}`}
               onClick={onClose}
               className={`py-3 text-lg font-semibold border-b-2 border-navy/10 transition-colors duration-200 ${
                 activeSection === link.href
-                  ? "text-accent-orange"
-                  : "text-navy hover:text-accent-orange"
+                  ? "text-accent-orange-ink"
+                  : "text-navy hover:text-accent-orange-ink"
               }`}
             >
-              {link.label}
+              {ui.nav[link.key]}
             </a>
           ))}
         </nav>
