@@ -10,6 +10,10 @@ concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+defaults:
+  run:
+    working-directory: zozos-portfolia
+
 jobs:
   build:
     name: Lint, typecheck, and build
@@ -28,6 +32,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
+          cache-dependency-path: zozos-portfolia/pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
