@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import { CONTENT } from "@/lib/content";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const PERSONAL = CONTENT.en.personal;
@@ -15,10 +16,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://zozo.dev"),
+  metadataBase: new URL(SITE_URL),
   title: `${PERSONAL.name} | ${PERSONAL.role}`,
   description: PERSONAL.summary,
   openGraph: {
+    url: SITE_URL,
     title: `${PERSONAL.name} | ${PERSONAL.role}`,
     description: PERSONAL.summary,
     type: "website",
@@ -43,6 +45,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: PERSONAL.name,
+              url: SITE_URL,
               jobTitle: PERSONAL.role,
               description: PERSONAL.summary,
               email: PERSONAL.email,
