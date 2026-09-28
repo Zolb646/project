@@ -8,41 +8,31 @@ import { SECTION_IDS } from "@/lib/constants";
 
 export default function HeroSection() {
   const { personal: PERSONAL, ui } = useContent();
-  const quickFacts = [
-    PERSONAL.location,
-    ui.hero.quickFactCapable,
-    ui.hero.quickFactWorkflow,
-  ];
 
   return (
     <section
       id={SECTION_IDS.hero}
-      className="flex min-h-screen items-center pb-20 pt-28">
+      className="flex min-h-[min(820px,100svh)] items-center pb-16 pt-28 sm:pb-24">
       <Container>
-        <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="max-w-2xl">
-            <p className="font-mono text-accent-orange-ink font-semibold uppercase tracking-[0.2em]">
+        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-16">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold text-accent-orange-ink sm:text-base">
               {ui.hero.greeting}
             </p>
-            <h1 className="mt-4 text-5xl font-extrabold leading-[0.95] tracking-tight text-navy sm:text-6xl lg:text-7xl">
-              Zozo.
+            <h1 className="mt-5 max-w-[14ch] text-[clamp(3.2rem,5vw,5.3rem)] font-black leading-[0.97] tracking-[-0.055em] text-navy">
+              {ui.hero.headline}
             </h1>
-            <h2 className="mt-3 font-bold text-muted sm:text-3xl">
-              {PERSONAL.role}
-            </h2>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
+            <p className="mt-7 max-w-[58ch] text-base leading-relaxed text-muted sm:text-lg">
               {ui.hero.intro(PERSONAL.role)}
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {quickFacts.map((fact) => (
-                <span
-                  key={fact}
-                  className="inline-flex border-3 border-navy bg-white/70 px-3 py-2 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-navy shadow-brutal-sm">
-                  {fact}
-                </span>
-              ))}
+            <div className="mt-8 space-y-1 text-sm font-medium text-muted">
+              <p>{PERSONAL.location}</p>
+              <p className="flex items-start gap-2">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-accent-teal-ink" aria-hidden="true" />
+                {PERSONAL.availability}
+              </p>
             </div>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-9 flex flex-wrap items-center gap-3">
               <Button href={`#${SECTION_IDS.projects}`} variant="primary">
                 {ui.hero.viewProjects}
               </Button>
@@ -53,9 +43,6 @@ export default function HeroSection() {
                 target="_blank"
                 rel="noreferrer">
                 {ui.hero.downloadResume}
-              </Button>
-              <Button href={`#${SECTION_IDS.contact}`} variant="outline">
-                {ui.hero.emailMe}
               </Button>
               <a
                 href={PERSONAL.githubUrl}
@@ -68,46 +55,23 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="group relative mx-auto w-full max-w-[520px] pb-10">
-            <div className="absolute -top-5 right-4 z-0 h-24 w-24 border-3 border-navy bg-accent-yellow shadow-brutal-sm transition-transform duration-300 ease-out group-hover:-translate-y-2 group-hover:rotate-3" />
-            <div className="absolute -bottom-2 left-4 z-0 h-24 w-24 border-3 border-navy bg-accent-teal shadow-brutal-sm transition-transform duration-300 ease-out group-hover:translate-y-2 group-hover:-rotate-3" />
-
-            <div className="relative z-10 ml-auto aspect-4/5 w-full max-w-[420px] overflow-hidden border-3 border-navy bg-cream shadow-brutal-lg transition-[transform,box-shadow] duration-300 ease-out group-hover:z-30 group-hover:-translate-y-2 group-hover:rotate-[1.25deg] group-hover:shadow-[12px_12px_0_0_#1a1a2e]">
+          <div className="relative mx-auto w-full max-w-[440px] pb-5">
+            <div className="absolute -top-5 right-0 h-28 w-28 border-3 border-navy bg-accent-yellow shadow-brutal-sm" aria-hidden="true" />
+            <div className="relative aspect-4/5 w-full overflow-hidden border-3 border-navy bg-cream shadow-brutal-lg">
               <Image
-                src="/profile.jpg"
+                src="/profile-editorial.png"
                 alt={`${PERSONAL.name} portrait`}
                 fill
                 priority
-                sizes="(min-width: 1024px) 420px, 90vw"
-                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06] group-hover:-translate-y-1"
+                sizes="(min-width: 1024px) 440px, 90vw"
+                className="object-cover"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-navy/80 via-navy/30 to-transparent p-6 text-cream transition-transform duration-300 ease-out group-hover:translate-y-1">
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-yellow">
+              <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-navy via-navy/75 to-transparent px-6 pb-6 pt-14 text-cream">
+                <p className="text-xs font-semibold text-accent-yellow">
                   {ui.hero.currentFocus}
                 </p>
-                <p className="mt-2 text-lg font-semibold">{PERSONAL.focus}</p>
+                <p className="mt-1 text-base font-semibold sm:text-lg">{PERSONAL.focus}</p>
               </div>
-            </div>
-
-            <div className="absolute -bottom-8 -left-2 z-20 hidden w-40 sm:block md:w-44 group-hover:z-10">
-              <div className="relative aspect-4/5 rotate-[-7deg] overflow-hidden border-3 border-navy bg-cream shadow-brutal transition-transform duration-300 ease-out group-hover:-translate-x-1 group-hover:translate-y-1 group-hover:rotate-[-10deg]">
-                <Image
-                  src="/profile2.jpg"
-                  alt={`${PERSONAL.name} secondary portrait`}
-                  fill
-                  sizes="176px"
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.08]"
-                />
-              </div>
-            </div>
-
-            <div className="absolute left-0 bottom-3 hidden sm:block z-20 rotate-[7deg] max-w-[220px] border-3 border-navy bg-cream px-4 py-3 shadow-brutal-sm transition-transform duration-300 ease-out group-hover:z-10 group-hover:translate-x-1 group-hover:translate-y-2 sm:-right-6 sm:left-auto sm:bottom-5">
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-                {ui.hero.status}
-              </p>
-              <p className="mt-1 font-semibold text-navy">
-                {PERSONAL.availability}
-              </p>
             </div>
           </div>
         </div>

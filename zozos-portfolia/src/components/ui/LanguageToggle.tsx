@@ -1,36 +1,34 @@
 "use client";
 
 import { useContent } from "@/lib/i18n/useContent";
-import { Locale } from "@/lib/i18n/types";
-
-const OPTIONS: Locale[] = ["en", "mn"];
 
 interface LanguageToggleProps {
   className?: string;
 }
 
 export default function LanguageToggle({ className = "" }: LanguageToggleProps) {
-  const { locale, setLocale, ui } = useContent();
+  const { locale, toggleLocale, ui } = useContent();
+  const nextLanguage = locale === "en" ? "Монгол" : "English";
 
   return (
-    <div
-      className={`inline-flex border-3 border-navy shadow-brutal-sm ${className}`}
-      role="group"
-      aria-label={ui.common.languageToggleLabel}>
-      {OPTIONS.map((option) => (
-        <button
-          key={option}
-          type="button"
-          onClick={() => setLocale(option)}
-          aria-pressed={locale === option}
-          className={`px-2.5 py-1.5 font-mono text-xs font-semibold uppercase tracking-[0.12em] transition-colors duration-150 ${
-            locale === option
-              ? "bg-accent-orange text-navy"
-              : "bg-cream text-navy/50 hover:text-navy"
-          }`}>
-          {option}
-        </button>
-      ))}
-    </div>
+    <button
+      type="button"
+      onClick={toggleLocale}
+      aria-label={`${ui.common.languageToggleLabel}: ${nextLanguage}`}
+      className={`inline-flex min-h-10 items-center gap-2 border-b-2 border-navy px-1 text-sm font-semibold text-navy transition-colors hover:border-accent-orange-ink hover:text-accent-orange-ink ${className}`}>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-4 w-4 shrink-0">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18M12 3c2.5 2.5 3.75 5.5 3.75 9S14.5 18.5 12 21c-2.5-2.5-3.75-5.5-3.75-9S9.5 5.5 12 3Z" />
+      </svg>
+      <span>{nextLanguage}</span>
+    </button>
   );
 }

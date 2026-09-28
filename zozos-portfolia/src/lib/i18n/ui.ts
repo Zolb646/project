@@ -16,15 +16,12 @@ export interface UIDictionary {
   };
   hero: {
     greeting: string;
+    headline: string;
     intro: (role: string) => string;
-    quickFactCapable: string;
-    quickFactWorkflow: string;
     viewProjects: string;
     downloadResume: string;
-    emailMe: string;
     viewGithub: string;
     currentFocus: string;
-    status: string;
   };
   about: {
     eyebrow: string;
@@ -137,17 +134,14 @@ const en: UIDictionary = {
     viewCaseStudyFor: (title) => `View case study for ${title}`,
   },
   hero: {
-    greeting: "Hi, my name is",
+    greeting: "Zozo / Software Engineer",
+    headline: "I build what people see and what makes it work.",
     intro: (role) =>
-      `I'm a driven ${role} from Mongolia who loves turning complex problems into simple, beautiful solutions. With a strong foundation in modern web technologies, I create performant and user-friendly applications that make a difference.`,
-    quickFactCapable: "Frontend + backend capable",
-    quickFactWorkflow: "Product-focused workflow",
+      `I'm a ${role} in Ulaanbaatar. I work across React and Next.js interfaces, the APIs behind them, and mobile product flows. My recent work includes a team sign-language platform and a vocabulary learning app.`,
     viewProjects: "View Projects",
     downloadResume: "Download Resume",
-    emailMe: "Email Me",
     viewGithub: "View GitHub",
     currentFocus: "Current focus",
-    status: "Status",
   },
   about: {
     eyebrow: "Profile",
@@ -171,12 +165,12 @@ const en: UIDictionary = {
     eyebrow: "Selected work",
     heading: "Projects",
     description:
-      "These are the projects that best show how I structure frontend work, handle product flows, and turn ideas into shipped interfaces.",
+      "Selected work across interactive web experiences, collaborative full-stack development, and mobile learning.",
     featured: "Featured",
     viewCaseStudy: "View case study",
     moreProjects: "More Projects",
     footerNote:
-      "Each project now has a dedicated case study page with deeper context, outcomes, and screenshots.",
+      "Open a case study to see the decisions, contribution, and result behind each project.",
     talkCta: "Let's talk about building something",
   },
   experience: {
@@ -278,17 +272,14 @@ const mn: UIDictionary = {
     viewCaseStudyFor: (title) => `${title} төслийн дэлгэрэнгүйг үзэх`,
   },
   hero: {
-    greeting: "Сайн байна уу, миний нэр бол",
-    intro: (role) =>
-      `Би Монголоос гаралтай, төвөгтэй асуудлыг энгийн бөгөөд үзэсгэлэнтэй шийдэл болгон хувиргах дуртай, зорилготой ${role}. Орчин үеийн веб технологийн бат бөх суурьтайгаар би гүйцэтгэл сайтай, хэрэглэгчид ээлтэй аппликейшн бүтээдэг.`,
-    quickFactCapable: "Frontend болон backend ур чадвартай",
-    quickFactWorkflow: "Бүтээгдэхүүн төвтэй ажлын хандлага",
+    greeting: "Zozo / Программ хангамжийн инженер",
+    headline: "Интерфэйсээс систем хүртэл бүтээнэ.",
+    intro: () =>
+      "Би Улаанбаатарт ажилладаг программ хангамжийн инженер. React, Next.js ашиглан интерфэйс, API болон mobile бүтээгдэхүүний урсгал бүтээдэг. Сүүлийн ажлуудад багийн дохионы хэлний платформ, үг цээжлэх апп багтана.",
     viewProjects: "Төслүүд үзэх",
     downloadResume: "Резюме татах",
-    emailMe: "Имэйл бичих",
     viewGithub: "GitHub үзэх",
     currentFocus: "Одоогийн чиглэл",
-    status: "Төлөв",
   },
   about: {
     eyebrow: "Профайл",
@@ -312,12 +303,12 @@ const mn: UIDictionary = {
     eyebrow: "Сонгосон ажлууд",
     heading: "Төслүүд",
     description:
-      "Эдгээр төслүүд нь миний frontend ажлыг хэрхэн зохион байгуулдаг, бүтээгдэхүүний урсгалыг хэрхэн удирддаг, санааг хэрхэн бодит интерфэйс болгон хувиргадгийг хамгийн сайн харуулдаг.",
+      "Интерактив веб, багийн full-stack хөгжүүлэлт, mobile сургалтын чиглэлийн сонгосон ажлууд.",
     featured: "Онцлох",
     viewCaseStudy: "Дэлгэрэнгүй үзэх",
     moreProjects: "Бусад төслүүд",
     footerNote:
-      "Төсөл бүр одоо илүү гүнзгий контекст, үр дүн, дэлгэцийн зурагтай тусдаа дэлгэрэнгүй хуудастай боллоо.",
+      "Төсөл бүрийн шийдвэр, миний оролцоо, үр дүнг дэлгэрэнгүй хуудаснаас үзээрэй.",
     talkCta: "Ямар нэгэн зүйл хамтдаа бүтээхээр ярилцъя",
   },
   experience: {

@@ -11,9 +11,9 @@ export const NAV_SECTIONS: Array<{
   key: "about" | "skills" | "projects" | "experience" | "contact";
   href: string;
 }> = [
-  { key: "about", href: `#${SECTION_IDS.about}` },
-  { key: "skills", href: `#${SECTION_IDS.skills}` },
   { key: "projects", href: `#${SECTION_IDS.projects}` },
+  { key: "about", href: `#${SECTION_IDS.about}` },
   { key: "experience", href: `#${SECTION_IDS.experience}` },
+  { key: "skills", href: `#${SECTION_IDS.skills}` },
   { key: "contact", href: `#${SECTION_IDS.contact}` },
 ];
