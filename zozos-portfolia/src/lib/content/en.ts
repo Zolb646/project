@@ -20,7 +20,7 @@ export const en: SiteContent = {
       "Work comfortably across solo builds and team projects, with a focus on shipping clear, maintainable product work.",
     ],
     focus: "Product-focused frontend and full-stack development",
-    email: "zolb646@gmail.com",
+    email: "info@zolbayrr.com",
     githubUrl: "https://github.com/Zolb646",
   },
 

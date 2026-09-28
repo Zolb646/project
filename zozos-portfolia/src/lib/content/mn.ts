@@ -20,7 +20,7 @@ export const mn: SiteContent = {
       "Ганцаарчилсан болон багийн төслүүд дээр адилхан тав тухтай ажилладаг бөгөөд тодорхой, дэмжиж арчлах боломжтой бүтээгдэхүүн гаргахад анхаардаг.",
     ],
     focus: "Бүтээгдэхүүн төвтэй frontend болон full-stack хөгжүүлэлт",
-    email: "zolb646@gmail.com",
+    email: "info@zolbayrr.com",
     githubUrl: "https://github.com/Zolb646",
   },
 

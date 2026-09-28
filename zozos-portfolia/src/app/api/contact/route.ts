@@ -63,11 +63,11 @@ export async function POST(request: NextRequest) {
   }
 
   const resendApiKey = process.env.RESEND_API_KEY;
-  const toEmail = process.env.CONTACT_TO_EMAIL;
+  const toEmail = process.env.CONTACT_TO_EMAIL ?? "info@zolbayrr.com";
   const fromEmail =
-    process.env.CONTACT_FROM_EMAIL ?? "Portfolio Contact <onboarding@resend.dev>";
+    process.env.CONTACT_FROM_EMAIL ?? "Zozo <info@zolbayrr.com>";
 
-  if (!resendApiKey || !toEmail) {
+  if (!resendApiKey) {
     return NextResponse.json(
       { error: "Email service is not configured on the server." },
       { status: 500 }
