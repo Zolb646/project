@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #fef9ef;
-  --color-navy: #1a1a2e;
-  --color-muted: #4a4a68;
-  --color-accent-orange: #ff6b35;
-  --color-accent-teal: #4ecdc4;
-  --color-accent-yellow: #ffe66d;
+  --color-cream: #fffdf5;
+  --color-navy: #202027;
+  --color-muted: #56565e;
+  --color-accent-orange: #ff7a45;
+  --color-accent-teal: #99e4d2;
+  --color-accent-yellow: #ffe566;
   --color-accent-violet: #a855f7;
 
   /* Ink-safe variants: same hue, darkened to clear WCAG AA 4.5:1 against
@@ -18,11 +18,12 @@
   --color-accent-yellow-ink: #92400e;
   --color-accent-violet-ink: #7e22ce;
 
-  --shadow-brutal: 5px 5px 0 0 #1a1a2e;
-  --shadow-brutal-lg: 8px 8px 0 0 #1a1a2e;
-  --shadow-brutal-sm: 3px 3px 0 0 #1a1a2e;
+  --shadow-brutal: 6px 6px 0 0 #202027;
+  --shadow-brutal-lg: 10px 10px 0 0 #202027;
+  --shadow-brutal-sm: 3px 3px 0 0 #202027;
 
-  --font-sans: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+  --font-sans: var(--font-manrope), "Segoe UI", sans-serif;
+  --font-display: var(--font-bricolage), var(--font-manrope), sans-serif;
   --font-mono: var(--font-jetbrains-mono), "Consolas", "SFMono-Regular", monospace;
 
   --animate-slide-in: slide-in 0.3s ease-out forwards;
@@ -52,8 +53,8 @@
 }
 
 ::selection {
-  background-color: #ffe66d;
-  color: #1a1a2e;
+  background-color: var(--color-accent-yellow);
+  color: var(--color-navy);
 }
 
 html {
@@ -61,37 +62,30 @@ html {
 }
 
 section[id] {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 6rem;
 }
 
 body {
-  position: relative;
   min-height: 100vh;
-  isolation: isolate;
-  background-color: #fef9ef;
-  background-image:
-    radial-gradient(circle at top left, rgba(255, 107, 53, 0.16), transparent 32%),
-    radial-gradient(circle at 85% 15%, rgba(78, 205, 196, 0.18), transparent 26%),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
-  color: #1a1a2e;
+  background-color: var(--color-cream);
+  color: var(--color-navy);
   font-family: var(--font-sans);
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
+.portrait-stage {
   background-image:
-    linear-gradient(rgba(26, 26, 46, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(26, 26, 46, 0.04) 1px, transparent 1px);
-  background-size: 32px 32px;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.42), transparent 88%);
+    linear-gradient(rgba(32, 32, 39, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32, 32, 39, 0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: 0 0;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
 }
 
 :focus-visible {
-  outline: 3px solid #c2410c;
+  outline: 3px solid var(--color-accent-orange-ink);
   outline-offset: 3px;
 }
 

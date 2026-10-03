@@ -21,7 +21,7 @@ export default function MobileMenu({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 md:hidden">
+    <div className="fixed inset-0 z-50 lg:hidden">
       <div className="fixed inset-0 bg-navy/50" onClick={onClose} />
       <div className="fixed right-0 top-0 bottom-0 w-72 bg-cream border-l-3 border-navy animate-slide-in">
         <div className="flex items-center justify-end p-4">

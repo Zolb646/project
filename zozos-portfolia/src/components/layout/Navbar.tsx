@@ -14,9 +14,7 @@ export default function Navbar() {
   const isHomePage = pathname === "/";
   const [activeSection, setActiveSection] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const displayedActiveSection = isHomePage ? activeSection : "";
-  const useSolidNav = !isHomePage || scrolled;
 
   useEffect(() => {
     if (!isHomePage) {
@@ -24,8 +22,6 @@ export default function Navbar() {
     }
 
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-
       const sections = NAV_SECTIONS.map((link) =>
         document.querySelector(link.href),
       );
@@ -48,29 +44,24 @@ export default function Navbar() {
 
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-          useSolidNav
-            ? "bg-cream/95 backdrop-blur-sm border-b-3 border-navy"
-            : "bg-transparent"
-        }`}>
-        <Container>
-          <div className="flex items-center justify-between h-16">
+      <nav className="fixed inset-x-0 top-0 z-50 border-b-3 border-navy bg-cream">
+        <Container wide>
+          <div className="flex h-20 items-center justify-between gap-4">
             <a
               href={isHomePage ? "#hero" : "/#hero"}
-              className="text-xl font-bold text-navy">
+              className="font-display text-3xl font-extrabold tracking-tight text-navy">
               Zozo<span className="text-accent-orange-ink">.</span>
             </a>
 
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden items-center gap-6 lg:flex">
               {NAV_SECTIONS.map((link) => (
                 <a
                   key={link.href}
                   href={isHomePage ? link.href : `/${link.href}`}
-                  className={`text-sm font-semibold transition-colors duration-200 ${
+                  className={`text-sm font-bold transition-colors duration-150 ${link.key === "contact" ? "border-2 border-navy bg-accent-yellow px-4 py-2 shadow-brutal-sm" : ""} ${
                     displayedActiveSection === link.href
-                      ? "text-accent-orange-ink"
-                      : "text-navy hover:text-accent-orange-ink"
+                      ? "text-navy underline decoration-2 underline-offset-4"
+                      : "text-navy hover:underline hover:decoration-2 hover:underline-offset-4"
                   }`}>
                   {ui.nav[link.key]}
                 </a>
@@ -78,10 +69,10 @@ export default function Navbar() {
               <LanguageToggle />
             </div>
 
-            <div className="flex items-center gap-3 md:hidden">
+            <div className="flex items-center gap-3 lg:hidden">
               <LanguageToggle />
               <button
-                className="p-2.5 text-navy"
+                className="border-2 border-navy bg-accent-yellow p-2 text-navy shadow-brutal-sm"
                 onClick={() => setIsMenuOpen(true)}
                 aria-label={ui.common.openMenu}>
                 <svg

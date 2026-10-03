@@ -13,7 +13,7 @@ const colors = {
 export default function Badge({ children, color = "yellow" }: BadgeProps) {
   return (
     <span
-      className={`inline-block px-3 py-1 text-xs font-mono uppercase font-semibold border-2 border-navy ${colors[color]}`}
+      className={`inline-block border-2 border-navy px-2.5 py-1 text-xs font-bold ${colors[color]}`}
     >
       {children}
     </span>

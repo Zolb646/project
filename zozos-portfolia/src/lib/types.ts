@@ -44,10 +44,11 @@ export interface SocialLink {
 }
 
 export interface PersonalInfo {
+  employer: string;
   name: string;
   role: string;
   location: string;
-  availability: string;
+  employmentStatus: string;
   summary: string;
   resumeUrl: string;
   tagline: string;

@@ -88,7 +88,7 @@ export default function SkillsSection() {
   const { skills: SKILLS, ui } = useContent();
 
   return (
-    <section id={SECTION_IDS.skills} className="py-20 sm:py-28">
+    <section id={SECTION_IDS.skills} className="border-y-3 border-navy bg-accent-yellow/20 py-16 sm:py-24">
       <Container>
         <AnimateOnScroll>
           <SectionHeading
@@ -100,17 +100,17 @@ export default function SkillsSection() {
           </SectionHeading>
         </AnimateOnScroll>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {SKILLS.map((category) => (
             <AnimateOnScroll key={category.title}>
-              <Card className="h-full">
+              <Card hover={false} className="h-full">
                 <div className="mb-5 flex items-center justify-between gap-4">
                   <div>{iconMap[category.icon]}</div>
-                  <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+                  <span className="text-xs font-bold text-muted">
                     {ui.skills.skillsCount(category.skills.length)}
                   </span>
                 </div>
-                <h3 className="text-xl font-bold text-navy">{category.title}</h3>
+                <h3 className="font-display text-xl font-extrabold leading-tight text-navy">{category.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
                   {category.description}
                 </p>

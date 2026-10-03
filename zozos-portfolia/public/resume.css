@@ -8,7 +8,7 @@ button { border: 0; border-radius: 6px; padding: 11px 16px; background: #286ee8;
 button:focus-visible { outline: 3px solid #182235; outline-offset: 3px; }
 .resume { width: 210mm; min-height: 297mm; margin: 0 auto 24px; padding: 13mm 16mm; background: white; box-shadow: 0 3px 20px #18223515; }
 header { display: flex; align-items: flex-start; justify-content: space-between; gap: 6mm; margin-bottom: 7mm; }
-h1 { font-size: 20pt; line-height: 1.15; margin: 0; text-transform: uppercase; letter-spacing: -.65px; }
+h1 { white-space: nowrap; font-size: 20pt; line-height: 1.15; margin: 0; text-transform: uppercase; letter-spacing: -.65px; }
 .profession { font-size: 16pt; color: #939393; margin: 2mm 0 0; }
 address { text-align: right; font-size: 8.6pt; font-style: normal; line-height: 1.65; flex-shrink: 0; }
 address a { display: block; color: inherit; text-decoration: none; }
@@ -40,7 +40,7 @@ h2 { break-after: avoid; }
   .resume { width: 100%; min-height: auto; padding: 24px; }
   header { flex-direction: column; gap: 12px; }
   address { text-align: left; }
-  h1 { font-size: 25px; }
+  h1 { white-space: normal; font-size: 25px; }
   .skills { grid-template-columns: 1fr; }
   .row { flex-wrap: wrap; gap: 2px 12px; }
 }

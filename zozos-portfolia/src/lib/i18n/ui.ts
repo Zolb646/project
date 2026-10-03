@@ -16,7 +16,8 @@ export interface UIDictionary {
   };
   hero: {
     greeting: string;
-    headline: string;
+    headlineLines: string[];
+    projectAvailability: string;
     intro: (role: string) => string;
     viewProjects: string;
     downloadResume: string;
@@ -29,8 +30,7 @@ export interface UIDictionary {
     description: string;
     whatIBring: string;
     basedIn: string;
-    targeting: string;
-    targetingValue: string;
+    currentCompany: string;
     bestFit: string;
   };
   skills: {
@@ -134,10 +134,11 @@ const en: UIDictionary = {
     viewCaseStudyFor: (title) => `View case study for ${title}`,
   },
   hero: {
-    greeting: "Zozo / Software Engineer",
-    headline: "I build what people see and what makes it work.",
+    greeting: "Zozo / Junior Frontend Engineer",
+    headlineLines: ["Interfaces.", "Systems.", "A bit of both."],
+    projectAvailability: "Open for freelance projects",
     intro: (role) =>
-      `I'm a ${role} in Ulaanbaatar. I work across React and Next.js interfaces, the APIs behind them, and mobile product flows. My recent work includes a team sign-language platform and a vocabulary learning app.`,
+      `I'm Zozo, a ${role.toLowerCase()} at erxes Inc. in Ulaanbaatar. I build production interfaces with React and TypeScript, with experience across full-stack web and mobile projects.`,
     viewProjects: "View Projects",
     downloadResume: "Download Resume",
     viewGithub: "View GitHub",
@@ -145,25 +146,24 @@ const en: UIDictionary = {
   },
   about: {
     eyebrow: "Profile",
-    heading: "About Me",
+    heading: "The person behind the pixels.",
     description:
-      "A clearer snapshot of how I work, where I add value, and why I am a strong fit for frontend-heavy and full-stack product teams.",
+      "Junior Frontend Engineer at erxes Inc., with experience across production interfaces, full-stack development, and mobile projects.",
     whatIBring: "What I bring",
     basedIn: "Based in",
-    targeting: "Targeting",
-    targetingValue: "Internship and junior software engineering roles",
+    currentCompany: "Currently at",
     bestFit: "Best fit",
   },
   skills: {
     eyebrow: "Core stack",
-    heading: "Skills",
+    heading: "Tools I build with.",
     description:
       "The stack behind the projects on this site, from polished interfaces and mobile flows to backend logic, data, and detection work.",
     skillsCount: (count) => `${count} skills`,
   },
   projects: {
     eyebrow: "Selected work",
-    heading: "Projects",
+    heading: "A few things I've built.",
     description:
       "Selected work across interactive web experiences, collaborative full-stack development, and mobile learning.",
     featured: "Featured",
@@ -175,30 +175,30 @@ const en: UIDictionary = {
   },
   experience: {
     eyebrow: "Recent path",
-    heading: "Experience",
+    heading: "Learning. Building. Shipping.",
     description:
-      "The fastest way to understand how I moved from early training into shipped work, team collaboration, and product-focused engineering habits.",
+      "Currently a Junior Frontend Engineer at erxes Inc., following software engineering training and a full-stack internship at Pinecone Academy.",
     current: "Current",
   },
   contact: {
     eyebrow: "Contact",
-    heading: "Get In Touch",
+    heading: "Let's build something.",
     description:
-      "If you are hiring for an internship or junior software engineering role, I would love to hear about the team and the product.",
-    readyHeading: "Ready for the right team.",
+      "Need a website, a frontend feature, or improvements to an existing product? I am open to freelance projects alongside my role at erxes Inc.",
+    readyHeading: "Tell me what you want to build.",
     intro:
-      "I am looking for a team where I can contribute to real product work, grow through strong feedback, and keep building across frontend and backend.",
+      "Share your goals, scope, and timeline. We can discuss how I can help with responsive interfaces, React and Next.js development, or API integration, and agree on availability before starting.",
     facts: [
       "Based in Mongolia",
-      "Seeking internship and junior roles",
-      "Best fit for frontend and full-stack teams",
+      "Junior Frontend Engineer at erxes Inc.",
+      "Open to freelance client projects",
     ],
     formNameLabel: "Name",
     formNamePlaceholder: "Your name",
     formEmailLabel: "Email",
     formEmailPlaceholder: "your@email.com",
     formMessageLabel: "Message",
-    formMessagePlaceholder: "Tell me about the role, project, or opportunity",
+    formMessagePlaceholder: "What do you need built? Include the scope, timeline, and budget if available.",
     send: "Send Message",
     sending: "Sending...",
     successMessage: "Message sent successfully. I will get back to you soon.",
@@ -272,10 +272,11 @@ const mn: UIDictionary = {
     viewCaseStudyFor: (title) => `${title} төслийн дэлгэрэнгүйг үзэх`,
   },
   hero: {
-    greeting: "Zozo / Программ хангамжийн инженер",
-    headline: "Интерфэйсээс систем хүртэл бүтээнэ.",
+    greeting: "Zozo / Junior Frontend инженер",
+    headlineLines: ["Интерфэйс.", "Систем.", "Хоёуланг нь."],
+    projectAvailability: "Захиалгат төсөлд нээлттэй",
     intro: () =>
-      "Би Улаанбаатарт ажилладаг программ хангамжийн инженер. React, Next.js ашиглан интерфэйс, API болон mobile бүтээгдэхүүний урсгал бүтээдэг. Сүүлийн ажлуудад багийн дохионы хэлний платформ, үг цээжлэх апп багтана.",
+      "Намайг Zozo гэдэг. Улаанбаатар хотод erxes Inc.-ийн Junior Frontend инженерээр ажилладаг. React, TypeScript ашиглан бүтээгдэхүүний интерфэйс хөгжүүлдэг бөгөөд full-stack веб, мобайл төслүүд дээр ажилласан туршлагатай.",
     viewProjects: "Төслүүд үзэх",
     downloadResume: "Резюме татах",
     viewGithub: "GitHub үзэх",
@@ -283,25 +284,24 @@ const mn: UIDictionary = {
   },
   about: {
     eyebrow: "Профайл",
-    heading: "Миний тухай",
+    heading: "Кодын ард байгаа хүн.",
     description:
-      "Би хэрхэн ажилладаг, хаана хамгийн их үнэ цэнэ нэмдэг, яагаад frontend-д чиглэсэн болон full-stack бүтээгдэхүүний багуудад тохирдог тухай тодорхой дүр зураг.",
+      "erxes Inc.-д Junior Frontend инженерээр ажилладаг. Бүтээгдэхүүний интерфэйс, full-stack хөгжүүлэлт, мобайл төслүүд дээр ажилласан туршлагатай.",
     whatIBring: "Юугаар хувь нэмэр оруулах вэ",
     basedIn: "Байршил",
-    targeting: "Зорьж буй ажил",
-    targetingValue: "Дадлага болон бага түвшний software engineer ажлын байр",
+    currentCompany: "Одоо ажиллаж буй",
     bestFit: "Хамгийн тохирох",
   },
   skills: {
     eyebrow: "Үндсэн стек",
-    heading: "Ур чадвар",
+    heading: "Бүтээхэд ашигладаг хэрэгслүүд.",
     description:
       "Энэ сайт дээрх төслүүдийн ард байгаа технологийн стек — өнгөлөг интерфэйс, mobile урсгалаас эхлээд backend логик, дата, detection ажил хүртэл.",
     skillsCount: (count) => `${count} ур чадвар`,
   },
   projects: {
     eyebrow: "Сонгосон ажлууд",
-    heading: "Төслүүд",
+    heading: "Миний бүтээсэн ажлууд.",
     description:
       "Интерактив веб, багийн full-stack хөгжүүлэлт, mobile сургалтын чиглэлийн сонгосон ажлууд.",
     featured: "Онцлох",
@@ -313,23 +313,23 @@ const mn: UIDictionary = {
   },
   experience: {
     eyebrow: "Сүүлийн зам",
-    heading: "Туршлага",
+    heading: "Сурч, бүтээж, хэрэгжүүлж байна.",
     description:
-      "Анхны сургалтаас эхлээд бодит хэрэгжсэн ажил, багийн хамтын ажиллагаа, бүтээгдэхүүнд чиглэсэн инженерийн дадал хэвшил хүртэл хэрхэн хөгжсөнийг ойлгох хамгийн хурдан арга.",
+      "Pinecone Academy-ийн программ хангамжийн сургалт, full-stack дадлагыг дүүргээд одоо erxes Inc.-д Junior Frontend инженерээр ажиллаж байна.",
     current: "Одоогийн",
   },
   contact: {
     eyebrow: "Холбоо барих",
-    heading: "Холбогдоорой",
+    heading: "Хамтдаа бүтээе.",
     description:
-      "Хэрэв та дадлага эсвэл бага түвшний software engineer ажлын байранд хүн хайж байгаа бол таны баг болон бүтээгдэхүүний талаар сонсохыг маш их хүсч байна.",
-    readyHeading: "Зөв багаа хүлээж байна.",
+      "Вебсайт, frontend функц эсвэл одоогийн бүтээгдэхүүнээ сайжруулах хэрэгтэй юу? erxes Inc. дэх ажлынхаа хажуугаар захиалгат төсөл авахад нээлттэй.",
+    readyHeading: "Юу бүтээхийг хүсэж байна вэ?",
     intro:
-      "Би бодит бүтээгдэхүүний ажилд хувь нэмэр оруулж, хүчтэй санал хүсэлтээр дамжуулан хөгжиж, frontend болон backend чиглэлээр үргэлжлүүлэн бүтээх боломжтой баг хайж байна.",
+      "Төслийн зорилго, ажлын хүрээ, хугацаагаа бичээрэй. Интерфэйс, React болон Next.js хөгжүүлэлт, API холболт дээр хэрхэн туслах боломжтойг ярилцаж, эхлэхээсээ өмнө ажиллах цагаа тохиролцъё.",
     facts: [
       "Монголд байрладаг",
-      "Дадлага болон бага түвшний ажлын байр хайж байна",
-      "Frontend болон full-stack багуудад хамгийн тохиромжтой",
+      "erxes Inc.-ийн Junior Frontend инженер",
+      "Захиалгат төсөлд нээлттэй",
     ],
     formNameLabel: "Нэр",
     formNamePlaceholder: "Таны нэр",
@@ -337,7 +337,7 @@ const mn: UIDictionary = {
     formEmailPlaceholder: "your@email.com",
     formMessageLabel: "Зурвас",
     formMessagePlaceholder:
-      "Ажлын байр, төсөл эсвэл боломжийн талаар надад хэлээрэй",
+      "Юу бүтээлгэх хэрэгтэй вэ? Ажлын хүрээ, хугацаа, боломжтой бол төсвөө бичээрэй.",
     send: "Зурвас илгээх",
     sending: "Илгээж байна...",
     successMessage: "Зурвас амжилттай илгээгдлээ. Би удахгүй тантай холбогдоно.",

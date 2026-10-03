@@ -2,93 +2,44 @@
 
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
-import Card from "@/components/ui/Card";
-import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useContent } from "@/lib/i18n/useContent";
 import { SECTION_IDS } from "@/lib/constants";
 
 export default function AboutSection() {
-  const { personal: PERSONAL, ui } = useContent();
-
-  const detailCards = [
-    {
-      title: ui.about.basedIn,
-      value: PERSONAL.location,
-      tone: "bg-accent-orange",
-    },
-    {
-      title: ui.about.targeting,
-      value: ui.about.targetingValue,
-      tone: "bg-accent-teal",
-    },
-    {
-      title: ui.about.bestFit,
-      value: PERSONAL.focus,
-      tone: "bg-accent-yellow",
-    },
+  const { personal, ui } = useContent();
+  const details = [
+    { title: ui.about.basedIn, value: personal.location },
+    { title: ui.about.currentCompany, value: personal.employer },
+    { title: ui.about.bestFit, value: personal.focus },
   ];
 
   return (
-    <section id={SECTION_IDS.about} className="py-20 sm:py-28">
+    <section id={SECTION_IDS.about} className="border-y-3 border-navy bg-accent-teal/25 py-16 sm:py-24">
       <Container>
-        <AnimateOnScroll>
-          <SectionHeading
-            color="teal"
-            eyebrow={ui.about.eyebrow}
-            description={ui.about.description}
-          >
-            {ui.about.heading}
-          </SectionHeading>
-        </AnimateOnScroll>
-
-        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-          <AnimateOnScroll>
-            <Card hover={false} className="h-full">
-              <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-accent-orange-ink">
-                {ui.about.whatIBring}
-              </p>
-              <p className="mt-5 text-lg leading-relaxed text-muted">
-                {PERSONAL.about}
-              </p>
-            </Card>
-          </AnimateOnScroll>
-
-          <div className="grid gap-4">
-            {PERSONAL.aboutHighlights.map((highlight, index) => (
-              <AnimateOnScroll key={highlight}>
-                <Card hover={false} className="h-full">
-                  <div className="flex gap-4">
-                    <div
-                      className={`mt-1 h-3 w-3 shrink-0 border-2 border-navy ${
-                        index === 0
-                          ? "bg-accent-orange"
-                          : index === 1
-                            ? "bg-accent-teal"
-                            : "bg-accent-yellow"
-                      }`}
-                    />
-                    <p className="leading-relaxed text-muted">{highlight}</p>
-                  </div>
-                </Card>
-              </AnimateOnScroll>
-            ))}
+        <SectionHeading color="teal" eyebrow={ui.about.eyebrow} description={ui.about.description}>{ui.about.heading}</SectionHeading>
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+          <div>
+            <p className="max-w-[56ch] text-lg font-medium leading-[1.9] sm:text-xl">{personal.about}</p>
+            <dl className="mt-8 border-t-2 border-navy">
+              {details.map((detail) => (
+                <div key={detail.title} className="grid gap-2 border-b-2 border-navy py-4 sm:grid-cols-[110px_1fr] sm:gap-5">
+                  <dt className="text-sm font-bold text-muted">{detail.title}</dt>
+                  <dd className="text-sm font-bold leading-relaxed">{detail.value}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-        </div>
-
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
-          {detailCards.map((card) => (
-            <AnimateOnScroll key={card.title}>
-              <Card hover={false} className="h-full">
-                <div className={`h-3 w-14 border-2 border-navy ${card.tone}`} />
-                <p className="mt-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-                  {card.title}
-                </p>
-                <p className="mt-2 text-base font-semibold leading-relaxed text-navy">
-                  {card.value}
-                </p>
-              </Card>
-            </AnimateOnScroll>
-          ))}
+          <div className="self-start border-3 border-navy bg-white p-6 shadow-brutal sm:p-8">
+            <h3 className="font-display text-2xl font-extrabold">{ui.about.whatIBring}</h3>
+            <ul className="mt-5 space-y-6">
+              {personal.aboutHighlights.map((highlight) => (
+                <li key={highlight} className="flex gap-4 text-sm leading-[1.8] text-muted sm:text-base">
+                  <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center border-2 border-navy bg-accent-yellow text-sm font-bold text-navy">↗</span>
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </Container>
     </section>

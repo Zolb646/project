@@ -63,7 +63,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id={SECTION_IDS.contact} className="py-20 sm:py-28">
+    <section id={SECTION_IDS.contact} className="bg-accent-orange/25 py-16 sm:py-24">
       <Container>
         <AnimateOnScroll>
           <SectionHeading
@@ -74,13 +74,13 @@ export default function ContactSection() {
           </SectionHeading>
         </AnimateOnScroll>
 
-        <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
+        <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14">
           <AnimateOnScroll>
-            <Card hover={false} className="h-full">
-              <span className="inline-flex border-3 border-navy bg-accent-yellow px-3 py-1 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-navy shadow-brutal-sm">
-                {PERSONAL.availability}
+            <div className="h-full">
+              <span className="inline-flex border-3 border-navy bg-accent-yellow px-3 py-1 text-xs font-bold text-navy shadow-brutal-sm">
+                {PERSONAL.employmentStatus}
               </span>
-              <h3 className="mt-5 text-3xl font-black text-navy">
+              <h3 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-navy">
                 {ui.contact.readyHeading}
               </h3>
               <p className="mt-4 text-lg leading-relaxed text-muted">
@@ -90,7 +90,7 @@ export default function ContactSection() {
               <div className="mt-6 space-y-4">
                 <a
                   href={`mailto:${PERSONAL.email}`}
-                  className="inline-flex items-center gap-2 text-base font-semibold text-accent-orange-ink transition-colors hover:text-accent-violet-ink">
+                  className="inline-flex max-w-full flex-wrap items-center gap-2 break-all text-base font-semibold text-accent-orange-ink transition-colors hover:text-accent-violet-ink">
                   <svg
                     className="h-5 w-5"
                     fill="none"
@@ -122,12 +122,12 @@ export default function ContactSection() {
                 {contactFacts.map((fact) => (
                   <div
                     key={fact}
-                    className="border-3 border-navy bg-white/70 px-4 py-3 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-navy shadow-brutal-sm">
+                    className="border-3 border-navy bg-cream px-4 py-3 text-xs font-bold text-navy shadow-brutal-sm">
                     {fact}
                   </div>
                 ))}
               </div>
-            </Card>
+            </div>
           </AnimateOnScroll>
 
           <AnimateOnScroll>

@@ -3,17 +3,14 @@ import { SiteContent } from "@/lib/types";
 export const en: SiteContent = {
   personal: {
     name: "Zozo",
-    role: "Software Engineer",
+    role: "Junior Frontend Engineer",
+    employer: "erxes Inc.",
     location: "Ulaanbaatar, Mongolia",
-    availability:
-      "Actively seeking internship and junior software engineering roles",
-    summary:
-      "Junior software engineer with hands-on experience across 15+ web and mobile projects, building responsive interfaces, reusable components, and full-stack product features with React, Next.js, TypeScript, Node.js, GraphQL, and PostgreSQL.",
+    employmentStatus: "Junior Frontend Engineer at erxes Inc.",
+    summary: "Junior Frontend Engineer at erxes Inc., based in Ulaanbaatar, Mongolia. Building production interfaces with React and TypeScript, with additional experience across full-stack web and mobile projects.",
     resumeUrl: "/Zozo-resume.pdf",
-    tagline:
-      "Frontend-focused, full-stack capable, and ready to contribute from feature build to deployment.",
-    about:
-      "I am a software engineer from Mongolia with hands-on experience gained through 15+ projects across Pinecone Academy's bootcamp, internship track, and personal work. I enjoy building the full shape of a product, from responsive UI and reusable components to backend integration and deployment, and I have worked both independently and inside team codebases to ship practical web and mobile experiences.",
+    tagline: "Junior Frontend Engineer at erxes Inc., building and maintaining production interfaces.",
+    about: "I am a Junior Frontend Engineer at erxes Inc. in Ulaanbaatar. I build and maintain production interfaces with React and TypeScript, integrate GraphQL APIs, and work with the team through code reviews and iterative development. Before joining erxes, I completed software engineering training and a full-stack internship at Pinecone Academy. My projects also include web and mobile applications built with Next.js, React Native, and PostgreSQL.",
     aboutHighlights: [
       "Build responsive frontend experiences with React, Next.js, TypeScript, and a strong eye for layout, motion, and hierarchy.",
       "Handle backend features with Node.js, GraphQL, Prisma, PostgreSQL, and API-driven product workflows.",
@@ -254,45 +251,45 @@ export const en: SiteContent = {
 
   experiences: [
     {
-      role: "Intern",
-      company: "erxes",
-      period: "June 2026 - Present",
-      current: true,
-      description:
-        "Working as a software engineering intern at erxes, contributing to real product features inside a professional engineering team.",
-      tags: ["Internship", "Software Engineering", "Team Collaboration"],
-      highlights: [
-        "Contribute to real product features and improvements as part of the erxes engineering team.",
-        "Collaborate through code review, Git-based workflows, and task ownership in a production codebase.",
-        "Apply frontend and full-stack skills to real-world engineering work in a professional team setting.",
-      ],
-    },
-    {
-      role: "Intern",
-      company: "Pinecone Academy",
+      role: "Junior Frontend Engineer",
+      company: "erxes Inc.",
       period: "2026 - Present",
       current: true,
-      description:
-        "Building hands-on engineering experience through Pinecone Academy's internship track and collaborative product work.",
-      tags: ["Internship", "Software Engineering", "Team Collaboration"],
-      highlights: [
-        "Contribute to real project work through component implementation, cleanup, iteration, and delivery-focused tasks.",
-        "Work through review feedback, Git-based collaboration, and small-task ownership inside shared codebases.",
-        "Strengthen both frontend execution and full-stack product thinking through regular team project work.",
+      description: "Building and maintaining production frontend features as part of the engineering team at erxes Inc.",
+      tags: [
+        "React",
+        "TypeScript",
+        "GraphQL"
       ],
+      highlights: [
+        "Build reusable components and responsive interfaces for business workflows in a TypeScript and React monorepo.",
+        "Integrate GraphQL APIs and shared services, handling permissions, loading states, errors, and asynchronous updates.",
+        "Collaborate through code reviews, debugging, and refactoring to improve maintainability and application quality."
+      ]
     },
     {
-      role: "Bootcamp Student",
+      role: "Frontend Intern",
+      company: "erxes Inc.",
+      period: "June - August 2026",
+      description: "Completed a frontend internship at erxes Inc. before moving into my current Junior Frontend Engineer role.",
+      tags: ["Internship", "Frontend Development"],
+      highlights: [],
+    },
+    {
+      role: "Software Engineering Trainee & Full Stack Intern",
       company: "Pinecone Academy",
-      period: "2025 - 2026",
-      description:
-        "Completed intensive web development training while shipping deployed projects across web and mobile.",
-      tags: ["Bootcamp", "Web Development", "Problem Solving"],
-      highlights: [
-        "Built and deployed product projects during the bootcamp period instead of stopping at tutorial-style exercises.",
-        "Worked on the WordGym mobile app with Expo and React Native across deck, study, and vocabulary game flows.",
-        "Practiced both frontend implementation and data-backed full-stack features, including offline-first and backend-connected flows.",
+      period: "July 2025 - April 2026",
+      description: "Completed project-based software engineering training and contributed to a team-built sign-language learning platform during a full-stack internship.",
+      tags: [
+        "Training",
+        "Full-stack Development",
+        "Team Projects"
       ],
+      highlights: [
+        "Built sign-language learning features with Next.js, GraphQL, Prisma, PostgreSQL, and MediaPipe in a shared monorepo.",
+        "Developed web and mobile projects involving authentication, APIs, local storage, and offline-first learning flows.",
+        "Worked on WordGym with Expo and React Native, including vocabulary decks, practice, and games."
+      ]
     },
     {
       role: "High School Graduate",
