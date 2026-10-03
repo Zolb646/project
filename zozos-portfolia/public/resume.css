@@ -1,0 +1,46 @@
+/* Editable A4 resume. Print at 100% scale with browser headers/footers off. */
+:root { color-scheme: light; font-family: Arial, Helvetica, sans-serif; color: #182235; background: #e9edf2; }
+* { box-sizing: border-box; }
+body { margin: 0; font-size: 9.7pt; line-height: 1.34; }
+.toolbar { max-width: 210mm; margin: 20px auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 0 12px; }
+.toolbar span { font-size: 14px; }
+button { border: 0; border-radius: 6px; padding: 11px 16px; background: #286ee8; color: white; font: inherit; cursor: pointer; }
+button:focus-visible { outline: 3px solid #182235; outline-offset: 3px; }
+.resume { width: 210mm; min-height: 297mm; margin: 0 auto 24px; padding: 13mm 16mm; background: white; box-shadow: 0 3px 20px #18223515; }
+header { display: flex; align-items: flex-start; justify-content: space-between; gap: 6mm; margin-bottom: 7mm; }
+h1 { font-size: 20pt; line-height: 1.15; margin: 0; text-transform: uppercase; letter-spacing: -.65px; }
+.profession { font-size: 16pt; color: #939393; margin: 2mm 0 0; }
+address { text-align: right; font-size: 8.6pt; font-style: normal; line-height: 1.65; flex-shrink: 0; }
+address a { display: block; color: inherit; text-decoration: none; }
+.summary { margin: 0 0 5mm; }
+h2 { margin: 3.5mm 0 2.5mm; color: #2e78eb; font-size: 12.5pt; text-transform: uppercase; line-height: 1.2; }
+h3 { font-size: 10.7pt; margin: 0; }
+p { margin: 0; }
+ul { margin: 1.7mm 0 0; padding-left: 4mm; }
+li { padding-left: .2mm; margin: 0 0 1.1mm; }
+.skills { display: grid; grid-template-columns: 1fr 1fr; column-gap: 7mm; margin-bottom: 0; }
+.skills li { margin-bottom: 1.6mm; }
+article { margin: 0 0 4mm; }
+.organization { font-weight: bold; color: #909090; margin-bottom: 2mm; }
+.row { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+.date { color: #888; font-size: 9pt; white-space: nowrap; }
+.muted { color: #888; }
+.award { margin-bottom: 2mm; }
+.award h3 { font-size: 9.8pt; }
+.award > p { color: #777; font-size: 9pt; margin-top: .5mm; }
+article, .award, .row { break-inside: avoid; }
+h2 { break-after: avoid; }
+@page { size: A4; margin: 0; }
+@media print {
+  :root { background: white; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .toolbar { display: none; }
+  .resume { margin: 0; box-shadow: none; }
+}
+@media screen and (max-width: 800px) {
+  .resume { width: 100%; min-height: auto; padding: 24px; }
+  header { flex-direction: column; gap: 12px; }
+  address { text-align: left; }
+  h1 { font-size: 25px; }
+  .skills { grid-template-columns: 1fr; }
+  .row { flex-wrap: wrap; gap: 2px 12px; }
+}

@@ -1,0 +1,55 @@
+ZOLBAYAR BYAMBAJAV                                                                                        +976-9993-4104
+                                                                                                      zolb646@gmail.com
+
+Software Engineer                                                                             www.linkedin.com/in/zolb646/
+
+
+
+Software Engineer with experience developing production applications and contributing across the product lifecycle.
+Comfortable solving technical problems, learning new systems, collaborating with teams, and turning requirements
+into reliable, maintainable software.
+
+SKILLS
+  JavaScript, TypeScript, HTML, CSS                             React, React Native, Next.js, Node.js
+  REST API, GraphQL, Apollo Client, Apollo Server               MongoDB, MySQL, PostgreSQL, Prisma
+  Jest, unit, integration, and end-to-end testing               Supabase, Firebase, Cloudflare
+  CI/CD, Docker, Git                                            MediaPipe, camera detection, dataset integration
+
+EXPERIENCE
+erxes Inc.
+
+Frontend Engineer                                                                                    Jun 2, 2026 - Present
+
+  Build and maintain production frontend features in a large TypeScript and React monorepo, translating product
+  requirements into reliable user experiences.
+  Create reusable components and scalable interface patterns for complex business workflows, with attention to
+  responsive behavior, consistency, and usability.
+  Integrate frontend applications with GraphQL APIs and shared services while handling permissions, asynchronous
+  state, loading, error, and partial-success scenarios.
+  Collaborate through code reviews, debugging, refactoring, and iterative product development to improve
+  performance, maintainability, and application quality.
+
+Pinecone Academy
+
+Software Engineering Trainee & Full Stack Intern                                                      Jul 2025 - Apr 2026
+
+  Completed intensive project-based training before contributing to a team-built sign-language learning platform with
+  live detection, practice flows, and admin-managed vocabulary.
+  Built full-stack features with Next.js, React, GraphQL, Prisma, PostgreSQL, and MediaPipe in a shared monorepo
+  and collaborative workflow.
+  Developed web and mobile projects involving authentication, REST APIs, local data storage, responsive interfaces,
+  and offline-first learning flows.
+  Helped deliver a 2nd-place PineQuest hackathon project: an AI-powered LMS exam platform with mobile
+  proctoring, real-time alerts, and PDF question extraction.
+
+EDUCATION
+Pinecone Academy Nest Academy                                                                         Jul 2025 - Apr 2026
+
+ACHIEVEMENTS & CERTIFICATES
+PineQuest S3 Hackathon - 2nd Place                                                                                   2026
+Recognized for developing an AI-powered LMS 2.0 exam platform with proctoring, exam workflows, and automated question
+support.
+
+Pinecone Academy Certificate                                                                                         2026
+Completed software engineering bootcamp training focused on full-stack web and mobile application development.
+
