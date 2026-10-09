@@ -48,8 +48,7 @@ export default function HeroSection() {
                   src={portraitSrc}
                   alt={`${personal.name} portrait`}
                   fill
-                  priority
-                  unoptimized
+                  preload
                   sizes="(min-width: 1280px) 420px, (min-width: 1024px) 32vw, (min-width: 640px) 310px, 75vw"
                   className="object-cover"
                   onError={() => {

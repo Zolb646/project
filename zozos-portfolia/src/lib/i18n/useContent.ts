@@ -3,16 +3,16 @@
 import { CONTENT } from "@/lib/content";
 import { useLanguage } from "./LanguageContext";
 import { UI } from "./ui";
+import { localizedPath } from "./paths";
 
 export function useContent() {
-  const { locale, setLocale, toggleLocale } = useLanguage();
+  const { locale } = useLanguage();
   const content = CONTENT[locale];
   const ui = UI[locale];
 
   return {
     locale,
-    setLocale,
-    toggleLocale,
+    localizePath: (path: string) => localizedPath(locale, path),
     ui,
     personal: content.personal,
     skills: content.skills,

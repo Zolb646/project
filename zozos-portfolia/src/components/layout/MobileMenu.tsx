@@ -16,7 +16,7 @@ export default function MobileMenu({
   activeSection,
   isHomePage,
 }: MobileMenuProps) {
-  const { ui } = useContent();
+  const { ui, localizePath } = useContent();
 
   if (!isOpen) return null;
 
@@ -39,7 +39,7 @@ export default function MobileMenu({
           {NAV_SECTIONS.map((link) => (
             <a
               key={link.href}
-              href={isHomePage ? link.href : `/${link.href}`}
+              href={isHomePage ? link.href : localizePath(`/${link.href}`)}
               onClick={onClose}
               className={`py-3 text-lg font-semibold border-b-2 border-navy/10 transition-colors duration-200 ${
                 activeSection === link.href

@@ -1,5 +1,7 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+import { localizedPath } from "@/lib/i18n/paths";
 import { useContent } from "@/lib/i18n/useContent";
 
 interface LanguageToggleProps {
@@ -7,13 +9,15 @@ interface LanguageToggleProps {
 }
 
 export default function LanguageToggle({ className = "" }: LanguageToggleProps) {
-  const { locale, toggleLocale, ui } = useContent();
+  const { locale, ui } = useContent();
+  const pathname = usePathname();
+  const nextLocale = locale === "en" ? "mn" : "en";
   const nextLanguage = locale === "en" ? "Монгол" : "English";
 
   return (
-    <button
-      type="button"
-      onClick={toggleLocale}
+    <a
+      href={localizedPath(nextLocale, pathname)}
+      hrefLang={nextLocale}
       aria-label={`${ui.common.languageToggleLabel}: ${nextLanguage}`}
       className={`inline-flex min-h-10 items-center gap-2 border-b-2 border-navy px-1 text-sm font-semibold text-navy transition-colors hover:border-accent-orange-ink hover:text-accent-orange-ink ${className}`}>
       <svg
@@ -29,6 +33,6 @@ export default function LanguageToggle({ className = "" }: LanguageToggleProps) 
         <path d="M3 12h18M12 3c2.5 2.5 3.75 5.5 3.75 9S14.5 18.5 12 21c-2.5-2.5-3.75-5.5-3.75-9S9.5 5.5 12 3Z" />
       </svg>
       <span>{nextLanguage}</span>
-    </button>
+    </a>
   );
 }

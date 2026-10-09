@@ -9,9 +9,9 @@ import LanguageToggle from "@/components/ui/LanguageToggle";
 import MobileMenu from "./MobileMenu";
 
 export default function Navbar() {
-  const { ui } = useContent();
+  const { ui, localizePath } = useContent();
   const pathname = usePathname();
-  const isHomePage = pathname === "/";
+  const isHomePage = pathname === localizePath("/");
   const [activeSection, setActiveSection] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const displayedActiveSection = isHomePage ? activeSection : "";
@@ -48,7 +48,7 @@ export default function Navbar() {
         <Container wide>
           <div className="flex h-20 items-center justify-between gap-4">
             <a
-              href={isHomePage ? "#hero" : "/#hero"}
+              href={isHomePage ? "#hero" : localizePath("/#hero")}
               className="font-display text-3xl font-extrabold tracking-tight text-navy">
               Zozo<span className="text-accent-orange-ink">.</span>
             </a>
@@ -57,7 +57,7 @@ export default function Navbar() {
               {NAV_SECTIONS.map((link) => (
                 <a
                   key={link.href}
-                  href={isHomePage ? link.href : `/${link.href}`}
+                  href={isHomePage ? link.href : localizePath(`/${link.href}`)}
                   className={`text-sm font-bold transition-colors duration-150 ${link.key === "contact" ? "border-2 border-navy bg-accent-yellow px-4 py-2 shadow-brutal-sm" : ""} ${
                     displayedActiveSection === link.href
                       ? "text-navy underline decoration-2 underline-offset-4"

@@ -1,4 +1,5 @@
 import { Locale } from "./types";
+import { PERSON_NAME } from "@/lib/site";
 
 export interface UIDictionary {
   nav: {
@@ -135,10 +136,10 @@ const en: UIDictionary = {
   },
   hero: {
     greeting: "Zozo / Junior Frontend Engineer",
-    headlineLines: ["Interfaces.", "Systems.", "A bit of both."],
+    headlineLines: ["Zozo.", "Frontend", "Engineer."],
     projectAvailability: "Open for freelance projects",
     intro: (role) =>
-      `I'm Zozo, a ${role.toLowerCase()} at erxes Inc. in Ulaanbaatar. I build production interfaces with React and TypeScript, with experience across full-stack web and mobile projects.`,
+      `I'm ${PERSON_NAME} (Zozo), a ${role.toLowerCase()} at erxes Inc. in Ulaanbaatar. I build production interfaces with React and TypeScript, with experience across full-stack web and mobile projects.`,
     viewProjects: "View Projects",
     downloadResume: "Download Resume",
     viewGithub: "View GitHub",
@@ -273,10 +274,10 @@ const mn: UIDictionary = {
   },
   hero: {
     greeting: "Zozo / Junior Frontend инженер",
-    headlineLines: ["Интерфэйс.", "Систем.", "Хоёуланг нь."],
+    headlineLines: ["Zozo.", "Frontend", "инженер."],
     projectAvailability: "Захиалгат төсөлд нээлттэй",
     intro: () =>
-      "Намайг Zozo гэдэг. Улаанбаатар хотод erxes Inc.-ийн Junior Frontend инженерээр ажилладаг. React, TypeScript ашиглан бүтээгдэхүүний интерфэйс хөгжүүлдэг бөгөөд full-stack веб, мобайл төслүүд дээр ажилласан туршлагатай.",
+      `Намайг ${PERSON_NAME} (Zozo) гэдэг. Улаанбаатар хотод erxes Inc.-ийн Junior Frontend инженерээр ажилладаг. React, TypeScript ашиглан бүтээгдэхүүний интерфэйс хөгжүүлдэг бөгөөд full-stack веб, мобайл төслүүд дээр ажилласан туршлагатай.`,
     viewProjects: "Төслүүд үзэх",
     downloadResume: "Резюме татах",
     viewGithub: "GitHub үзэх",

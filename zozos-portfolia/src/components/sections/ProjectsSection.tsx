@@ -11,12 +11,13 @@ import type { UIDictionary } from "@/lib/i18n/ui";
 import type { Project } from "@/lib/types";
 
 function ProjectPreview({ project, ui, lead = false }: { project: Project; ui: UIDictionary; lead?: boolean }) {
+  const { localizePath } = useContent();
   const previewImage = project.image ?? project.images?.[0];
   const mobile = project.imageLayout === "mobile";
 
   return (
     <Link
-      href={`/projects/${project.slug}`}
+      href={localizePath(`/projects/${project.slug}`)}
       aria-label={ui.common.viewCaseStudyFor(project.title)}
       className={`group grid h-full border-3 border-navy bg-white shadow-brutal transition-[transform,box-shadow] duration-150 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-brutal-sm ${lead ? "lg:grid-cols-[1.2fr_1fr]" : ""}`}>
       <div className={`flex min-w-0 items-center border-b-3 border-navy p-5 sm:p-7 ${lead ? "bg-cream lg:border-b-0 lg:border-r-3" : mobile ? "bg-accent-orange" : "bg-accent-teal"}`}>
@@ -50,7 +51,7 @@ function ProjectPreview({ project, ui, lead = false }: { project: Project; ui: U
 }
 
 export default function ProjectsSection() {
-  const { projects, ui } = useContent();
+  const { projects, ui, localizePath } = useContent();
   const leadProject = projects.find((project) => project.featured) ?? projects[0];
   const remaining = projects.filter((project) => project.slug !== leadProject?.slug);
   const showcase = remaining.slice(0, 2);
@@ -67,7 +68,7 @@ export default function ProjectsSection() {
         {more.length > 0 ? (
           <div className="mt-10 border-t-3 border-navy">
             {more.map((project) => (
-              <Link key={project.slug} href={`/projects/${project.slug}`} aria-label={ui.common.viewCaseStudyFor(project.title)} className="group grid items-center gap-4 border-b-3 border-navy py-6 sm:grid-cols-[1fr_1.6fr_auto] sm:gap-8">
+              <Link key={project.slug} href={localizePath(`/projects/${project.slug}`)} aria-label={ui.common.viewCaseStudyFor(project.title)} className="group grid items-center gap-4 border-b-3 border-navy py-6 sm:grid-cols-[1fr_1.6fr_auto] sm:gap-8">
                 <div><p className="mb-2 text-xs font-bold text-muted">{project.role}</p><h3 className="font-display text-2xl font-extrabold tracking-tight group-hover:underline group-hover:underline-offset-4">{project.title}</h3></div>
                 <p className="max-w-[60ch] text-sm leading-relaxed text-muted">{project.description}</p>
                 <span className="flex items-center gap-3 text-sm font-extrabold">{ui.projects.viewCaseStudy}<span aria-hidden="true" className="text-2xl">↗</span></span>

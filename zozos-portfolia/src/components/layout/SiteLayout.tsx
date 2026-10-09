@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
 import { Bricolage_Grotesque, JetBrains_Mono, Manrope } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import { CONTENT } from "@/lib/content";
-import { SITE_URL } from "@/lib/site";
-import "./globals.css";
-
-const PERSONAL = CONTENT.en.personal;
+import { PERSON_NAME, PERSON_ALIASES, SITE_URL } from "@/lib/site";
+import type { Locale } from "@/lib/i18n/types";
+import { localizedPath } from "@/lib/i18n/paths";
+import "@/app/globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -27,37 +26,32 @@ const bricolage = Bricolage_Grotesque({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: `${PERSONAL.name} | ${PERSONAL.role}`,
-  description: PERSONAL.summary,
-  openGraph: {
-    url: SITE_URL,
-    title: `${PERSONAL.name} | ${PERSONAL.role}`,
-    description: PERSONAL.summary,
-    type: "website",
-  },
-};
-
-export default function RootLayout({
+export default function SiteLayout({
   children,
+  locale,
 }: Readonly<{
   children: React.ReactNode;
+  locale: Locale;
 }>) {
+  const PERSONAL = CONTENT[locale].personal;
+
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`scroll-smooth ${jetbrainsMono.variable} ${manrope.variable} ${bricolage.variable}`}
       suppressHydrationWarning>
-      <head>
+      <body
+        className="min-h-screen bg-cream text-navy antialiased"
+        suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: PERSONAL.name,
-              url: SITE_URL,
+              name: PERSON_NAME,
+              alternateName: PERSON_ALIASES,
+              url: `${SITE_URL}${localizedPath(locale, "/")}`,
               jobTitle: PERSONAL.role,
               worksFor: {
                 "@type": "Organization",
@@ -73,11 +67,7 @@ export default function RootLayout({
             }),
           }}
         />
-      </head>
-      <body
-        className="min-h-screen bg-cream text-navy antialiased"
-        suppressHydrationWarning>
-        <LanguageProvider>
+        <LanguageProvider locale={locale}>
           <Navbar />
           <main className="relative overflow-hidden">{children}</main>
           <Footer />

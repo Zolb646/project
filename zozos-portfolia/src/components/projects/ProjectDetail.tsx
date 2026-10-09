@@ -26,7 +26,7 @@ function buildProjectImages(project: Project) {
 }
 
 export default function ProjectDetail({ slug }: ProjectDetailProps) {
-  const { locale, projects, ui } = useContent();
+  const { locale, projects, ui, localizePath } = useContent();
   const project = getProjectBySlug(locale, slug);
 
   if (!project) {
@@ -46,7 +46,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
       <Container className="space-y-8 sm:space-y-10">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <Link
-            href="/#projects"
+            href={localizePath("/#projects")}
             className="inline-flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted transition-colors duration-150 hover:text-accent-orange-ink">
             <span
               aria-hidden="true"
@@ -115,7 +115,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                   {ui.projectDetail.sourceCode}
                 </Button>
               ) : null}
-              <Button href="/#contact" variant="outline">
+              <Button href={localizePath("/#contact")} variant="outline">
                 {ui.projectDetail.emailMe}
               </Button>
             </div>
@@ -388,7 +388,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
               {relatedProjects.map((relatedProject) => (
                 <Link
                   key={relatedProject.slug}
-                  href={`/projects/${relatedProject.slug}`}
+                  href={localizePath(`/projects/${relatedProject.slug}`)}
                   className="block h-full"
                   aria-label={ui.common.viewCaseStudyFor(relatedProject.title)}>
                   <Card className="group h-full overflow-hidden p-0">
