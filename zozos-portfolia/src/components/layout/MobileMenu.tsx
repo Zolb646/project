@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { NAV_SECTIONS } from "@/lib/constants";
 import { useContent } from "@/lib/i18n/useContent";
 
@@ -17,12 +18,38 @@ export default function MobileMenu({
   isHomePage,
 }: MobileMenuProps) {
   const { ui, localizePath } = useContent();
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    if (!isOpen) return;
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    const previousFocus = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    dialog.showModal();
+    document.body.style.overflow = "hidden";
+
+    const desktop = window.matchMedia("(min-width: 64rem)");
+    const closeOnDesktop = () => { if (desktop.matches) onClose(); };
+    desktop.addEventListener("change", closeOnDesktop);
+    closeOnDesktop();
+
+    return () => {
+      desktop.removeEventListener("change", closeOnDesktop);
+      dialog.close();
+      document.body.style.overflow = previousOverflow;
+      if (previousFocus instanceof HTMLElement) previousFocus.focus();
+    };
+  }, [isOpen, onClose]);
 
   return (
-    <div className="fixed inset-0 z-50 lg:hidden">
-      <div className="fixed inset-0 bg-navy/50" onClick={onClose} />
+    <dialog
+      ref={dialogRef}
+      id="mobile-menu"
+      aria-label={ui.common.openMenu}
+      className="fixed inset-0 m-0 h-dvh max-h-none w-screen max-w-none bg-transparent p-0 text-navy backdrop:bg-navy/50"
+      onCancel={(event) => { event.preventDefault(); onClose(); }}
+      onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}>
       <div className="fixed right-0 top-0 bottom-0 w-72 bg-cream border-l-3 border-navy animate-slide-in">
         <div className="flex items-center justify-end p-4">
           <button
@@ -52,6 +79,6 @@ export default function MobileMenu({
           ))}
         </nav>
       </div>
-    </div>
+    </dialog>
   );
 }

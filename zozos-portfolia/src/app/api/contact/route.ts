@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isIP } from "node:net";
 
 type ContactPayload = {
   name: string;
@@ -14,6 +15,7 @@ type RateLimitEntry = {
 
 const RATE_LIMIT_MAX = 3;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX_ENTRIES = 10_000;
 
 const globalRateLimitStore = globalThis as typeof globalThis & {
   __contactRateLimitStore?: Map<string, RateLimitEntry>;
@@ -30,6 +32,17 @@ function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function isContactPayload(value: unknown): value is ContactPayload {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) {
+    return false;
+  }
+  const payload = value as Record<string, unknown>;
+  return typeof payload.name === "string" &&
+    typeof payload.email === "string" &&
+    typeof payload.message === "string" &&
+    (payload.website === undefined || typeof payload.website === "string");
+}
+
 function escapeHtml(value: string) {
   return value
     .replaceAll("&", "&amp;")
@@ -40,16 +53,28 @@ function escapeHtml(value: string) {
 }
 
 export async function POST(request: NextRequest) {
-  const ip =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-    request.headers.get("x-real-ip") ??
-    "unknown";
+  // Only Vercel's ingress is trusted to replace this header. Direct servers
+  // share a bucket rather than accepting client-supplied forwarding headers.
+  const forwardedIp = process.env.VERCEL === "1"
+    ? request.headers.get("x-vercel-forwarded-for")?.trim()
+    : undefined;
+  const ip = forwardedIp && isIP(forwardedIp) ? forwardedIp : "unknown";
 
   const store = getRateLimitStore();
   const now = Date.now();
+  for (const [key, entry] of store) {
+    if (now - entry.windowStart >= RATE_LIMIT_WINDOW_MS) store.delete(key);
+  }
   const existing = store.get(ip);
 
-  if (!existing || now - existing.windowStart > RATE_LIMIT_WINDOW_MS) {
+  if (!existing) {
+    // Do not evict active entries: that would reset their request budgets.
+    if (store.size >= RATE_LIMIT_MAX_ENTRIES) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        { status: 429 }
+      );
+    }
     store.set(ip, { count: 1, windowStart: now });
   } else {
     if (existing.count >= RATE_LIMIT_MAX) {
@@ -74,16 +99,23 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  let payload: ContactPayload;
+  let payload: unknown;
   try {
-    payload = (await request.json()) as ContactPayload;
+    payload = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
   }
 
-  const name = payload.name?.trim();
-  const email = payload.email?.trim();
-  const message = payload.message?.trim();
+  if (!isContactPayload(payload)) {
+    return NextResponse.json(
+      { error: "Name, email, and message must be strings." },
+      { status: 400 }
+    );
+  }
+
+  const name = payload.name.trim();
+  const email = payload.email.trim();
+  const message = payload.message.trim();
   const website = payload.website?.trim();
 
   if (website) {

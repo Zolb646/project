@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { NAV_SECTIONS } from "@/lib/constants";
 import { useContent } from "@/lib/i18n/useContent";
@@ -14,6 +14,7 @@ export default function Navbar() {
   const isHomePage = pathname === localizePath("/");
   const [activeSection, setActiveSection] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const closeMenu = useCallback(() => setIsMenuOpen(false), []);
   const displayedActiveSection = isHomePage ? activeSection : "";
 
   useEffect(() => {
@@ -74,6 +75,9 @@ export default function Navbar() {
               <button
                 className="border-2 border-navy bg-accent-yellow p-2 text-navy shadow-brutal-sm"
                 onClick={() => setIsMenuOpen(true)}
+                aria-haspopup="dialog"
+                aria-controls="mobile-menu"
+                aria-expanded={isMenuOpen}
                 aria-label={ui.common.openMenu}>
                 <svg
                   className="w-6 h-6"
@@ -95,7 +99,7 @@ export default function Navbar() {
 
       <MobileMenu
         isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
+        onClose={closeMenu}
         activeSection={displayedActiveSection}
         isHomePage={isHomePage}
       />

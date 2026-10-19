@@ -23,6 +23,9 @@ export function getHomeMetadata(locale: Locale): Metadata {
 
   return {
     metadataBase: new URL(SITE_URL),
+    applicationName: "Zozo Portfolio",
+    authors: [{ name: PERSON_NAME, url: SITE_URL }],
+    creator: PERSON_NAME,
     title,
     description: personal.summary,
     alternates: getAlternates(locale, "/"),
@@ -31,6 +34,7 @@ export function getHomeMetadata(locale: Locale): Metadata {
       description: personal.summary,
       url: localizedPath(locale, "/"),
       type: "website",
+      siteName: "Zozo Portfolio",
       locale: locale === "mn" ? "mn_MN" : "en_US",
       alternateLocale: locale === "mn" ? "en_US" : "mn_MN",
       images,
@@ -45,6 +49,7 @@ export function getProjectMetadata(locale: Locale, project: Project): Metadata {
   const images = [{ url: project.image || "/og", alt: project.title }];
 
   return {
+    metadataBase: new URL(SITE_URL),
     title,
     description: project.description,
     alternates: getAlternates(locale, path),
@@ -53,10 +58,23 @@ export function getProjectMetadata(locale: Locale, project: Project): Metadata {
       title,
       description: project.description,
       type: "article",
+      siteName: "Zozo Portfolio",
+      authors: [SITE_URL],
       locale: locale === "mn" ? "mn_MN" : "en_US",
       alternateLocale: locale === "mn" ? "en_US" : "mn_MN",
       images,
     },
     twitter: { card: "summary_large_image", title, description: project.description, images },
+  };
+}
+
+export function getNotFoundMetadata(locale: Locale): Metadata {
+  return {
+    title: locale === "mn" ? "404 | Zozo — Хуудас олдсонгүй" : "404 | Zozo — Page not found",
+    description: locale === "mn" ? "Хуудас олдсонгүй. Zozo-ийн портфолио болон төслүүд рүү буцаарай." : "Page not found. Head back to Zozo’s portfolio and explore the projects.",
+    robots: { index: false, follow: false },
+    alternates: null,
+    openGraph: null,
+    twitter: null,
   };
 }

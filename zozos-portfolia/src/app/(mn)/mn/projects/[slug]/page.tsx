@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import ProjectDetail from "@/components/projects/ProjectDetail";
 import { getAllProjectSlugs, getProjectBySlug } from "@/lib/content";
 import { getProjectMetadata } from "@/lib/seo";
+import StructuredData from "@/components/StructuredData";
+import { getProjectStructuredData } from "@/lib/structured-data";
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
@@ -33,5 +35,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
-  return <ProjectDetail slug={slug} />;
+  return (
+    <>
+      <StructuredData data={getProjectStructuredData("mn", project)} />
+      <ProjectDetail slug={slug} />
+    </>
+  );
 }
