@@ -45,7 +45,7 @@ export default function MobileScreenGallery({
         <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
           {ui.projectDetail.appScreens}
         </p>
-        <h2 id={headingId} className="mt-2 font-display text-3xl font-black tracking-tight sm:text-4xl">
+        <h2 id={headingId} className="mt-2 font-display text-[clamp(1.6rem,4vw,2.25rem)] font-black tracking-tight">
           {ui.projectDetail.insideTheFlow}
         </h2>
         <p className="mt-2 max-w-xl text-sm leading-7 text-muted sm:text-base">
@@ -53,16 +53,16 @@ export default function MobileScreenGallery({
         </p>
       </div>
 
-      <div className="grid min-w-0 border-3 border-navy bg-white shadow-brutal lg:grid-cols-[1fr_1fr]">
-        <div className="portrait-stage grid place-items-center border-b-3 border-navy bg-accent-teal px-6 py-6 sm:py-8 lg:border-r-3 lg:border-b-0">
-          <div className="w-[min(52vw,13rem)] rounded-[1.8rem] border-3 border-navy bg-white p-1.5 shadow-brutal sm:w-[13.5rem]">
+      <div className="grid min-w-0 border-3 border-navy bg-white shadow-brutal sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+        <div className="portrait-stage grid min-w-0 place-items-center border-b-3 border-navy bg-accent-teal p-[clamp(0.75rem,3dvh,2rem)] sm:border-r-3 sm:border-b-0 [@media(max-height:500px)]:items-start">
+          <div className="w-[min(62vw,30dvh,16rem)] max-w-full rounded-[1.8rem] border-3 border-navy bg-white p-1.5 shadow-brutal">
             <div className="relative aspect-[9/19.5] overflow-hidden rounded-[1.25rem] bg-navy">
               <ScreenshotZoom src={images[activeIndex]} alt={screenTitle(activeIndex)} portrait>
                 <Image
                   src={images[activeIndex]}
                   alt=""
                   fill
-                  sizes="(min-width: 640px) 216px, 52vw"
+                  sizes="min(62vw, 30dvh, 256px)"
                   className="object-cover object-top"
                 />
               </ScreenshotZoom>
@@ -88,13 +88,13 @@ export default function MobileScreenGallery({
             </div>
           </div>
 
-          <div role="group" aria-label={ui.projectDetail.chooseScreen} className="mt-3 grid grid-cols-2 gap-2">
+          <div role="group" aria-label={ui.projectDetail.chooseScreen} className="mt-3 grid grid-cols-1 gap-2 min-[310px]:grid-cols-2">
             {images.map((src, index) => {
               const group = imageGroupTitles?.[index];
               return (
                 <Fragment key={src}>
                   {group && group !== imageGroupTitles?.[index - 1] ? (
-                    <h3 className="col-span-2 pt-2 font-mono text-xs font-semibold text-muted">
+                    <h3 className="col-span-full pt-2 font-mono text-xs font-semibold text-muted">
                       {group}
                     </h3>
                   ) : null}
@@ -106,7 +106,7 @@ export default function MobileScreenGallery({
                     <span className="relative h-8 w-4 shrink-0 overflow-hidden rounded-sm bg-navy">
                       <Image src={src} alt="" fill sizes="16px" className="object-cover object-top" />
                     </span>
-                    <span>{screenTitle(index)}</span>
+                    <span className="min-w-0 wrap-anywhere">{screenTitle(index)}</span>
                   </button>
                 </Fragment>
               );

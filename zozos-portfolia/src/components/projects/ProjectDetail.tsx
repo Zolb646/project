@@ -68,7 +68,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
         <div
           className={`grid items-start gap-8 lg:gap-10 ${
             project.imageLayout === "mobile"
-              ? "lg:grid-cols-[minmax(0,1.08fr)_minmax(280px,0.72fr)]"
+              ? "md:grid-cols-[minmax(0,1fr)_minmax(0,0.58fr)]"
               : "lg:grid-cols-[minmax(0,1fr)_280px]"
           }`}>
           <div
@@ -122,11 +122,11 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
 
             <Card
               hover={false}
-              className={`p-5 sm:p-6 ${
+              className={`@container p-5 sm:p-6 ${
                 project.imageLayout !== "mobile" ? "max-w-4xl" : ""
               }`}>
               <div className="space-y-6">
-                <div className="grid gap-3 border-b-3 border-navy/10 pb-6 md:grid-cols-[160px_minmax(0,1fr)] md:gap-6">
+                <div className="grid gap-3 border-b-3 border-navy/10 pb-6 @lg:grid-cols-[minmax(7rem,0.36fr)_minmax(0,1fr)] @lg:gap-6">
                   <div>
                     <div className="h-3 w-14 border-2 border-navy bg-accent-orange" />
                     <p className="mt-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
@@ -138,7 +138,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                   </p>
                 </div>
 
-                <div className="grid gap-3 border-b-3 border-navy/10 pb-6 md:grid-cols-[160px_minmax(0,1fr)] md:gap-6">
+                <div className="grid gap-3 border-b-3 border-navy/10 pb-6 @lg:grid-cols-[minmax(7rem,0.36fr)_minmax(0,1fr)] @lg:gap-6">
                   <div>
                     <div className="h-3 w-14 border-2 border-navy bg-accent-teal" />
                     <p className="mt-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
@@ -150,7 +150,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                   </p>
                 </div>
 
-                <div className="grid gap-3 md:grid-cols-[160px_minmax(0,1fr)] md:gap-6">
+                <div className="grid gap-3 @lg:grid-cols-[minmax(7rem,0.36fr)_minmax(0,1fr)] @lg:gap-6">
                   <div>
                     <div className="h-3 w-14 border-2 border-navy bg-accent-yellow" />
                     <p className="mt-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
@@ -166,14 +166,14 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
           </div>
 
           {project.imageLayout === "mobile" ? (
-            <div className="relative mx-auto w-full max-w-[320px] pb-8 sm:max-w-[360px] sm:pb-10 lg:justify-self-end">
-              <div className="absolute -top-5 right-4 z-0 h-20 w-20 border-3 border-navy bg-accent-yellow shadow-brutal-sm sm:h-24 sm:w-24" />
-              <div className="absolute -bottom-2 left-4 z-0 h-20 w-20 border-3 border-navy bg-accent-teal shadow-brutal-sm sm:h-24 sm:w-24" />
+            <div className="relative mx-auto w-full max-w-[min(58vw,34dvh,20rem)]">
+              <div className="absolute -top-3 -right-3 z-0 aspect-square w-1/4 border-3 border-navy bg-accent-yellow shadow-brutal-sm" />
+              <div className="absolute -bottom-3 -left-3 z-0 aspect-square w-1/4 border-3 border-navy bg-accent-teal shadow-brutal-sm" />
 
               {heroImage ? (
-                <div className="relative z-10 mx-auto aspect-[9/19.5] max-w-[18rem] overflow-hidden border-3 border-navy bg-cream shadow-brutal-lg sm:max-w-[20rem]">
+                <div className="relative z-10 aspect-[9/19.5] overflow-hidden border-3 border-navy bg-cream shadow-brutal-lg">
                   <ScreenshotZoom src={heroImage} alt={project.imageTitles?.[0] ?? ui.projectDetail.heroScreenshotAlt(project.title)} portrait>
-                    <Image src={heroImage} alt="" fill priority sizes="(min-width: 1024px) 320px, 76vw" className="object-cover object-top" />
+                    <Image src={heroImage} alt="" fill priority sizes="min(58vw, 34dvh, 320px)" className="object-cover object-top" />
                   </ScreenshotZoom>
                 </div>
               ) : (

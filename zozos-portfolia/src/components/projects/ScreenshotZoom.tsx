@@ -41,18 +41,18 @@ export default function ScreenshotZoom({
         ref={dialogRef}
         aria-label={alt}
         onClose={() => setIsOpen(false)}
-        className={`m-auto max-w-none border-3 border-navy bg-cream p-3 text-navy shadow-brutal-lg backdrop:bg-navy/75 sm:p-4 ${portrait ? "w-[min(92vw,26rem)]" : "w-[min(92vw,1200px)]"}`}>
-        <div className="mb-3 flex items-center justify-between gap-3">
-          <p className="text-sm font-bold">{alt}</p>
-          <form method="dialog">
+        className={`m-auto h-[min(calc(100dvh-1rem),56rem)] max-h-none max-w-[calc(100%-1rem)] grid-rows-[auto_minmax(0,1fr)] gap-2 border-3 border-navy bg-cream p-2 text-navy shadow-brutal-lg open:grid backdrop:bg-navy/75 sm:gap-3 sm:p-3 ${portrait ? "w-[clamp(12rem,55dvh,26rem)]" : "w-[1200px]"}`}>
+        <div className="flex items-center justify-between gap-3">
+          <p className="min-w-0 text-sm font-bold wrap-anywhere">{alt}</p>
+          <form method="dialog" className="shrink-0">
             <button aria-label={ui.gallery.closeImage} className="grid size-11 cursor-pointer place-items-center border-2 border-navy bg-accent-yellow">
               <FiX aria-hidden="true" />
             </button>
           </form>
         </div>
         {isOpen ? (
-          <div className="relative h-[min(72dvh,850px)] bg-white">
-            <Image src={src} alt={alt} fill sizes={portrait ? "(min-width: 460px) 380px, 85vw" : "(min-width: 1300px) 1160px, 90vw"} className="object-contain" />
+          <div className="relative min-h-0 bg-white">
+            <Image src={src} alt={alt} fill sizes={portrait ? "min(90vw, 30dvh, 384px)" : "min(95vw, 1200px)"} className="object-contain" />
           </div>
         ) : null}
       </dialog>
