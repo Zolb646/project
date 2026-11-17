@@ -225,43 +225,6 @@ export const en: SiteContent = {
       imageGroupTitles: wordGymScreens.map((screen) => screen.group.en),
       imageLayout: "mobile",
     },
-    {
-      slug: "quiz-app",
-      title: "Quiz App",
-      role: "Full-stack Developer",
-      period: "2025",
-      description:
-        "A quiz platform with authentication, guided quiz flow, and database-backed content management.",
-      tags: ["Next.js", "TypeScript", "Prisma", "Clerk", "PostgreSQL"],
-      highlights: [
-        "Implemented home, summary, quiz, and results states for a guided user experience.",
-        "Integrated Clerk authentication and Prisma-backed data modeling, migrations, and backend setup.",
-        "Added API routes and quiz-related data handling for article-driven content.",
-      ],
-      challenge:
-        "Turn a quiz concept into a complete product flow with authentication, structured content, and meaningful results handling instead of a one-screen prototype.",
-      ownership:
-        "Built across both frontend and backend layers, including page states, auth integration, database-backed models, and quiz-related API work.",
-      outcome:
-        "Shipped a more complete quiz experience that demonstrates I can connect UI flow, backend structure, and deployment-ready application logic.",
-      process: [
-        "Designed the app around the full quiz journey so users had a clear path from entry to completion rather than isolated pages.",
-        "Connected Clerk authentication and Prisma models early so the product structure could support real users and real content from the start.",
-        "Added backend routes and content handling to support article-driven quiz data and keep the frontend states tied to usable application data.",
-      ],
-      architecture:
-        "The app uses Next.js and TypeScript on the frontend, with Clerk for authentication and Prisma with PostgreSQL for data modeling and backend persistence.",
-      lessons: [
-        "Even a smaller full-stack app becomes much clearer when the user journey is defined before individual pages are built.",
-        "Authentication and data modeling decisions shape the whole product, so wiring them in early prevents a lot of rework later.",
-        "Results and summary states matter because they turn a simple interaction into a more complete product loop.",
-      ],
-      liveUrl: "https://quiz-app-theta-gilt.vercel.app/",
-      githubUrl: "https://github.com/Zolb646/quiz-app",
-      image: "/projects/quiz-app.png",
-      images: ["/projects/quiz-app.png"],
-      imageLayout: "desktop",
-    },
   ],
 
   experiences: [

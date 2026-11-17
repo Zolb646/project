@@ -225,43 +225,6 @@ export const mn: SiteContent = {
       imageGroupTitles: wordGymScreens.map((screen) => screen.group.mn),
       imageLayout: "mobile",
     },
-    {
-      slug: "quiz-app",
-      title: "Quiz App",
-      role: "Full-stack хөгжүүлэгч",
-      period: "2025",
-      description:
-        "Authentication, чиглүүлсэн quiz урсгал, өгөгдлийн санд суурилсан контент удирдлагатай quiz платформ.",
-      tags: ["Next.js", "TypeScript", "Prisma", "Clerk", "PostgreSQL"],
-      highlights: [
-        "Чиглүүлсэн хэрэглэгчийн туршлагад зориулж home, summary, quiz, results төлвүүдийг хэрэгжүүлсэн.",
-        "Clerk authentication болон Prisma дээр суурилсан дата загварчлал, migration, backend тохиргоог нэгтгэсэн.",
-        "Article-д суурилсан контентод зориулж API route, quiz-тэй холбоотой дата боловсруулалтыг нэмсэн.",
-      ],
-      challenge:
-        "Нэг дэлгэцтэй прототипийн оронд authentication, бүтэцтэй контент, утга учиртай үр дүнгийн боловсруулалттай бүрэн бүтээгдэхүүний урсгал болгон quiz-ийн санааг хувиргах.",
-      ownership:
-        "Хуудасны төлөв, auth интеграц, өгөгдлийн санд суурилсан model, quiz-тэй холбоотой API ажил зэрэг frontend болон backend давхарга даяар бүтээсэн.",
-      outcome:
-        "UI урсгал, backend бүтэц, deployment хийхэд бэлэн application логикийг холбож чаддагийг харуулсан илүү бүрэн quiz туршлагыг гаргасан.",
-      process: [
-        "Хэрэглэгчид тусдаа хуудсуудын оронд эхлэлээс дуустал тодорхой замтай байхаар аппыг бүрэн quiz аялалд төвлөрүүлэн зохион бүтээсэн.",
-        "Бүтээгдэхүүний бүтэц эхнээсээ бодит хэрэглэгч, бодит контентыг дэмжих боломжтой байхаар Clerk authentication, Prisma model-уудыг эрт холбосон.",
-        "Article-д суурилсан quiz дата-г дэмжиж, frontend төлвүүдийг ашиглаж болох application дататай холбоотой байлгахын тулд backend route, контент боловсруулалтыг нэмсэн.",
-      ],
-      architecture:
-        "Апп нь frontend-д Next.js, TypeScript, authentication-д Clerk, дата загварчлал болон backend хадгалалтад Prisma-г PostgreSQL-тай хамт ашигладаг.",
-      lessons: [
-        "Жижиг full-stack апп ч гэсэн хэрэглэгчийн аяллыг тусдаа хуудсуудыг бүтээхээсээ өмнө тодорхойлбол хамаагүй тодорхой болдог.",
-        "Authentication, дата загварчлалын шийдвэрүүд бүхэл бүтээгдэхүүнийг бүрдүүлдэг тул эдгээрийг эрт холбосноор дараа дахин их ажил хийхээс сэргийлдэг.",
-        "Үр дүн, summary төлвүүд энгийн interaction-ийг илүү бүрэн бүтээгдэхүүний loop болгодог тул чухал.",
-      ],
-      liveUrl: "https://quiz-app-theta-gilt.vercel.app/",
-      githubUrl: "https://github.com/Zolb646/quiz-app",
-      image: "/projects/quiz-app.png",
-      images: ["/projects/quiz-app.png"],
-      imageLayout: "desktop",
-    },
   ],
 
   experiences: [

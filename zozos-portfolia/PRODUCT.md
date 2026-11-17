@@ -25,7 +25,7 @@ Zozo already works like a team engineer, not a solo bootcamp grad performing ski
 - Primary CTA: View Projects. Secondary CTA: Email Me and Download Resume, held at equal weight as fallbacks for a visitor not yet ready to click into a project.
 - The line a visitor remembers after 10 seconds: this is a junior engineer who already ships and collaborates like a team member, not someone who has only followed tutorials.
 - Belief ladder: (1) this person builds real, complete products, not toy exercises — (2) this person has worked inside real team codebases and collaborative workflows, not only solo builds — (3) the craft and polish on display is strong enough to trust with production work — (4) therefore worth reaching out about an internship or junior role.
-- Proof on hand: the four project case studies already in the codebase (Galexora, Sign Language Web, WordGym Mobile App, Quiz App), each with challenge, ownership, outcome, architecture, and lessons detail. No testimonials or external references are available yet.
+- Proof on hand: the four project case studies already in the codebase (Motion Studio, Galexora, Sign Language Web, WordGym Mobile App), each with challenge, ownership, outcome, architecture, and lessons detail. No testimonials or external references are available yet.
 
 ## Brand Personality
 
