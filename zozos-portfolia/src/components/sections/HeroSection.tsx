@@ -44,22 +44,23 @@ export default function HeroSection() {
 
           <div className="portrait-stage relative mx-auto w-full max-w-[clamp(15rem,60dvh,32.5rem)] border-2 border-navy/20 bg-accent-orange/30 p-[clamp(1rem,4vw,2.25rem)]">
             <figure className="relative rotate-[-3deg] border-3 border-navy bg-white p-3 shadow-brutal-lg">
-              <div className="relative aspect-[4/4.6] overflow-hidden border-2 border-navy bg-cream">
-                <Image
-                  src={portraitSrc}
-                  alt={`${personal.name} portrait`}
-                  aria-hidden={showProfile}
-                  fill
-                  preload
-                  sizes="(min-width: 768px) min(36vw, 60dvh, 420px), min(75vw, 420px)"
-                  className="object-cover"
-                  onError={() => {
-                    if (portraitSrc !== "/profile.jpg") setPortraitSrc("/profile.jpg");
-                  }}
-                />
-                <div id="hero-profile" aria-live="polite" className="absolute inset-0">
-                  {showProfile ? (
-                    <div className="flex size-full flex-col justify-center gap-[clamp(0.65rem,2vw,1.5rem)] overflow-y-auto bg-cream p-[clamp(0.75rem,3vw,2rem)]">
+              <div className="portrait-window relative aspect-[4/4.6] overflow-hidden border-2 border-navy bg-cream">
+                <div className="portrait-card absolute inset-0" data-flipped={showProfile}>
+                  <div className="portrait-face absolute inset-0" aria-hidden={showProfile}>
+                    <Image
+                      src={portraitSrc}
+                      alt={`${personal.name} portrait`}
+                      fill
+                      preload
+                      sizes="(min-width: 768px) min(36vw, 60dvh, 420px), min(75vw, 420px)"
+                      className="object-cover"
+                      onError={() => {
+                        if (portraitSrc !== "/profile.jpg") setPortraitSrc("/profile.jpg");
+                      }}
+                    />
+                  </div>
+                  <div id="hero-profile" aria-hidden={!showProfile} inert={!showProfile} className="portrait-face portrait-back absolute inset-0 overflow-y-auto bg-cream p-[clamp(0.75rem,3vw,2rem)]">
+                    <div className="flex min-h-full flex-col justify-center gap-[clamp(0.65rem,2vw,1.5rem)]">
                       <p className="font-display text-[clamp(1.2rem,3vw,2rem)] font-extrabold leading-tight">{ui.hero.profileDetails}</p>
                       <dl className="space-y-2 text-xs sm:text-sm">
                         <div><dt className="text-muted">{ui.about.currentCompany}</dt><dd className="font-bold">{personal.employer}</dd></div>
@@ -67,7 +68,7 @@ export default function HeroSection() {
                         <div><dt className="text-muted">{ui.hero.currentFocus}</dt><dd className="font-bold">{personal.focus}</dd></div>
                       </dl>
                     </div>
-                  ) : null}
+                  </div>
                 </div>
               </div>
               <figcaption className="flex items-center justify-between gap-4 px-1 pb-1 pt-4">
@@ -86,7 +87,7 @@ export default function HeroSection() {
               <svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true" className="absolute inset-0 size-full rotate-[8deg] text-accent-orange">
                 <path d="m50 2 9 25 24-13-7 27 24 9-24 9 7 27-24-13-9 25-9-25-24 13 7-27-24-9 24-9-7-27 24 13Z" stroke="var(--color-navy)" strokeWidth="2.5" strokeLinejoin="miter" />
               </svg>
-              <span aria-hidden="true" className="relative text-xl font-extrabold sm:text-2xl">↻</span>
+              <span aria-hidden="true" className={`relative text-xl font-extrabold transition-transform duration-[380ms] sm:text-2xl ${showProfile ? "rotate-180" : ""}`}>↻</span>
             </button>
           </div>
         </div>

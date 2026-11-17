@@ -86,6 +86,24 @@ body {
   background-position: 0 0;
 }
 
+.portrait-window {
+  perspective: 1000px;
+}
+
+.portrait-card {
+  transform-style: preserve-3d;
+  transition: transform 380ms ease-in-out;
+}
+
+.portrait-card[data-flipped="true"],
+.portrait-back {
+  transform: rotateY(180deg);
+}
+
+.portrait-face {
+  backface-visibility: hidden;
+}
+
 h1, h2, h3 {
   text-wrap: balance;
 }
