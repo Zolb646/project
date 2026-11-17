@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 import { CONTENT } from "@/lib/content";
-import { PERSON_NAME } from "@/lib/site";
+import { PERSON_NAME, SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -8,7 +8,7 @@ export function GET() {
   return new ImageResponse(
     <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "100%", height: "100%", padding: 70, background: "#f6f2e8", color: "#162234", border: "12px solid #162234" }}>
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: 28 }}>
-        <span>zolbayrr.com</span>
+        <span>{new URL(SITE_URL).hostname}</span>
         <span>Ulaanbaatar, Mongolia</span>
       </div>
       <div style={{ display: "flex", flexDirection: "column" }}>

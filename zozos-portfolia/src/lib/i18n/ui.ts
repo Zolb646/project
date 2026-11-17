@@ -25,6 +25,13 @@ export interface UIDictionary {
     viewGithub: string;
     currentFocus: string;
   };
+  playground: {
+    invitation: string;
+    chooseProject: string;
+    previewProject: (title: string) => string;
+    hint: string;
+    builtWith: string;
+  };
   about: {
     eyebrow: string;
     heading: string;
@@ -49,6 +56,9 @@ export interface UIDictionary {
     moreProjects: string;
     footerNote: string;
     talkCta: string;
+    filterLabel: string;
+    filters: { all: string; web: string; mobile: string };
+    resultCount: (count: number) => string;
   };
   experience: {
     eyebrow: string;
@@ -135,15 +145,22 @@ const en: UIDictionary = {
     viewCaseStudyFor: (title) => `View case study for ${title}`,
   },
   hero: {
-    greeting: "Zozo / Junior Frontend Engineer",
-    headlineLines: ["Zozo.", "Frontend", "Engineer."],
+    greeting: "Hey, I’m Zozo.",
+    headlineLines: ["Built to work.", "Made to feel."],
     projectAvailability: "Open for freelance projects",
     intro: (role) =>
-      `I'm ${PERSON_NAME} (Zozo), a ${role.toLowerCase()} at erxes Inc. in Ulaanbaatar. I build production interfaces with React and TypeScript, with experience across full-stack web and mobile projects.`,
+      `I’m ${PERSON_NAME}, a ${role.toLowerCase()} at erxes Inc. I turn ideas into web and mobile experiences with care for the little details.`,
     viewProjects: "View Projects",
     downloadResume: "Download Resume",
     viewGithub: "View GitHub",
     currentFocus: "Current focus",
+  },
+  playground: {
+    invitation: "A small window into my work",
+    chooseProject: "Choose a project to preview",
+    previewProject: (title) => `Preview ${title}`,
+    hint: "Pick a project. Explore what’s behind it.",
+    builtWith: "React, TypeScript, and a little curiosity.",
   },
   about: {
     eyebrow: "Profile",
@@ -173,6 +190,10 @@ const en: UIDictionary = {
     footerNote:
       "Open a case study to see the decisions, contribution, and result behind each project.",
     talkCta: "Let's talk about building something",
+    filterLabel: "Filter projects",
+    filters: { all: "All work", web: "Web", mobile: "Mobile" },
+    resultCount: (count) => `${count} ${count === 1 ? "project" : "projects"}`,
+
   },
   experience: {
     eyebrow: "Recent path",
@@ -273,15 +294,22 @@ const mn: UIDictionary = {
     viewCaseStudyFor: (title) => `${title} төслийн дэлгэрэнгүйг үзэх`,
   },
   hero: {
-    greeting: "Zozo / Junior Frontend инженер",
-    headlineLines: ["Zozo.", "Frontend", "инженер."],
+    greeting: "Сайн уу, би Zozo.",
+    headlineLines: ["Ажиллахад эвтэй.", "Хэрэглэхэд таатай."],
     projectAvailability: "Захиалгат төсөлд нээлттэй",
     intro: () =>
-      `Намайг ${PERSON_NAME} (Zozo) гэдэг. Улаанбаатар хотод erxes Inc.-ийн Junior Frontend инженерээр ажилладаг. React, TypeScript ашиглан бүтээгдэхүүний интерфэйс хөгжүүлдэг бөгөөд full-stack веб, мобайл төслүүд дээр ажилласан туршлагатай.`,
+      `Намайг ${PERSON_NAME} гэдэг. erxes Inc.-д Junior Frontend инженерээр ажилладаг. Веб, мобайл бүтээгдэхүүнийг жижиг зүйл бүрд нь анхаарч бүтээдэг.`,
     viewProjects: "Төслүүд үзэх",
     downloadResume: "Резюме татах",
     viewGithub: "GitHub үзэх",
     currentFocus: "Одоогийн чиглэл",
+  },
+  playground: {
+    invitation: "Миний ажлыг харах жижиг цонх",
+    chooseProject: "Үзэх төслөө сонгох",
+    previewProject: (title) => `${title} төслийг харах`,
+    hint: "Төслөө сонгоод, хэрхэн бүтээснийг нь үзээрэй.",
+    builtWith: "React, TypeScript, бас багахан сониуч зан.",
   },
   about: {
     eyebrow: "Профайл",
@@ -311,6 +339,10 @@ const mn: UIDictionary = {
     footerNote:
       "Төсөл бүрийн шийдвэр, миний оролцоо, үр дүнг дэлгэрэнгүй хуудаснаас үзээрэй.",
     talkCta: "Ямар нэгэн зүйл хамтдаа бүтээхээр ярилцъя",
+    filterLabel: "Төслүүдийг шүүх",
+    filters: { all: "Бүх ажил", web: "Веб", mobile: "Мобайл" },
+    resultCount: (count) => `${count} төсөл`,
+
   },
   experience: {
     eyebrow: "Сүүлийн зам",

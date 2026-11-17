@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -52,8 +53,10 @@ function ProjectPreview({ project, ui, lead = false }: { project: Project; ui: U
 
 export default function ProjectsSection() {
   const { projects, ui, localizePath } = useContent();
-  const leadProject = projects.find((project) => project.featured) ?? projects[0];
-  const remaining = projects.filter((project) => project.slug !== leadProject?.slug);
+  const [filter, setFilter] = useState<"all" | "web" | "mobile">("all");
+  const filtered = projects.filter((project) => filter === "all" || (filter === "mobile" ? project.imageLayout === "mobile" : project.imageLayout !== "mobile"));
+  const leadProject = filtered.find((project) => project.featured) ?? filtered[0];
+  const remaining = filtered.filter((project) => project.slug !== leadProject?.slug);
   const showcase = remaining.slice(0, 2);
   const more = remaining.slice(2);
 
@@ -61,6 +64,15 @@ export default function ProjectsSection() {
     <section id={SECTION_IDS.projects} className="py-16 sm:py-24">
       <Container>
         <SectionHeading color="orange" eyebrow={ui.projects.eyebrow} description={ui.projects.description}>{ui.projects.heading}</SectionHeading>
+        <div className="project-filter-bar">
+          <div className="project-filters" role="group" aria-label={ui.projects.filterLabel}>
+            {(["all", "web", "mobile"] as const).map((category) => (
+              <button key={category} type="button" aria-pressed={filter === category} onClick={() => setFilter(category)}>{ui.projects.filters[category]}</button>
+            ))}
+          </div>
+          <p aria-live="polite" aria-atomic="true" className="text-xs text-muted sm:text-sm">{ui.projects.resultCount(filtered.length)}</p>
+        </div>
+        <div key={filter} className="project-results">
         {leadProject ? <ProjectPreview project={leadProject} ui={ui} lead /> : null}
         <div className="mt-7 grid gap-7 lg:grid-cols-2">
           {showcase.map((project) => <ProjectPreview key={project.slug} project={project} ui={ui} />)}
@@ -76,6 +88,7 @@ export default function ProjectsSection() {
             ))}
           </div>
         ) : null}
+        </div>
         <p className="mt-7 max-w-2xl text-sm leading-relaxed text-muted">{ui.projects.footerNote}</p>
       </Container>
     </section>

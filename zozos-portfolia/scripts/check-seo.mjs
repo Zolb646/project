@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 
 // Run against a local production server after `npm run build && npm start`.
 const base = process.env.SEO_CHECK_URL || "http://localhost:3000";
-const site = "https://zolbayrr.com";
+const site = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://zolbayrr.com").origin;
 
 async function get(path, status = 200) {
   const response = await fetch(new URL(path, base));
