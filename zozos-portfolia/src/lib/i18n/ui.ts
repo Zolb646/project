@@ -24,6 +24,8 @@ export interface UIDictionary {
     downloadResume: string;
     viewGithub: string;
     currentFocus: string;
+    profileDetails: string;
+    flipPortrait: string;
   };
   about: {
     eyebrow: string;
@@ -149,6 +151,8 @@ const en: UIDictionary = {
     downloadResume: "Download Resume",
     viewGithub: "View GitHub",
     currentFocus: "Current focus",
+    profileDetails: "About me",
+    flipPortrait: "Flip portrait card",
   },
   about: {
     eyebrow: "Profile",
@@ -292,6 +296,8 @@ const mn: UIDictionary = {
     downloadResume: "Резюме татах",
     viewGithub: "GitHub үзэх",
     currentFocus: "Одоогийн чиглэл",
+    profileDetails: "Миний тухай",
+    flipPortrait: "Хөргийн картыг эргүүлэх",
   },
   about: {
     eyebrow: "Профайл",

@@ -14,7 +14,7 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id={SECTION_IDS.about} className="border-y-3 border-navy bg-accent-teal/25 py-16 sm:py-24">
+    <section id={SECTION_IDS.about} className="border-y-3 border-navy bg-accent-teal/25 py-[var(--section-space)]">
       <Container>
         <SectionHeading color="teal" eyebrow={ui.about.eyebrow} description={ui.about.description}>{ui.about.heading}</SectionHeading>
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">

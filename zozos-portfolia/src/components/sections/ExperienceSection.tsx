@@ -10,7 +10,7 @@ export default function ExperienceSection() {
   const { experiences, ui } = useContent();
 
   return (
-    <section id={SECTION_IDS.experience} className="py-16 sm:py-24">
+    <section id={SECTION_IDS.experience} className="py-[var(--section-space)]">
       <Container>
         <SectionHeading color="orange" eyebrow={ui.experience.eyebrow} description={ui.experience.description}>{ui.experience.heading}</SectionHeading>
         <div className="border-t-3 border-navy">

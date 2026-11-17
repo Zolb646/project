@@ -65,7 +65,7 @@ export default function ProjectsSection() {
   const more = remaining.slice(2);
 
   return (
-    <section id={SECTION_IDS.projects} className="py-16 sm:py-24">
+    <section id={SECTION_IDS.projects} className="py-[var(--section-space)]">
       <Container>
         <SectionHeading color="orange" eyebrow={ui.projects.eyebrow} description={ui.projects.description}>{ui.projects.heading}</SectionHeading>
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">

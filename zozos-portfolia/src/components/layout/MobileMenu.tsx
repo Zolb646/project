@@ -47,12 +47,13 @@ export default function MobileMenu({
       ref={dialogRef}
       id="mobile-menu"
       aria-label={ui.common.openMenu}
-      className="fixed inset-0 m-0 h-dvh max-h-none w-screen max-w-none bg-transparent p-0 text-navy backdrop:bg-navy/50"
+      className="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none bg-transparent p-0 text-navy backdrop:bg-navy/50"
       onCancel={(event) => { event.preventDefault(); onClose(); }}
       onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}>
-      <div className="fixed right-0 top-0 bottom-0 w-72 bg-cream border-l-3 border-navy animate-slide-in">
-        <div className="flex items-center justify-end p-4">
+      <div className="absolute inset-y-0 right-0 w-[min(100%,18rem)] overflow-y-auto overscroll-contain border-l-3 border-navy bg-cream pb-[max(1rem,env(safe-area-inset-bottom))] animate-slide-in">
+        <div className="sticky top-0 z-10 flex items-center justify-end bg-cream p-3">
           <button
+            type="button"
             onClick={onClose}
             className="p-2.5 text-navy"
             aria-label={ui.common.closeMenu}
@@ -62,7 +63,7 @@ export default function MobileMenu({
             </svg>
           </button>
         </div>
-        <nav className="flex flex-col gap-2 px-6">
+        <nav className="flex flex-col gap-1 px-5">
           {NAV_SECTIONS.map((link) => (
             <a
               key={link.href}

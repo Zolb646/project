@@ -58,11 +58,17 @@
 }
 
 html {
+  --site-nav-height: 5rem;
+  --page-top-space: calc(var(--site-nav-height) + clamp(1.5rem, 7dvh, 4rem));
+  --section-space: clamp(2.5rem, min(9vw, 12dvh), 6rem);
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--site-nav-height) + 1rem);
 }
 
-section[id] {
-  scroll-margin-top: 6rem;
+@media (max-height: 520px) {
+  html {
+    --site-nav-height: 3.5rem;
+  }
 }
 
 body {

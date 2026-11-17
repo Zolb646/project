@@ -10,11 +10,11 @@ export default function Footer() {
   return (
     <footer className="border-t-3 border-navy bg-cream py-8">
       <Container>
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted">
+        <div className="flex flex-wrap items-center justify-center gap-4 text-center sm:justify-between sm:text-left">
+          <p className="w-full text-sm text-muted sm:w-auto">
             {ui.footer.rights(new Date().getFullYear())}
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
             {SOCIAL_LINKS.map((link) => (
               <IconLink
                 key={link.label}

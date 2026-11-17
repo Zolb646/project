@@ -42,7 +42,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
     .slice(0, 2);
 
   return (
-    <section className="pb-20 pt-24 sm:pb-28 sm:pt-28">
+    <section className="pb-[var(--section-space)] pt-[calc(var(--site-nav-height)+clamp(1rem,4dvh,3rem))]">
       <Container className="space-y-8 sm:space-y-10">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <Link

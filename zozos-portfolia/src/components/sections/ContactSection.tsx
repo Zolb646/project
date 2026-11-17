@@ -63,7 +63,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id={SECTION_IDS.contact} className="bg-accent-orange/25 py-16 sm:py-24">
+    <section id={SECTION_IDS.contact} className="bg-accent-orange/25 py-[var(--section-space)]">
       <Container>
         <AnimateOnScroll>
           <SectionHeading

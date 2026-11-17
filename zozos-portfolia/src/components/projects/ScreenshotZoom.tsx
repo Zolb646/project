@@ -41,18 +41,21 @@ export default function ScreenshotZoom({
         ref={dialogRef}
         aria-label={alt}
         onClose={() => setIsOpen(false)}
-        className={`m-auto h-[min(calc(100dvh-1rem),56rem)] max-h-none max-w-[calc(100%-1rem)] grid-rows-[auto_minmax(0,1fr)] gap-2 border-3 border-navy bg-cream p-2 text-navy shadow-brutal-lg open:grid backdrop:bg-navy/75 sm:gap-3 sm:p-3 ${portrait ? "w-[clamp(12rem,55dvh,26rem)]" : "w-[1200px]"}`}>
+        onClick={(event) => {
+          if (event.target === event.currentTarget) event.currentTarget.close();
+        }}
+        className={`m-auto h-[min(calc(100dvh-1.5rem),60rem)] max-h-none max-w-[calc(100%-1.5rem)] grid-rows-[auto_minmax(0,1fr)] gap-2 overflow-auto bg-transparent p-0 text-white open:grid backdrop:bg-[#101015]/95 sm:gap-3 ${portrait ? "w-[clamp(13rem,44dvh,26rem)]" : "w-[68rem]"}`}>
         <div className="flex items-center justify-between gap-3">
-          <p className="min-w-0 text-sm font-bold wrap-anywhere">{alt}</p>
+          <p className="min-w-0 text-sm font-semibold wrap-anywhere">{alt}</p>
           <form method="dialog" className="shrink-0">
-            <button aria-label={ui.gallery.closeImage} className="grid size-11 cursor-pointer place-items-center border-2 border-navy bg-accent-yellow">
+            <button type="submit" aria-label={ui.gallery.closeImage} className="grid size-11 cursor-pointer place-items-center rounded-full border border-white/25 bg-white/10 text-lg hover:bg-white/20 focus-visible:outline-offset-[-3px] focus-visible:outline-white">
               <FiX aria-hidden="true" />
             </button>
           </form>
         </div>
         {isOpen ? (
-          <div className="relative min-h-0 bg-white">
-            <Image src={src} alt={alt} fill sizes={portrait ? "min(90vw, 30dvh, 384px)" : "min(95vw, 1200px)"} className="object-contain" />
+          <div className="relative min-h-0">
+            <Image src={src} alt={alt} fill sizes={portrait ? "min(90vw, 44dvh, 416px)" : "min(95vw, 1088px)"} className="object-contain" />
           </div>
         ) : null}
       </dialog>

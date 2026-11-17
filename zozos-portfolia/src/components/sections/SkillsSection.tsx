@@ -88,7 +88,7 @@ export default function SkillsSection() {
   const { skills: SKILLS, ui } = useContent();
 
   return (
-    <section id={SECTION_IDS.skills} className="border-y-3 border-navy bg-accent-yellow/20 py-16 sm:py-24">
+    <section id={SECTION_IDS.skills} className="border-y-3 border-navy bg-accent-yellow/20 py-[var(--section-space)]">
       <Container>
         <AnimateOnScroll>
           <SectionHeading

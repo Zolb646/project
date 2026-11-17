@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { NAV_SECTIONS } from "@/lib/constants";
 import { useContent } from "@/lib/i18n/useContent";
@@ -14,6 +14,7 @@ export default function Navbar() {
   const isHomePage = pathname === localizePath("/");
   const [activeSection, setActiveSection] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
   const closeMenu = useCallback(() => setIsMenuOpen(false), []);
   const displayedActiveSection = isHomePage ? activeSection : "";
 
@@ -23,6 +24,7 @@ export default function Navbar() {
     }
 
     const handleScroll = () => {
+      const activationLine = (navRef.current?.offsetHeight ?? 80) + 16;
       const sections = NAV_SECTIONS.map((link) =>
         document.querySelector(link.href),
       );
@@ -31,12 +33,13 @@ export default function Navbar() {
         const section = sections[i];
         if (section) {
           const rect = section.getBoundingClientRect();
-          if (rect.top <= 100) {
+          if (rect.top <= activationLine) {
             setActiveSection(NAV_SECTIONS[i].href);
-            break;
+            return;
           }
         }
       }
+      setActiveSection("");
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -45,9 +48,9 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed inset-x-0 top-0 z-50 border-b-3 border-navy bg-cream">
+      <nav ref={navRef} className="fixed inset-x-0 top-0 z-50 border-b-3 border-navy bg-cream">
         <Container wide>
-          <div className="flex h-20 items-center justify-between gap-4">
+          <div className="flex h-[var(--site-nav-height)] items-center justify-between gap-3">
             <a
               href={isHomePage ? "#hero" : localizePath("/#hero")}
               className="font-display text-3xl font-extrabold tracking-tight text-navy">
@@ -70,10 +73,11 @@ export default function Navbar() {
               <LanguageToggle />
             </div>
 
-            <div className="flex items-center gap-3 lg:hidden">
+            <div className="flex items-center gap-2 sm:gap-3 lg:hidden">
               <LanguageToggle />
               <button
-                className="border-2 border-navy bg-accent-yellow p-2 text-navy shadow-brutal-sm"
+                type="button"
+                className="grid size-11 shrink-0 place-items-center border-2 border-navy bg-accent-yellow text-navy shadow-brutal-sm"
                 onClick={() => setIsMenuOpen(true)}
                 aria-haspopup="dialog"
                 aria-controls="mobile-menu"
