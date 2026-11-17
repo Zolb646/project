@@ -7,6 +7,7 @@ import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import Container from "@/components/ui/Container";
+import MobileScreenGallery from "@/components/projects/MobileScreenGallery";
 import ProjectGallery from "@/components/projects/ProjectGallery";
 import ScreenshotZoom from "@/components/projects/ScreenshotZoom";
 import { useContent } from "@/lib/i18n/useContent";
@@ -36,8 +37,6 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
 
   const images = buildProjectImages(project);
   const heroImage = images[0];
-  const mobileShowcaseImages =
-    project.imageLayout === "mobile" ? images.slice(1) : [];
   const relatedProjects = projects
     .filter((candidate) => candidate.slug !== project.slug)
     .slice(0, 2);
@@ -241,60 +240,8 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
           />
         ) : null}
 
-        {project.imageLayout === "mobile" && mobileShowcaseImages.length ? (
-          <div className="space-y-4 sm:space-y-5 no-scrollbar">
-            <div className="flex flex-wrap items-end justify-between gap-3">
-              <div className="max-w-2xl">
-                <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-                  {ui.projectDetail.appScreens}
-                </p>
-                <h2 className="mt-2 text-3xl font-black leading-[0.96] text-navy sm:text-4xl">
-                  {ui.projectDetail.insideTheFlow}
-                </h2>
-                <p className="mt-3 max-w-xl text-sm leading-7 text-muted sm:text-base">
-                  {ui.projectDetail.appScreensDesc}
-                </p>
-              </div>
-
-              <div className="inline-flex border-3 border-navy bg-accent-yellow px-3 py-2 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-navy shadow-brutal-sm">
-                {ui.projectDetail.moreScreens(mobileShowcaseImages.length)}
-              </div>
-            </div>
-
-            <div className="relative left-1/2 w-screen -translate-x-1/2">
-              <div className="overflow-x-auto overflow-y-hidden px-4 py-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:px-8 lg:px-12">
-                <div className="flex w-max items-start gap-4 py-6 sm:gap-5">
-                  {mobileShowcaseImages.map((image, index) => (
-                    <div
-                      key={`${project.slug}-showcase-${index}`}
-                      className={`shrink-0 ${
-                        index % 4 === 1
-                          ? "sm:translate-y-6"
-                          : index % 4 === 2
-                            ? "sm:-translate-y-2"
-                            : index % 4 === 3
-                              ? "sm:translate-y-3"
-                              : ""
-                      }`}>
-                      <div className="w-[8.9rem] rounded-[1.65rem] border-3 border-navy bg-white p-1.5 shadow-brutal-sm sm:w-[9.8rem] lg:w-[10.5rem]">
-                        <div className="relative aspect-[9/19.5] overflow-hidden rounded-[1rem] border-2 border-navy bg-white">
-                          <ScreenshotZoom src={image} alt={ui.projectDetail.appScreenAlt(project.title, index + 2)}>
-                            <Image
-                              src={image}
-                              alt=""
-                              fill
-                              sizes="(min-width: 1024px) 168px, (min-width: 640px) 157px, 142px"
-                              className="object-cover object-top"
-                            />
-                          </ScreenshotZoom>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+        {project.imageLayout === "mobile" && images.length > 1 ? (
+          <MobileScreenGallery key={project.slug} images={images} imageTitles={project.imageTitles} title={project.title} />
         ) : null}
 
         <div className="grid items-start gap-6 lg:grid-cols-2">

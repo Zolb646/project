@@ -103,7 +103,7 @@ export interface UIDictionary {
     appScreens: string;
     insideTheFlow: string;
     appScreensDesc: string;
-    moreScreens: (count: number) => string;
+    chooseScreen: string;
     heroScreenshotAlt: (title: string) => string;
     appScreenAlt: (title: string, index: number) => string;
   };
@@ -243,8 +243,8 @@ const en: UIDictionary = {
     appScreens: "App screens",
     insideTheFlow: "Inside the flow.",
     appScreensDesc:
-      "A quick scan through the deck, search, practice, and game moments that make the product feel like a real mobile study tool.",
-    moreScreens: (count) => `${count} more screens`,
+      "Explore how WordGym organizes vocabulary, study sessions, and games.",
+    chooseScreen: "Choose a screen",
     heroScreenshotAlt: (title) => `${title} hero screenshot`,
     appScreenAlt: (title, index) => `${title} app screen ${index}`,
   },
@@ -384,11 +384,11 @@ const mn: UIDictionary = {
     process: "Явц",
     step: (n) => `${n}-р алхам`,
     moreProjects: "Бусад төслүүд",
-    appScreens: "Апп дэлгэц",
-    insideTheFlow: "Урсгалын дотор.",
+    appScreens: "Аппын дэлгэцүүд",
+    insideTheFlow: "WordGym хэрхэн ажилладаг вэ?",
     appScreensDesc:
-      "Дек, хайлт, дасгал, тоглоомын мөчүүдийг хурдан харж, бүтээгдэхүүнийг жинхэнэ mobile судлах хэрэгсэл мэт мэдрэмж өгдгийг харуулна.",
-    moreScreens: (count) => `+${count} дэлгэц`,
+      "Үгийн багц, давтах горим, тоглоомуудыг дэлгэц бүрээр нь үзээрэй.",
+    chooseScreen: "Дэлгэц сонгох",
     heroScreenshotAlt: (title) => `${title} үндсэн зураг`,
     appScreenAlt: (title, index) => `${title} аппын ${index}-р дэлгэц`,
   },

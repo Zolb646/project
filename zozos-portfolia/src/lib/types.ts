@@ -13,6 +13,7 @@ export interface Project {
   githubUrl?: string;
   image?: string;
   images?: string[];
+  imageTitles?: string[];
   imageLayout?: "desktop" | "mobile";
   featured?: boolean;
   process?: string[];

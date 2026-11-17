@@ -9,10 +9,12 @@ export default function ScreenshotZoom({
   src,
   alt,
   children,
+  portrait = false,
 }: {
   src: string;
   alt: string;
   children: React.ReactNode;
+  portrait?: boolean;
 }) {
   const { ui } = useContent();
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -39,7 +41,7 @@ export default function ScreenshotZoom({
         ref={dialogRef}
         aria-label={alt}
         onClose={() => setIsOpen(false)}
-        className="m-auto w-[min(92vw,1200px)] max-w-none border-3 border-navy bg-cream p-3 text-navy shadow-brutal-lg backdrop:bg-navy/75 sm:p-4">
+        className={`m-auto max-w-none border-3 border-navy bg-cream p-3 text-navy shadow-brutal-lg backdrop:bg-navy/75 sm:p-4 ${portrait ? "w-[min(92vw,26rem)]" : "w-[min(92vw,1200px)]"}`}>
         <div className="mb-3 flex items-center justify-between gap-3">
           <p className="text-sm font-bold">{alt}</p>
           <form method="dialog">
@@ -50,7 +52,7 @@ export default function ScreenshotZoom({
         </div>
         {isOpen ? (
           <div className="relative h-[min(72dvh,850px)] bg-white">
-            <Image src={src} alt={alt} fill sizes="(min-width: 1300px) 1160px, 90vw" className="object-contain" />
+            <Image src={src} alt={alt} fill sizes={portrait ? "(min-width: 460px) 380px, 85vw" : "(min-width: 1300px) 1160px, 90vw"} className="object-contain" />
           </div>
         ) : null}
       </dialog>
