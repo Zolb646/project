@@ -40,7 +40,8 @@ HTML produced by dynamic `notFound()` fallbacks in the installed Next.js version
 ## Interactive version
 
 The independent version at `https://new.zolbayrr.com` uses the Vercel project
-`zozo-interactive`. Deploy from the app directory with:
+`zozo-interactive`. The project framework must be **Next.js**; `vercel.json`
+explicitly selects it for CLI deployments. Deploy from the app directory with:
 
 ```sh
 vercel deploy --project zozo-interactive --prod --yes
