@@ -39,8 +39,8 @@
 - [x] Verify the existing site and missing interactions; inspect deployment access.
 - [x] Add localized interactive hero, project browser, and project filters.
 - [x] Verify interaction states in the browser plus lint, typecheck, existing tests, build, and SEO checks.
-- [ ] Record global permission, commit scoped changes, and push the feature branch.
-- [ ] Create a separate Vercel deployment, attach new.zolbayrr.com, configure DNS, and verify live routes.
+- [x] Record global permission, commit scoped changes, and push the feature branch.
+- [x] Create a separate Vercel deployment, attach new.zolbayrr.com, configure DNS, and verify live routes.
 
 ## Verification and final decisions
 
@@ -50,4 +50,7 @@
 - Added a regression test for a trailing slash in the deployment origin; verified it fails before normalizing the URL and passes afterward.
 
 - Final production build with `NEXT_PUBLIC_SITE_URL=https://new.zolbayrr.com/` passed; 7 tests, lint, typecheck, and 10-page plus 6-fallback SEO checks passed.
-- Vercel deployment dpl_5WkGjYXwaF5P5NazFEXM3bUaJ7tS is ready; DNS CNAME verification passed.
+- Final Vercel deployment `dpl_Dfb9trMaWTuPZXK78SVky1VEFShL` is ready; DNS CNAME verification passed. The project explicitly uses the Next.js framework.
+- Live HTTPS checks returned 200 for both homepages, localized project routes, sitemap, and social image; a missing route returned 404. Live project selection and mobile filtering passed.
+- Scoped changes are pushed to `feat/interactive-portfolio`. The original `zozo` production project remains separate.
+- No live email was sent during verification.
