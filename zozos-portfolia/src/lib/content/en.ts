@@ -86,6 +86,33 @@ export const en: SiteContent = {
 
   projects: [
     {
+      slug: "motion-studio",
+      title: "Motion Studio",
+      role: "Product Designer & Frontend Developer",
+      period: "2026",
+      description: "A 2D animation editor for the browser. Arrange layers on a canvas, animate them on a keyframe timeline, and turn the result into a video.",
+      tags: ["Next.js", "TypeScript", "Canvas API", "MediaRecorder"],
+      highlights: [
+        "Drag text, shapes, and uploaded images on the stage, then control position, rotation, scale, opacity, and easing from the inspector.",
+        "Scrub the timeline, move keyframes, and undo changes while composing a scene.",
+        "Export a video or a PNG frame and save and reopen an editable project file.",
+      ],
+      challenge: "Make animation approachable for someone who has never used a timeline. A first-time visitor can modify a title card and see how two keyframes affect motion within seconds.",
+      ownership: "I designed the editor and its sample title cards, then built the scene model, canvas renderer, timeline, local draft storage, and export workflow.",
+      outcome: "The working studio opens with a kinetic title card that visitors can remix. The finished animation can be downloaded directly from the editor.",
+      process: [
+        "Modeled each layer as an ordered sequence of poses and tested interpolation, easing, and history.",
+        "Connected stage dragging and inspector edits to the playhead so both interactions write to the same keyframe.",
+        "Used the same renderer for live preview, video, and still frames.",
+      ],
+      architecture: "A TypeScript scene model drives Canvas drawing and reversible edits. Browser storage holds a local draft. Image assets travel inside the project file, while browser-native recording exports the scene as video.",
+      image: "/projects/motion-studio.webp",
+      images: ["/projects/motion-studio.webp", "/projects/motion-studio-orbit.webp"],
+      imageLayout: "desktop",
+      liveUrl: "/motion-studio",
+      featured: true,
+    },
+    {
       slug: "galexora",
       title: "Galexora",
       role: "Frontend Developer",
