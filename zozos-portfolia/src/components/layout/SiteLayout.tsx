@@ -1,4 +1,4 @@
-import { Bricolage_Grotesque, JetBrains_Mono, Manrope } from "next/font/google";
+import { JetBrains_Mono, Manrope } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
@@ -19,12 +19,6 @@ const manrope = Manrope({
   display: "swap",
 });
 
-const bricolage = Bricolage_Grotesque({
-  subsets: ["latin"],
-  variable: "--font-bricolage",
-  display: "swap",
-});
-
 export default function SiteLayout({
   children,
   locale,
@@ -35,7 +29,7 @@ export default function SiteLayout({
   return (
     <html
       lang={locale}
-      className={`scroll-smooth ${jetbrainsMono.variable} ${manrope.variable} ${bricolage.variable}`}
+      className={`scroll-smooth ${jetbrainsMono.variable} ${manrope.variable}`}
       suppressHydrationWarning>
       <body
         className="min-h-screen bg-cream text-navy antialiased"

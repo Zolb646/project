@@ -30,7 +30,7 @@ export default function Input({
         required={required}
         value={value}
         onChange={onChange}
-        className="w-full px-4 py-3 bg-cream border-3 border-navy text-navy placeholder:text-muted focus:shadow-brutal focus:outline-none transition-shadow duration-200"
+        className="w-full px-4 py-3 rounded-lg bg-white border border-control text-navy placeholder:text-muted focus:border-accent-orange-ink focus:outline-2 focus:outline-accent-orange-ink/20 focus:outline-offset-0 transition-colors duration-200"
       />
     </div>
   );

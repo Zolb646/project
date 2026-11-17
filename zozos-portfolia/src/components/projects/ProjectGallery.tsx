@@ -30,7 +30,7 @@ export default function ProjectGallery({
 
   if (!activeImage) {
     return (
-      <div className="flex min-h-[320px] items-center justify-center border-3 border-navy bg-[linear-gradient(135deg,rgba(255,107,53,0.18),rgba(78,205,196,0.18))] p-8 shadow-brutal">
+      <div className="flex min-h-[320px] items-center justify-center border border-line bg-[linear-gradient(135deg,rgba(255,107,53,0.18),rgba(78,205,196,0.18))] p-8">
         <span className="text-center text-2xl font-black uppercase tracking-[0.2em] text-navy/60">
           {title}
         </span>
@@ -62,7 +62,7 @@ export default function ProjectGallery({
           </h2>
         </div>
         {images.length > 1 ? (
-          <div className="inline-flex border-3 border-navy bg-accent-yellow px-3 py-2 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-navy shadow-brutal-sm">
+          <div className="inline-flex border border-line bg-accent-yellow px-3 py-2 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-navy">
             {ui.gallery.shotOf(activeIndex + 1, images.length)}
           </div>
         ) : null}
@@ -75,17 +75,17 @@ export default function ProjectGallery({
               {ui.gallery.mobileWalkthrough}
             </p>
             {images.length > 1 ? (
-              <div className="inline-flex border-2 border-navy bg-cream px-2.5 py-1.5 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-muted shadow-brutal-sm">
+              <div className="inline-flex border-2 border-line bg-cream px-2.5 py-1.5 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-muted">
                 {ui.gallery.screenOf(activeIndex + 1, images.length)}
               </div>
             ) : null}
           </div>
 
           <div className="relative mx-auto w-full">
-            <div className="absolute -top-3 right-4 z-0 h-16 w-16 border-3 border-navy bg-accent-yellow shadow-brutal-sm sm:h-20 sm:w-20" />
+            <div className="absolute -top-3 right-4 z-0 h-16 w-16 border border-line bg-accent-yellow sm:h-20 sm:w-20" />
 
-            <div className="relative z-10 mx-auto w-full max-w-[19rem] rounded-[1.8rem] border-3 border-navy bg-white p-2 shadow-brutal-lg sm:max-w-[20rem] lg:max-w-[21rem]">
-              <div className="relative aspect-[9/19.5] overflow-hidden rounded-[1.15rem] border-2 border-navy bg-white">
+            <div className="relative z-10 mx-auto w-full max-w-[19rem] rounded-[1.8rem] border border-line bg-white p-2 sm:max-w-[20rem] lg:max-w-[21rem]">
+              <div className="relative aspect-[9/19.5] overflow-hidden rounded-[1.15rem] border-2 border-line bg-white">
                 <Image
                   src={activeImage}
                   alt={`${title} screenshot ${activeIndex + 1}`}
@@ -101,14 +101,14 @@ export default function ProjectGallery({
                   <button
                     type="button"
                     onClick={showPrevious}
-                    className="inline-flex h-11 w-11 items-center justify-center border-2 border-navy bg-cream text-lg text-navy shadow-brutal-sm transition-transform duration-150 hover:translate-y-[2px] hover:shadow-none"
+                    className="inline-flex h-11 w-11 items-center justify-center border-2 border-line bg-cream text-lg text-navy transition-transform duration-150 hover:translate-y-[2px] hover:shadow-none"
                     aria-label={ui.gallery.showPrevious(title)}>
                     <FiChevronLeft />
                   </button>
                   <button
                     type="button"
                     onClick={showNext}
-                    className="inline-flex h-11 w-11 items-center justify-center border-2 border-navy bg-cream text-lg text-navy shadow-brutal-sm transition-transform duration-150 hover:translate-y-[2px] hover:shadow-none"
+                    className="inline-flex h-11 w-11 items-center justify-center border-2 border-line bg-cream text-lg text-navy transition-transform duration-150 hover:translate-y-[2px] hover:shadow-none"
                     aria-label={ui.gallery.showNext(title)}>
                     <FiChevronRight />
                   </button>
@@ -118,12 +118,12 @@ export default function ProjectGallery({
           </div>
         </div>
       ) : (
-        <div className="relative overflow-hidden border-3 border-navy bg-white shadow-brutal">
-          <div className="flex items-center justify-between gap-3 border-b-3 border-navy/20 bg-cream px-4 py-3">
+        <div className="relative overflow-hidden border border-line bg-white">
+          <div className="flex items-center justify-between gap-3 border-b border-line bg-cream px-4 py-3">
             <div className="flex items-center gap-2">
-              <span className="h-3 w-3 rounded-full border border-navy/20 bg-accent-orange/80" />
-              <span className="h-3 w-3 rounded-full border border-navy/20 bg-accent-yellow/80" />
-              <span className="h-3 w-3 rounded-full border border-navy/20 bg-accent-teal/80" />
+              <span className="h-3 w-3 rounded-full border border-line bg-accent-orange/80" />
+              <span className="h-3 w-3 rounded-full border border-line bg-accent-yellow/80" />
+              <span className="h-3 w-3 rounded-full border border-line bg-accent-teal/80" />
             </div>
             <p className="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-muted">
               {ui.gallery.desktopLayout}
@@ -131,7 +131,7 @@ export default function ProjectGallery({
           </div>
 
           <div className="p-3 sm:p-5">
-            <div className="relative mx-auto aspect-video w-full overflow-hidden border-3 border-navy bg-white shadow-brutal-sm">
+            <div className="relative mx-auto aspect-video w-full overflow-hidden border border-line bg-white">
               <Image
                 src={activeImage}
                 alt={`${title} screenshot ${activeIndex + 1}`}
@@ -146,14 +146,14 @@ export default function ProjectGallery({
                   <button
                     type="button"
                     onClick={showPrevious}
-                    className="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border-2 border-navy bg-cream/95 text-xl text-navy shadow-brutal-sm transition-transform duration-150 hover:translate-y-[calc(-50%+2px)] sm:left-4"
+                    className="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border-2 border-line bg-cream/95 text-xl text-navy transition-transform duration-150 hover:translate-y-[calc(-50%+2px)] sm:left-4"
                     aria-label={ui.gallery.showPrevious(title)}>
                     <FiChevronLeft />
                   </button>
                   <button
                     type="button"
                     onClick={showNext}
-                    className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border-2 border-navy bg-cream/95 text-xl text-navy shadow-brutal-sm transition-transform duration-150 hover:translate-y-[calc(-50%+2px)] sm:right-4"
+                    className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border-2 border-line bg-cream/95 text-xl text-navy transition-transform duration-150 hover:translate-y-[calc(-50%+2px)] sm:right-4"
                     aria-label={ui.gallery.showNext(title)}>
                     <FiChevronRight />
                   </button>
@@ -180,10 +180,10 @@ export default function ProjectGallery({
                 key={`${title}-thumb-${index}`}
                 type="button"
                 onClick={() => setActiveIndex(index)}
-                className={`relative overflow-hidden border-3 bg-white transition-all duration-150 ${
+                className={`relative overflow-hidden border bg-white transition-all duration-150 ${
                   index === activeIndex
-                    ? "border-navy shadow-brutal-sm -translate-y-1"
-                    : "border-navy/20 opacity-80 hover:border-navy/60 hover:opacity-100"
+                    ? "border-line -translate-y-1"
+                    : "border-line opacity-80 hover:border-line hover:opacity-100"
                 }`}
                 aria-label={ui.gallery.showScreenshot(index + 1, title)}>
                 <div

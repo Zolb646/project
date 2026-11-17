@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
-import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
@@ -14,7 +13,6 @@ import { SECTION_IDS } from "@/lib/constants";
 
 export default function ContactSection() {
   const { personal: PERSONAL, socialLinks: SOCIAL_LINKS, ui } = useContent();
-  const contactFacts = ui.contact.facts;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -63,8 +61,8 @@ export default function ContactSection() {
   };
 
   return (
-    <section id={SECTION_IDS.contact} className="bg-accent-orange/25 py-16 sm:py-24">
-      <Container>
+    <section id={SECTION_IDS.contact} className="portfolio-section contact-section">
+      <Container wide>
         <AnimateOnScroll>
           <SectionHeading
             color="teal"
@@ -77,20 +75,17 @@ export default function ContactSection() {
         <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14">
           <AnimateOnScroll>
             <div className="h-full">
-              <span className="inline-flex border-3 border-navy bg-accent-yellow px-3 py-1 text-xs font-bold text-navy shadow-brutal-sm">
-                {PERSONAL.employmentStatus}
-              </span>
-              <h3 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-navy">
+              <h3 className="font-display text-2xl font-semibold tracking-tight text-navy">
                 {ui.contact.readyHeading}
               </h3>
-              <p className="mt-4 text-lg leading-relaxed text-muted">
+              <p className="mt-4 text-sm leading-7 text-muted">
                 {ui.contact.intro}
               </p>
 
               <div className="mt-6 space-y-4">
                 <a
                   href={`mailto:${PERSONAL.email}`}
-                  className="inline-flex max-w-full flex-wrap items-center gap-2 break-all text-base font-semibold text-accent-orange-ink transition-colors hover:text-accent-violet-ink">
+                  className="inline-flex max-w-full flex-wrap items-center gap-2 break-all text-base font-semibold text-navy transition-colors hover:text-accent-orange-ink">
                   <svg
                     className="h-5 w-5"
                     fill="none"
@@ -117,21 +112,11 @@ export default function ContactSection() {
                   ))}
                 </div>
               </div>
-
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                {contactFacts.map((fact) => (
-                  <div
-                    key={fact}
-                    className="border-3 border-navy bg-cream px-4 py-3 text-xs font-bold text-navy shadow-brutal-sm">
-                    {fact}
-                  </div>
-                ))}
-              </div>
             </div>
           </AnimateOnScroll>
 
           <AnimateOnScroll>
-            <Card hover={false} className="h-full">
+            <div className="h-full">
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="hidden" aria-hidden="true">
                   <label htmlFor="website">Website</label>
@@ -184,7 +169,7 @@ export default function ContactSection() {
                   </p>
                 ) : null}
               </form>
-            </Card>
+            </div>
           </AnimateOnScroll>
         </div>
       </Container>

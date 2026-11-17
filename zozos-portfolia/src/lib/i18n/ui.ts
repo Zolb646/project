@@ -1,5 +1,4 @@
 import { Locale } from "./types";
-import { PERSON_NAME } from "@/lib/site";
 
 export interface UIDictionary {
   nav: {
@@ -17,20 +16,12 @@ export interface UIDictionary {
   };
   hero: {
     greeting: string;
-    headlineLines: string[];
     projectAvailability: string;
     intro: (role: string) => string;
     viewProjects: string;
     downloadResume: string;
     viewGithub: string;
     currentFocus: string;
-  };
-  playground: {
-    invitation: string;
-    chooseProject: string;
-    previewProject: (title: string) => string;
-    hint: string;
-    builtWith: string;
   };
   about: {
     eyebrow: string;
@@ -145,26 +136,18 @@ const en: UIDictionary = {
     viewCaseStudyFor: (title) => `View case study for ${title}`,
   },
   hero: {
-    greeting: "Hey, I’m Zozo.",
-    headlineLines: ["Built to work.", "Made to feel."],
+    greeting: "Frontend engineer, based in Mongolia.",
     projectAvailability: "Open for freelance projects",
     intro: (role) =>
-      `I’m ${PERSON_NAME}, a ${role.toLowerCase()} at erxes Inc. I turn ideas into web and mobile experiences with care for the little details.`,
+      `A ${role.toLowerCase()} at erxes Inc. I build thoughtful web and mobile experiences with React and TypeScript.`,
     viewProjects: "View Projects",
     downloadResume: "Download Resume",
     viewGithub: "View GitHub",
     currentFocus: "Current focus",
   },
-  playground: {
-    invitation: "A small window into my work",
-    chooseProject: "Choose a project to preview",
-    previewProject: (title) => `Preview ${title}`,
-    hint: "Pick a project. Explore what’s behind it.",
-    builtWith: "React, TypeScript, and a little curiosity.",
-  },
   about: {
     eyebrow: "Profile",
-    heading: "The person behind the pixels.",
+    heading: "A little about me",
     description:
       "Junior Frontend Engineer at erxes Inc., with experience across production interfaces, full-stack development, and mobile projects.",
     whatIBring: "What I bring",
@@ -174,16 +157,16 @@ const en: UIDictionary = {
   },
   skills: {
     eyebrow: "Core stack",
-    heading: "Tools I build with.",
+    heading: "Tools & technologies",
     description:
       "The stack behind the projects on this site, from polished interfaces and mobile flows to backend logic, data, and detection work.",
     skillsCount: (count) => `${count} skills`,
   },
   projects: {
     eyebrow: "Selected work",
-    heading: "A few things I've built.",
+    heading: "Selected work",
     description:
-      "Selected work across interactive web experiences, collaborative full-stack development, and mobile learning.",
+      "Web and mobile projects, from the first idea to the details that make them work.",
     featured: "Featured",
     viewCaseStudy: "View case study",
     moreProjects: "More Projects",
@@ -193,11 +176,10 @@ const en: UIDictionary = {
     filterLabel: "Filter projects",
     filters: { all: "All work", web: "Web", mobile: "Mobile" },
     resultCount: (count) => `${count} ${count === 1 ? "project" : "projects"}`,
-
   },
   experience: {
     eyebrow: "Recent path",
-    heading: "Learning. Building. Shipping.",
+    heading: "Experience",
     description:
       "Currently a Junior Frontend Engineer at erxes Inc., following software engineering training and a full-stack internship at Pinecone Academy.",
     current: "Current",
@@ -294,26 +276,18 @@ const mn: UIDictionary = {
     viewCaseStudyFor: (title) => `${title} төслийн дэлгэрэнгүйг үзэх`,
   },
   hero: {
-    greeting: "Сайн уу, би Zozo.",
-    headlineLines: ["Ажиллахад эвтэй.", "Хэрэглэхэд таатай."],
+    greeting: "Монголд ажиллаж буй Frontend инженер.",
     projectAvailability: "Захиалгат төсөлд нээлттэй",
     intro: () =>
-      `Намайг ${PERSON_NAME} гэдэг. erxes Inc.-д Junior Frontend инженерээр ажилладаг. Веб, мобайл бүтээгдэхүүнийг жижиг зүйл бүрд нь анхаарч бүтээдэг.`,
+      `erxes Inc.-д Junior Frontend инженерээр ажилладаг. React, TypeScript ашиглан веб, мобайл бүтээгдэхүүн хөгжүүлдэг.`,
     viewProjects: "Төслүүд үзэх",
     downloadResume: "Резюме татах",
     viewGithub: "GitHub үзэх",
     currentFocus: "Одоогийн чиглэл",
   },
-  playground: {
-    invitation: "Миний ажлыг харах жижиг цонх",
-    chooseProject: "Үзэх төслөө сонгох",
-    previewProject: (title) => `${title} төслийг харах`,
-    hint: "Төслөө сонгоод, хэрхэн бүтээснийг нь үзээрэй.",
-    builtWith: "React, TypeScript, бас багахан сониуч зан.",
-  },
   about: {
     eyebrow: "Профайл",
-    heading: "Кодын ард байгаа хүн.",
+    heading: "Миний тухай",
     description:
       "erxes Inc.-д Junior Frontend инженерээр ажилладаг. Бүтээгдэхүүний интерфэйс, full-stack хөгжүүлэлт, мобайл төслүүд дээр ажилласан туршлагатай.",
     whatIBring: "Юугаар хувь нэмэр оруулах вэ",
@@ -323,16 +297,16 @@ const mn: UIDictionary = {
   },
   skills: {
     eyebrow: "Үндсэн стек",
-    heading: "Бүтээхэд ашигладаг хэрэгслүүд.",
+    heading: "Ашигладаг технологи",
     description:
       "Энэ сайт дээрх төслүүдийн ард байгаа технологийн стек — өнгөлөг интерфэйс, mobile урсгалаас эхлээд backend логик, дата, detection ажил хүртэл.",
     skillsCount: (count) => `${count} ур чадвар`,
   },
   projects: {
     eyebrow: "Сонгосон ажлууд",
-    heading: "Миний бүтээсэн ажлууд.",
+    heading: "Сонгосон ажлууд",
     description:
-      "Интерактив веб, багийн full-stack хөгжүүлэлт, mobile сургалтын чиглэлийн сонгосон ажлууд.",
+      "Санаанаас хэрэгжилт хүртэл ажилласан веб, мобайл төслүүд.",
     featured: "Онцлох",
     viewCaseStudy: "Дэлгэрэнгүй үзэх",
     moreProjects: "Бусад төслүүд",
@@ -342,11 +316,10 @@ const mn: UIDictionary = {
     filterLabel: "Төслүүдийг шүүх",
     filters: { all: "Бүх ажил", web: "Веб", mobile: "Мобайл" },
     resultCount: (count) => `${count} төсөл`,
-
   },
   experience: {
     eyebrow: "Сүүлийн зам",
-    heading: "Сурч, бүтээж, хэрэгжүүлж байна.",
+    heading: "Ажлын туршлага",
     description:
       "Pinecone Academy-ийн программ хангамжийн сургалт, full-stack дадлагыг дүүргээд одоо erxes Inc.-д Junior Frontend инженерээр ажиллаж байна.",
     current: "Одоогийн",

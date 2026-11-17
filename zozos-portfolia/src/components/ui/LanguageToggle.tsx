@@ -19,7 +19,7 @@ export default function LanguageToggle({ className = "" }: LanguageToggleProps) 
       href={localizedPath(nextLocale, pathname)}
       hrefLang={nextLocale}
       aria-label={`${ui.common.languageToggleLabel}: ${nextLanguage}`}
-      className={`inline-flex min-h-10 items-center gap-2 border-b-2 border-navy px-1 text-sm font-semibold text-navy transition-colors hover:border-accent-orange-ink hover:text-accent-orange-ink ${className}`}>
+      className={`inline-flex min-h-10 items-center gap-2 rounded-full px-2 text-xs font-medium text-navy transition-colors hover:text-accent-orange-ink ${className}`}>
       <svg
         aria-hidden="true"
         viewBox="0 0 24 24"

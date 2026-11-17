@@ -50,7 +50,7 @@ export default function MobileMenu({
       className="fixed inset-0 m-0 h-dvh max-h-none w-screen max-w-none bg-transparent p-0 text-navy backdrop:bg-navy/50"
       onCancel={(event) => { event.preventDefault(); onClose(); }}
       onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}>
-      <div className="fixed right-0 top-0 bottom-0 w-72 bg-cream border-l-3 border-navy animate-slide-in">
+      <div className="fixed right-0 top-0 bottom-0 w-72 bg-cream border-l border-line animate-slide-in">
         <div className="flex items-center justify-end p-4">
           <button
             onClick={onClose}
@@ -68,7 +68,7 @@ export default function MobileMenu({
               key={link.href}
               href={isHomePage ? link.href : localizePath(`/${link.href}`)}
               onClick={onClose}
-              className={`py-3 text-lg font-semibold border-b-2 border-navy/10 transition-colors duration-200 ${
+              className={`py-3 text-lg font-semibold border-b-2 border-line transition-colors duration-200 ${
                 activeSection === link.href
                   ? "text-accent-orange-ink"
                   : "text-navy hover:text-accent-orange-ink"

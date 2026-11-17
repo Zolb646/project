@@ -6,17 +6,17 @@ export const dynamic = "force-static";
 
 export function GET() {
   return new ImageResponse(
-    <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "100%", height: "100%", padding: 70, background: "#f6f2e8", color: "#162234", border: "12px solid #162234" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 28 }}>
+    <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "100%", height: "100%", padding: 80, background: "#ffffff", color: "#20252b" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, color: "#626c78" }}>
         <span>{new URL(SITE_URL).hostname}</span>
         <span>Ulaanbaatar, Mongolia</span>
       </div>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <span style={{ fontSize: 68, fontWeight: 700 }}>{PERSON_NAME}</span>
-        <span style={{ fontSize: 48 }}>{CONTENT.en.personal.role}</span>
+        <span style={{ fontSize: 76, fontWeight: 500, letterSpacing: -4 }}>{PERSON_NAME}</span>
+        <span style={{ fontSize: 36, marginTop: 20, color: "#626c78" }}>{CONTENT.en.personal.role}</span>
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: 24, fontSize: 28 }}>
-        <span style={{ display: "flex", background: "#f4a261", padding: "14px 24px", border: "3px solid #162234" }}>React · Next.js · TypeScript</span>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: 22, paddingTop: 28, borderTop: "1px solid #e4e7ec", color: "#626c78" }}>
+        <span style={{ display: "flex" }}>React · Next.js · TypeScript</span>
         <span>Selected projects & portfolio</span>
       </div>
     </div>,
