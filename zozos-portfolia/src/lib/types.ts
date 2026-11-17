@@ -14,6 +14,7 @@ export interface Project {
   image?: string;
   images?: string[];
   imageTitles?: string[];
+  imageGroupTitles?: string[];
   imageLayout?: "desktop" | "mobile";
   featured?: boolean;
   process?: string[];

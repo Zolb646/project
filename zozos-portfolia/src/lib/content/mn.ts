@@ -195,6 +195,7 @@ export const mn: SiteContent = {
       image: "/projects/wordgym-mobile.jpg",
       images: wordGymScreens.map((screen) => screen.src),
       imageTitles: wordGymScreens.map((screen) => screen.mn),
+      imageGroupTitles: wordGymScreens.map((screen) => screen.group.mn),
       imageLayout: "mobile",
     },
     {

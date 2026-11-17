@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useId, useState } from "react";
+import { Fragment, useId, useState } from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import ScreenshotZoom from "@/components/projects/ScreenshotZoom";
 import { useContent } from "@/lib/i18n/useContent";
@@ -11,10 +11,12 @@ const arrowClass = "grid size-11 shrink-0 cursor-pointer place-items-center bord
 export default function MobileScreenGallery({
   images,
   imageTitles,
+  imageGroupTitles,
   title,
 }: {
   images: string[];
   imageTitles?: string[];
+  imageGroupTitles?: string[];
   title: string;
 }) {
   const { ui } = useContent();
@@ -87,19 +89,28 @@ export default function MobileScreenGallery({
           </div>
 
           <div role="group" aria-label={ui.projectDetail.chooseScreen} className="mt-3 grid grid-cols-2 gap-2">
-            {images.map((src, index) => (
-              <button
-                key={src}
-                type="button"
-                aria-pressed={activeIndex === index}
-                onClick={() => setActiveIndex(index)}
-                className="flex min-w-0 cursor-pointer items-center gap-2 border-2 border-navy/20 bg-cream p-1.5 text-left text-xs font-semibold hover:border-navy aria-pressed:border-navy aria-pressed:bg-accent-yellow sm:text-sm">
-                <span className="relative h-8 w-4 shrink-0 overflow-hidden rounded-sm bg-navy sm:h-9 sm:w-[18px]">
-                  <Image src={src} alt="" fill sizes="18px" className="object-cover object-top" />
-                </span>
-                <span>{screenTitle(index)}</span>
-              </button>
-            ))}
+            {images.map((src, index) => {
+              const group = imageGroupTitles?.[index];
+              return (
+                <Fragment key={src}>
+                  {group && group !== imageGroupTitles?.[index - 1] ? (
+                    <h3 className="col-span-2 pt-2 font-mono text-xs font-semibold text-muted">
+                      {group}
+                    </h3>
+                  ) : null}
+                  <button
+                    type="button"
+                    aria-pressed={activeIndex === index}
+                    onClick={() => setActiveIndex(index)}
+                    className="flex min-h-11 min-w-0 cursor-pointer items-center gap-2 border-2 border-navy/20 bg-cream px-2 py-1 text-left text-xs font-semibold hover:border-navy aria-pressed:border-navy aria-pressed:bg-accent-yellow sm:text-sm">
+                    <span className="relative h-8 w-4 shrink-0 overflow-hidden rounded-sm bg-navy">
+                      <Image src={src} alt="" fill sizes="16px" className="object-cover object-top" />
+                    </span>
+                    <span>{screenTitle(index)}</span>
+                  </button>
+                </Fragment>
+              );
+            })}
           </div>
         </div>
       </div>

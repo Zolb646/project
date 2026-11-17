@@ -172,7 +172,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
 
               {heroImage ? (
                 <div className="relative z-10 mx-auto aspect-[9/19.5] max-w-[18rem] overflow-hidden border-3 border-navy bg-cream shadow-brutal-lg sm:max-w-[20rem]">
-                  <ScreenshotZoom src={heroImage} alt={ui.projectDetail.heroScreenshotAlt(project.title)}>
+                  <ScreenshotZoom src={heroImage} alt={project.imageTitles?.[0] ?? ui.projectDetail.heroScreenshotAlt(project.title)} portrait>
                     <Image src={heroImage} alt="" fill priority sizes="(min-width: 1024px) 320px, 76vw" className="object-cover object-top" />
                   </ScreenshotZoom>
                 </div>
@@ -241,7 +241,13 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
         ) : null}
 
         {project.imageLayout === "mobile" && images.length > 1 ? (
-          <MobileScreenGallery key={project.slug} images={images} imageTitles={project.imageTitles} title={project.title} />
+          <MobileScreenGallery
+            key={project.slug}
+            images={images}
+            imageTitles={project.imageTitles}
+            imageGroupTitles={project.imageGroupTitles}
+            title={project.title}
+          />
         ) : null}
 
         <div className="grid items-start gap-6 lg:grid-cols-2">
