@@ -86,6 +86,37 @@ export const en: SiteContent = {
 
   projects: [
     {
+      slug: "release-desk",
+      title: "Release Desk",
+      role: "Full-stack Developer",
+      period: "2026",
+      description: "A release workspace that brings GitHub pull requests, CI, QA, and sign-offs together. Try a sample release or start a draft with a public repository.",
+      tags: ["Next.js", "TypeScript", "GitHub REST API"],
+      highlights: [
+        "Built a guided demo where visitors rerun a simulated check, complete QA, and approve a release without an account.",
+        "Imported public pull requests, GitHub Checks, and commit statuses with evidence tied to the recorded commit.",
+        "Saved multiple drafts in the browser and exported release notes with the approval history.",
+      ],
+      challenge: "Release evidence can be scattered across pull requests, CI runs, and QA notes. I wanted one place to see what was ready and exactly what was holding a release back.",
+      ownership: "I designed and built the release workflow, GitHub integration, local storage, and responsive interface.",
+      outcome: "The demo takes visitors from a failed CI check to an approved release. A public GitHub import lets them use the same workflow with real pull requests and checks.",
+      process: [
+        "Mapped the release gates and wrote tests for the transitions from blocked to ready to approved.",
+        "Connected the GitHub APIs for pull requests, check runs, and commit statuses. The app records the merge commit for merged changes.",
+        "Built the QA checklist and approval steps around the readiness panel so each blocker has a clear place to resolve it.",
+      ],
+      lessons: [
+        "An approval needs a specific set of evidence. A new commit, changed CI result, or changed QA result requires fresh sign-offs.",
+        "A new refresh time does not change what was approved. Missing or incomplete checks need a visible status of their own.",
+      ],
+      architecture: "A Next.js route handler reads the public GitHub API. The TypeScript release model derives readiness and freezes evidence on approval. Versioned browser storage keeps the demo separate from GitHub drafts.",
+      liveUrl: "/release-desk",
+      image: "/projects/release-desk.webp",
+      images: ["/projects/release-desk.webp", "/projects/release-desk-approved.webp"],
+      imageLayout: "desktop",
+      featured: true,
+    },
+    {
       slug: "galexora",
       title: "Galexora",
       role: "Frontend Developer",
