@@ -8,9 +8,9 @@ interface CardProps {
 export default function Card({ children, hover = true, padded = true, className = "" }: CardProps) {
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl border border-line bg-white ${padded ? "p-6 sm:p-7" : ""} ${
+      className={`relative overflow-hidden border-3 border-navy bg-white shadow-brutal ${padded ? "p-6 sm:p-7" : ""} ${
         hover
-          ? "transition-colors duration-150 hover:border-muted/40"
+          ? "transition-[transform,box-shadow] duration-150 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-brutal-sm"
           : ""
       } ${className}`}
     >

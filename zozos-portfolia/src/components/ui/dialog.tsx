@@ -194,14 +194,14 @@ function DialogContent({
         role="dialog"
         aria-modal="true"
         className={cx(
-          "fixed left-1/2 top-1/2 z-60 max-h-[calc(100vh-1.5rem)] w-[calc(100vw-1.5rem)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto border border-line bg-cream p-5 text-navy sm:max-h-[calc(100vh-3rem)] sm:p-6 scrollbar-hide",
+          "fixed left-1/2 top-1/2 z-60 max-h-[calc(100vh-1.5rem)] w-[calc(100vw-1.5rem)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto border-3 border-navy bg-cream p-5 text-navy shadow-brutal-lg sm:max-h-[calc(100vh-3rem)] sm:p-6 scrollbar-hide",
           className,
         )}
         {...props}>
         {children}
         {showCloseButton ? (
           <DialogClose
-            className="absolute right-7 top-7 flex h-8 w-8 items-center justify-center border-2 border-line bg-accent-yellow text-lg leading-none transition-all duration-150"
+            className="absolute right-7 top-7 shadow-brutal hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] flex h-8 w-8 items-center justify-center border-2 border-navy bg-accent-yellow text-lg leading-none transition-all duration-150"
             aria-label="Close dialog">
             <FiX />
           </DialogClose>
@@ -242,7 +242,7 @@ function DialogFooter({
       {...props}>
       {children}
       {showCloseButton ? (
-        <DialogClose className="inline-flex items-center justify-center border border-line bg-cream px-4 py-2 font-semibold">
+        <DialogClose className="inline-flex items-center justify-center border-3 border-navy bg-cream px-4 py-2 font-semibold shadow-brutal">
           Close
         </DialogClose>
       ) : null}

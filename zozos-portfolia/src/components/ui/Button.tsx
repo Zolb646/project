@@ -12,9 +12,12 @@ interface ButtonProps {
 }
 
 const variants = {
-  primary: "border border-navy bg-navy text-white hover:bg-navy/85",
-  secondary: "border border-line bg-surface text-navy hover:bg-line",
-  outline: "border border-line bg-white text-navy hover:bg-surface",
+  primary:
+    "bg-accent-orange text-navy border-3 border-navy shadow-brutal hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none",
+  secondary:
+    "bg-accent-yellow text-navy border-3 border-navy shadow-brutal hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none",
+  outline:
+    "bg-cream text-navy border-3 border-navy shadow-brutal hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none",
 };
 
 export default function Button({
@@ -29,9 +32,9 @@ export default function Button({
   target,
   rel,
 }: ButtonProps) {
-  const classes = `inline-flex min-h-12 items-center justify-center gap-4 rounded-full px-6 py-3 text-xs font-semibold transition-colors duration-150 sm:text-sm ${variants[variant]} ${
+  const classes = `inline-flex min-h-12 items-center justify-center gap-3 px-5 py-3 text-sm font-extrabold transition-[transform,box-shadow] duration-150 sm:text-base ${variants[variant]} ${
     disabled
-      ? "cursor-not-allowed opacity-60"
+      ? "cursor-not-allowed opacity-60 hover:translate-x-0 hover:translate-y-0 hover:shadow-brutal"
       : ""
   } ${className}`;
 

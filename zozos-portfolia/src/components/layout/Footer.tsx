@@ -8,7 +8,7 @@ export default function Footer() {
   const { socialLinks: SOCIAL_LINKS, ui } = useContent();
 
   return (
-    <footer className="border-t border-line bg-cream py-8">
+    <footer className="border-t-3 border-navy bg-cream py-8">
       <Container>
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted">

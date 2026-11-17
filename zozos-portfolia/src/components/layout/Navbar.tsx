@@ -45,22 +45,25 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="site-nav">
+      <nav className="fixed inset-x-0 top-0 z-50 border-b-3 border-navy bg-cream">
         <Container wide>
-          <div className="nav-inner">
+          <div className="flex h-20 items-center justify-between gap-4">
             <a
               href={isHomePage ? "#hero" : localizePath("/#hero")}
-              className="nav-brand">
-              zolbayar.
+              className="font-display text-3xl font-extrabold tracking-tight text-navy">
+              Zozo<span className="text-accent-orange-ink">.</span>
             </a>
 
-            <div className="nav-links">
+            <div className="hidden items-center gap-6 lg:flex">
               {NAV_SECTIONS.map((link) => (
                 <a
                   key={link.href}
                   href={isHomePage ? link.href : localizePath(`/${link.href}`)}
-                  aria-current={displayedActiveSection === link.href ? "location" : undefined}
-                  className={`nav-link ${link.key === "contact" ? "nav-contact" : ""}`}>
+                  className={`text-sm font-bold transition-colors duration-150 ${link.key === "contact" ? "border-2 border-navy bg-accent-yellow px-4 py-2 shadow-brutal-sm" : ""} ${
+                    displayedActiveSection === link.href
+                      ? "text-navy underline decoration-2 underline-offset-4"
+                      : "text-navy hover:underline hover:decoration-2 hover:underline-offset-4"
+                  }`}>
                   {ui.nav[link.key]}
                 </a>
               ))}
@@ -70,7 +73,7 @@ export default function Navbar() {
             <div className="flex items-center gap-3 lg:hidden">
               <LanguageToggle />
               <button
-                className="mobile-menu-button"
+                className="border-2 border-navy bg-accent-yellow p-2 text-navy shadow-brutal-sm"
                 onClick={() => setIsMenuOpen(true)}
                 aria-haspopup="dialog"
                 aria-controls="mobile-menu"

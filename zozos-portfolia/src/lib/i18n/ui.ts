@@ -1,4 +1,5 @@
 import { Locale } from "./types";
+import { PERSON_NAME } from "@/lib/site";
 
 export interface UIDictionary {
   nav: {
@@ -16,6 +17,7 @@ export interface UIDictionary {
   };
   hero: {
     greeting: string;
+    headlineLines: string[];
     projectAvailability: string;
     intro: (role: string) => string;
     viewProjects: string;
@@ -112,6 +114,8 @@ export interface UIDictionary {
     mobileWalkthrough: string;
     screenOf: (index: number, total: number) => string;
     desktopLayout: string;
+    viewFullSize: (title: string) => string;
+    closeImage: string;
     showPrevious: (title: string) => string;
     showNext: (title: string) => string;
     showScreenshot: (index: number, title: string) => string;
@@ -136,10 +140,11 @@ const en: UIDictionary = {
     viewCaseStudyFor: (title) => `View case study for ${title}`,
   },
   hero: {
-    greeting: "Frontend engineer, based in Mongolia.",
+    greeting: "Zozo / Junior Frontend Engineer",
+    headlineLines: ["Zozo.", "Frontend", "Engineer."],
     projectAvailability: "Open for freelance projects",
     intro: (role) =>
-      `A ${role.toLowerCase()} at erxes Inc. I build thoughtful web and mobile experiences with React and TypeScript.`,
+      `I'm ${PERSON_NAME} (Zozo), a ${role.toLowerCase()} at erxes Inc. in Ulaanbaatar. I build production interfaces with React and TypeScript, with experience across full-stack web and mobile projects.`,
     viewProjects: "View Projects",
     downloadResume: "Download Resume",
     viewGithub: "View GitHub",
@@ -147,7 +152,7 @@ const en: UIDictionary = {
   },
   about: {
     eyebrow: "Profile",
-    heading: "A little about me",
+    heading: "The person behind the pixels.",
     description:
       "Junior Frontend Engineer at erxes Inc., with experience across production interfaces, full-stack development, and mobile projects.",
     whatIBring: "What I bring",
@@ -157,16 +162,16 @@ const en: UIDictionary = {
   },
   skills: {
     eyebrow: "Core stack",
-    heading: "Tools & technologies",
+    heading: "Tools I build with.",
     description:
       "The stack behind the projects on this site, from polished interfaces and mobile flows to backend logic, data, and detection work.",
     skillsCount: (count) => `${count} skills`,
   },
   projects: {
     eyebrow: "Selected work",
-    heading: "Selected work",
+    heading: "A few things I've built.",
     description:
-      "Web and mobile projects, from the first idea to the details that make them work.",
+      "Selected work across interactive web experiences, collaborative full-stack development, and mobile learning.",
     featured: "Featured",
     viewCaseStudy: "View case study",
     moreProjects: "More Projects",
@@ -174,12 +179,12 @@ const en: UIDictionary = {
       "Open a case study to see the decisions, contribution, and result behind each project.",
     talkCta: "Let's talk about building something",
     filterLabel: "Filter projects",
-    filters: { all: "All work", web: "Web", mobile: "Mobile" },
+    filters: { all: "All", web: "Web", mobile: "Mobile" },
     resultCount: (count) => `${count} ${count === 1 ? "project" : "projects"}`,
   },
   experience: {
     eyebrow: "Recent path",
-    heading: "Experience",
+    heading: "Learning. Building. Shipping.",
     description:
       "Currently a Junior Frontend Engineer at erxes Inc., following software engineering training and a full-stack internship at Pinecone Academy.",
     current: "Current",
@@ -251,6 +256,8 @@ const en: UIDictionary = {
     screenOf: (index, total) =>
       `Screen ${String(index).padStart(2, "0")} / ${total}`,
     desktopLayout: "Desktop layout",
+    viewFullSize: (title) => `View full size: ${title}`,
+    closeImage: "Close image",
     showPrevious: (title) => `Show previous ${title} screenshot`,
     showNext: (title) => `Show next ${title} screenshot`,
     showScreenshot: (index, title) =>
@@ -276,10 +283,11 @@ const mn: UIDictionary = {
     viewCaseStudyFor: (title) => `${title} төслийн дэлгэрэнгүйг үзэх`,
   },
   hero: {
-    greeting: "Монголд ажиллаж буй Frontend инженер.",
+    greeting: "Zozo / Junior Frontend инженер",
+    headlineLines: ["Zozo.", "Frontend", "инженер."],
     projectAvailability: "Захиалгат төсөлд нээлттэй",
     intro: () =>
-      `erxes Inc.-д Junior Frontend инженерээр ажилладаг. React, TypeScript ашиглан веб, мобайл бүтээгдэхүүн хөгжүүлдэг.`,
+      `Намайг ${PERSON_NAME} (Zozo) гэдэг. Улаанбаатар хотод erxes Inc.-ийн Junior Frontend инженерээр ажилладаг. React, TypeScript ашиглан бүтээгдэхүүний интерфэйс хөгжүүлдэг бөгөөд full-stack веб, мобайл төслүүд дээр ажилласан туршлагатай.`,
     viewProjects: "Төслүүд үзэх",
     downloadResume: "Резюме татах",
     viewGithub: "GitHub үзэх",
@@ -287,7 +295,7 @@ const mn: UIDictionary = {
   },
   about: {
     eyebrow: "Профайл",
-    heading: "Миний тухай",
+    heading: "Кодын ард байгаа хүн.",
     description:
       "erxes Inc.-д Junior Frontend инженерээр ажилладаг. Бүтээгдэхүүний интерфэйс, full-stack хөгжүүлэлт, мобайл төслүүд дээр ажилласан туршлагатай.",
     whatIBring: "Юугаар хувь нэмэр оруулах вэ",
@@ -297,16 +305,16 @@ const mn: UIDictionary = {
   },
   skills: {
     eyebrow: "Үндсэн стек",
-    heading: "Ашигладаг технологи",
+    heading: "Бүтээхэд ашигладаг хэрэгслүүд.",
     description:
       "Энэ сайт дээрх төслүүдийн ард байгаа технологийн стек — өнгөлөг интерфэйс, mobile урсгалаас эхлээд backend логик, дата, detection ажил хүртэл.",
     skillsCount: (count) => `${count} ур чадвар`,
   },
   projects: {
     eyebrow: "Сонгосон ажлууд",
-    heading: "Сонгосон ажлууд",
+    heading: "Миний бүтээсэн ажлууд.",
     description:
-      "Санаанаас хэрэгжилт хүртэл ажилласан веб, мобайл төслүүд.",
+      "Интерактив веб, багийн full-stack хөгжүүлэлт, mobile сургалтын чиглэлийн сонгосон ажлууд.",
     featured: "Онцлох",
     viewCaseStudy: "Дэлгэрэнгүй үзэх",
     moreProjects: "Бусад төслүүд",
@@ -314,12 +322,12 @@ const mn: UIDictionary = {
       "Төсөл бүрийн шийдвэр, миний оролцоо, үр дүнг дэлгэрэнгүй хуудаснаас үзээрэй.",
     talkCta: "Ямар нэгэн зүйл хамтдаа бүтээхээр ярилцъя",
     filterLabel: "Төслүүдийг шүүх",
-    filters: { all: "Бүх ажил", web: "Веб", mobile: "Мобайл" },
+    filters: { all: "Бүгд", web: "Веб", mobile: "Мобайл" },
     resultCount: (count) => `${count} төсөл`,
   },
   experience: {
     eyebrow: "Сүүлийн зам",
-    heading: "Ажлын туршлага",
+    heading: "Сурч, бүтээж, хэрэгжүүлж байна.",
     description:
       "Pinecone Academy-ийн программ хангамжийн сургалт, full-stack дадлагыг дүүргээд одоо erxes Inc.-д Junior Frontend инженерээр ажиллаж байна.",
     current: "Одоогийн",
@@ -392,6 +400,8 @@ const mn: UIDictionary = {
     screenOf: (index, total) =>
       `Дэлгэц ${String(index).padStart(2, "0")} / ${total}`,
     desktopLayout: "Desktop зохион байгуулалт",
+    viewFullSize: (title) => `Томруулж үзэх: ${title}`,
+    closeImage: "Зураг хаах",
     showPrevious: (title) => `${title}-ийн өмнөх зургийг харуулах`,
     showNext: (title) => `${title}-ийн дараагийн зургийг харуулах`,
     showScreenshot: (index, title) =>

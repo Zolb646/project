@@ -2,23 +2,129 @@
 
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
+import Card from "@/components/ui/Card";
+import Badge from "@/components/ui/Badge";
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { useContent } from "@/lib/i18n/useContent";
 import { SECTION_IDS } from "@/lib/constants";
 
+const iconMap: Record<string, React.ReactNode> = {
+  frontend: (
+    <svg
+      className="h-8 w-8 text-accent-orange-ink"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+      />
+    </svg>
+  ),
+  backend: (
+    <svg
+      className="h-8 w-8 text-accent-teal-ink"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
+      />
+    </svg>
+  ),
+  cloud: (
+    <svg
+      className="h-8 w-8 text-accent-violet"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+      />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+      />
+    </svg>
+  ),
+  testing: (
+    <svg
+      className="h-8 w-8 text-accent-yellow-ink"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M9 12l2 2 4-4m5 2a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </svg>
+  ),
+};
+
+const badgeColors: Record<string, "yellow" | "teal" | "orange" | "violet"> = {
+  frontend: "orange",
+  backend: "teal",
+  cloud: "violet",
+  testing: "yellow",
+};
+
 export default function SkillsSection() {
-  const { skills, ui } = useContent();
+  const { skills: SKILLS, ui } = useContent();
 
   return (
-    <section id={SECTION_IDS.skills} className="portfolio-section skills-section">
-      <Container wide>
-        <SectionHeading>{ui.skills.heading}</SectionHeading>
-        <div className="skill-list">{skills.map((category) => (
-          <div key={category.title} className="skill-item">
-            <h3>{category.title}</h3>
-            <p>{category.description}</p>
-            <ul className="skill-tools">{category.skills.map((skill) => <li key={skill}>{skill}</li>)}</ul>
-          </div>
-        ))}</div>
+    <section id={SECTION_IDS.skills} className="border-y-3 border-navy bg-accent-yellow/20 py-16 sm:py-24">
+      <Container>
+        <AnimateOnScroll>
+          <SectionHeading
+            color="yellow"
+            eyebrow={ui.skills.eyebrow}
+            description={ui.skills.description}
+          >
+            {ui.skills.heading}
+          </SectionHeading>
+        </AnimateOnScroll>
+
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {SKILLS.map((category) => (
+            <AnimateOnScroll key={category.title}>
+              <Card hover={false} className="h-full">
+                <div className="mb-5 flex items-center justify-between gap-4">
+                  <div>{iconMap[category.icon]}</div>
+                  <span className="text-xs font-bold text-muted">
+                    {ui.skills.skillsCount(category.skills.length)}
+                  </span>
+                </div>
+                <h3 className="font-display text-xl font-extrabold leading-tight text-navy">{category.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  {category.description}
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {category.skills.map((skill) => (
+                    <Badge key={skill} color={badgeColors[category.icon]}>
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </Card>
+            </AnimateOnScroll>
+          ))}
+        </div>
       </Container>
     </section>
   );

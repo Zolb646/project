@@ -29,15 +29,11 @@ Zozo already works like a team engineer, not a solo bootcamp grad performing ski
 
 ## Brand Personality
 
-Clear, personal, and considered. The user explicitly selected a clean, minimal,
-light visual direction. White space, restrained typography, a real portrait,
-and large project images should make the work easy to assess.
+Bold, confident, playful. The site already commits to a neo-brutalist identity — cream background, navy ink, hard drop shadows, thick borders, bright accent colors (orange, teal, yellow, violet), mono uppercase labels — and that direction should be trusted and extended rather than softened. No specific reference sites or anti-references were named; continue building on the existing visual system already established in the codebase rather than reaching for outside references.
 
 ## Design Principles
 
-Lead with the person and the actual work. Keep navigation, resume, and contact
-easy to reach. Use project detail and collaborative experience as evidence.
-Limit interface decoration so the project images can carry their own identity.
+Evidence over claims: every section proves the "works like a team engineer" positioning through real project detail, not adjectives or a bare skills list. Scan-then-dive: respect a recruiter's fast first pass while rewarding an engineer's deeper look at individual project pages. Commit to the bold identity: the brutalist system is the differentiator against generic templated portfolios — lean into it rather than reaching for safer, quieter defaults. Frictionless path to contact: projects lead, but email and resume stay reachable everywhere, never gated behind another action.
 
 ## Accessibility & Inclusion
 

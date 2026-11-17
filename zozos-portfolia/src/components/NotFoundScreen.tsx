@@ -39,14 +39,14 @@ export default function NotFoundScreen({ locale }: { locale: Locale }) {
             </div>
           </div>
 
-          <div className="mx-auto w-full max-w-sm rotate-[3deg] border border-line bg-accent-yellow p-7 text-center sm:p-10">
+          <div className="mx-auto w-full max-w-sm rotate-[3deg] border-3 border-navy bg-accent-yellow p-7 text-center shadow-brutal-lg sm:p-10">
             <svg aria-hidden="true" viewBox="0 0 160 120" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" className="mx-auto h-28 w-36 text-navy">
               <path d="M42 43h69v35a25 25 0 0 1-25 25H67a25 25 0 0 1-25-25V43Z" fill="var(--color-cream)" />
               <path d="M111 52h11a15 15 0 0 1 0 30h-12M30 105h94M61 31c-12-13 12-13 0-26M80 31c-12-13 12-13 0-26M99 31c-12-13 12-13 0-26" />
               <path d="m64 68 8 8-8 8m25-16-8 8 8 8" />
             </svg>
             <p aria-hidden="true" className="mt-3 font-display text-[clamp(5rem,20vw,8rem)] font-extrabold leading-none tracking-[-0.07em]">404</p>
-            <p className="mt-5 border-t-2 border-line pt-4 text-sm font-bold">{text.note}</p>
+            <p className="mt-5 border-t-2 border-navy pt-4 text-sm font-bold">{text.note}</p>
           </div>
         </div>
       </Container>
