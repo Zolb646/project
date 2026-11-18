@@ -1,5 +1,5 @@
+import { drawJourney, drawScan } from './journey.js';
 const panels = [...document.querySelectorAll('.panel')];
-const scenes = panels.map(panel => panel.querySelector('.scene'));
 const exhibits = panels.map(panel => panel.querySelector('.exhibit'));
 const nav = document.querySelector('nav');
 const jump = nav.querySelector('select');
@@ -13,6 +13,16 @@ let stride = 0;
 let current = -1;
 let frame = 0;
 
+const journey = document.querySelector('.journey');
+const scan = document.querySelector('.scan');
+const photo = scan.querySelector('img');
+function prepareScan() {
+  drawScan(scan.querySelector('canvas'),photo);
+  scan.classList.add('ready');
+}
+if(photo.complete && photo.naturalWidth) prepareScan();
+else photo.addEventListener('load',prepareScan,{once:true});
+
 function render() {
   frame = 0;
   if (nav.hidden) return;
@@ -23,25 +33,38 @@ function render() {
   const wipe = transition * transition * (3 - 2 * transition);
   const active = Math.round(position);
 
+  const travelling = position > 4.17 && position < 7;
+  journey.hidden = !travelling;
+  if(travelling) drawJourney(journey, Math.min(1,Math.max(0,(position-4.24)/2.7)));
+  document.body.classList.toggle('light-room', active > 0 && active < 5);
   for (const [i, panel] of panels.entries()) {
     const entering = i === outgoing + 1;
     const visible = (i === outgoing && wipe < 1) || (entering && wipe > 0);
     panel.style.visibility = visible ? 'visible' : 'hidden';
     panel.inert = i !== active;
     if (!visible) continue;
+    const travel = entering ? wipe - 1 : wipe;
     panel.style.zIndex = entering ? 2 : 1;
-    const edge = 110 - wipe * 120;
-    panel.style.clipPath = entering && wipe < 1
-      ? `polygon(${edge + 7}% 0,100% 0,100% 100%,${edge - 7}% 100%)`
-      : 'none';
-    const travel = entering ? wipe - 1 : fraction;
-    scenes[i].style.transform = `scale(${1 + Math.abs(travel) * .19}) translateX(${-travel * 2}%)`;
-    exhibits[i].style.transform = `perspective(1600px) translateX(${-travel * 6}%) rotateY(${travel * -3}deg)`;
+    panel.style.opacity = '1';
+    panel.style.transform = 'none';
+    panel.style.clipPath = 'none';
+    exhibits[i].style.transform = 'none';
+    if(outgoing < 4) {
+      panel.style.transform = `translateY(${-travel*100}%)`;
+      exhibits[i].style.transform = `perspective(1300px) rotateX(${travel*16}deg) scale(${1-.06*Math.abs(travel)})`;
+    } else if(outgoing === 4 && !entering) {
+      panel.style.transform = `scale(${1+wipe*.63})`;
+      panel.style.opacity = String(1-wipe);
+    } else if(i === 5 || i === 6) {
+      panel.style.opacity = String(entering ? Math.max(0,2*wipe-1) : Math.max(0,1-2*wipe));
+    } else if(entering && i === 7) {
+      panel.style.clipPath = `inset(${(1-wipe)*47}% ${(1-wipe)*48}%)`;
+    }
   }
   if (current === active) return;
   current = active;
   jump.value = String(active);
-  counter.textContent = active === panels.length - 1 ? 'EXIT' : String(active).padStart(2,'0') + ' / 04';
+  counter.textContent = active > 4 ? ['BUILD','CITY','EXIT'][active-5] : String(active).padStart(2,'0') + ' / 04';
   for (const [i, stop] of stops.entries()) {
     if (i === active) stop.setAttribute('aria-current', 'step');
     else stop.removeAttribute('aria-current');
@@ -64,8 +87,10 @@ function arrange() {
       panel.inert = false;
       panel.removeAttribute('style');
       exhibits[i].removeAttribute('style');
-      scenes[i].removeAttribute('style');
+
     }
+    document.body.classList.remove('light-room');
+    journey.hidden = true;
     if (current >= 0) panels[current].scrollIntoView({behavior:'instant'});
     current = -1;
     return;
@@ -103,7 +128,7 @@ addEventListener('scroll', () => {
 arrange();
 if (!nav.hidden && location.hash) go(panels.findIndex(panel => '#' + panel.id === location.hash), false);
 
-const largeImage = viewer.querySelector('img');
+const largeImage = viewer.querySelector('.featured');
 const switchImage = viewer.querySelector('.switch');
 const description = viewer.querySelector('#viewer-caption');
 let images = [];
@@ -115,17 +140,41 @@ function showImage(index) {
   largeImage.alt = alt;
   description.textContent = alt;
 }
-document.querySelectorAll('[data-preview]').forEach(link => {
-  link.addEventListener('click', event => {
-    if (typeof viewer.showModal !== 'function' || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+const projects = [...document.querySelectorAll('[data-preview]')];
+const flanks = [...viewer.querySelectorAll('.flank')];
+let projectIndex = 0;
+function selectProject(index) {
+  projectIndex = (index + projects.length) % projects.length;
+  const link = projects[projectIndex];
+  images = [{src:link.href,alt:link.dataset.primaryAlt}];
+  if(link.dataset.alternate) images.push({src:link.dataset.alternate,alt:link.dataset.alt});
+  viewer.querySelector('h2').textContent = link.closest('.panel').querySelector('h2').textContent;
+  switchImage.hidden = images.length === 1;
+  showImage(0);
+  for(const [i,button] of flanks.entries()){
+    const other=projects[(projectIndex+(i ? 1 : -1)+projects.length)%projects.length];
+    const name=other.closest('.panel').querySelector('h2').textContent;
+    button.querySelector('img').src=other.href;
+    button.querySelector('span').textContent=name;
+    button.setAttribute('aria-label','View '+name);
+  }
+}
+for(const [i,link] of projects.entries()){
+  link.addEventListener('click',event=>{
+    if(typeof viewer.showModal !== 'function' || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)return;
     event.preventDefault();
-    images = [{ src:link.href, alt:link.dataset.primaryAlt }];
-    if (link.dataset.alternate) images.push({src:link.dataset.alternate, alt:link.dataset.alt});
-    viewer.querySelector('h2').textContent = link.closest('.panel').querySelector('h2').textContent;
-    switchImage.hidden = images.length === 1;
-    showImage(0);
+    selectProject(i);
     viewer.showModal();
   });
+}
+for(const [i,button] of flanks.entries()){
+  button.addEventListener('click',()=>selectProject(projectIndex+(i ? 1 : -1)));
+}
+viewer.addEventListener('keydown',event=>{
+  if(event.key==='ArrowRight'||event.key==='ArrowLeft'){
+    event.preventDefault();
+    selectProject(projectIndex+(event.key==='ArrowRight'?1:-1));
+  }
 });
 switchImage.addEventListener('click', () => showImage((viewIndex + 1) % images.length));
 viewer.querySelector('.close').addEventListener('click', () => viewer.close());

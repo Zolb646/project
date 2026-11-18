@@ -39,17 +39,27 @@ const stops = [
     alternate: 'projects/wordgym-showcase.jpg', alternateAlt: 'WordGym study decks, flashcards and vocabulary games', caption: 'Mobile vocabulary app', color: 'yellow', url: 'https://new.zolbayrr.com/projects/wordgym-mobile-app', action: 'Read the case study',
   },
   {
+    id: 'assembly', label: 'Engineering', title: 'On the production floor.', category: 'Engineering / erxes',
+    text: 'At erxes I build and maintain production interfaces with React, TypeScript and GraphQL.',
+    url: '#passage', action: 'Continue', color: 'teal',
+  },
+  {
+    id: 'passage', label: 'Ulaanbaatar', title: 'Ulaanbaatar.', category: 'Home / Mongolia',
+    text: 'I work from Ulaanbaatar, building for people on the web and on mobile.',
+    url: '#contact', action: 'Get in touch', color: 'teal',
+  },
+  {
     id: 'contact', label: 'Contact', title: 'Get in touch.', category: 'End of the tour',
     text: 'Have a project in mind? I’d love to hear about it.',
-    image: 'portrait.webp', alt: 'Portrait of Zozo', caption: 'Ulaanbaatar, Mongolia', color: 'orange', url: 'mailto:info@zolbayrr.com', action: 'info@zolbayrr.com',
+    color: 'orange', url: 'mailto:info@zolbayrr.com', action: 'info@zolbayrr.com',
   },
 ];
 
 await mkdir(new URL('media/', output), { recursive: true });
-for (const file of ['room.css', 'room.js']) {
+for (const file of ['room.css', 'room.js', 'journey.js']) {
   await copyFile(new URL(file, root), new URL(file, output));
 }
-for (const file of ['atrium.webp', 'gallery.webp', 'mark.svg']) {
+for (const file of ['atrium.webp', 'gallery.webp', 'mark.svg', 'exit-room.webp', 'portrait.webp']) {
   await copyFile(new URL(file, root), new URL('media/' + file, output));
 }
 
@@ -81,8 +91,8 @@ for (const stop of stops) {
       ${contact ? img : `<a class="screen" href="${src}" data-preview data-primary-alt="${stop.alt}" ${alternate} aria-label="Enlarge ${stop.title} preview">${img}<span aria-hidden="true">⤢</span></a>`}
       <figcaption>${stop.caption}</figcaption></figure>`;
   }
-  panels.push(`<section class="panel ${stop.color}" id="${stop.id}" aria-labelledby="${stop.id}-title">
-    <div class="scene" aria-hidden="true"></div>
+  panels.push(`<section class="panel ${stop.color} ${stop.image ? 'catalogue' : ''}" id="${stop.id}" aria-labelledby="${stop.id}-title">
+    <div class="scene" aria-hidden="true">${entrance ? '<div class="scan"><img src="media/portrait.webp" alt=""><canvas></canvas></div>' : ''}</div>
     <div class="exhibit"><div class="copy"><p class="stamp">${stop.category}</p>
     <${heading} id="${stop.id}-title">${entrance ? 'The<br>Workroom<span>.</span>' : stop.title}</${heading}>
     <p class="intro">${stop.text}</p>
