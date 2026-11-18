@@ -118,35 +118,29 @@ export const en: SiteContent = {
       role: "Frontend Developer",
       period: "2026",
       description:
-        "A cinematic space exploration site designed to prove strong frontend storytelling, section architecture, and polished interaction work.",
-      tags: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
+        "An interactive guide to the eight planets, space exploration milestones, and NASA’s Astronomy Picture of the Day.",
+      tags: ["Next.js", "TypeScript", "CSS Modules", "NASA APOD"],
       challenge:
-        "Build a portfolio-style product experience that felt branded and immersive instead of reading like another generic landing page.",
+        "Make planetary measurements and mission history easy to explore while keeping each photograph and date traceable to its source.",
       ownership:
-        "Owned the frontend build, section system, visual pacing, and motion choices that made the site feel intentional from top to bottom.",
+        "Built the planet explorer, animated orbit diagram, illustrated timeline, and integration with NASA’s daily image feed.",
       outcome:
-        "Shipped a more memorable, presentation-first web experience that demonstrates how I handle hierarchy, reusable sections, and visual polish.",
+        "Visitors can select any planet to see its photograph and measurements, pause the animated orbits, and open the original NASA or JPL sources.",
       highlights: [
-        "Built the experience as reusable sections instead of one monolithic page so the site stayed scalable and easier to refine.",
-        "Used motion, layered imagery, and tighter pacing to create a stronger branded feel without overwhelming the content.",
-        "Added dedicated discoveries, technology, and NASA APOD-inspired sections to make the narrative feel like a real product journey.",
+        "Interactive orbit diagram for all eight planets, with playback controls and support for reduced motion.",
+        "Six dated milestones, from Apollo 8’s Earthrise photograph to Webb’s first image release.",
+        "The daily image feed fetches directly from NASA Science and links to the official archive if the feed is unavailable.",
       ],
       process: [
-        "Started by treating the site like a product story instead of a generic personal landing page, outlining the emotional arc of the page before building the sections.",
-        "Built each section as a reusable content block so layout, spacing, and motion could be tuned without rewriting the whole page every time the story changed.",
-        "Used image layering, motion timing, and tighter transitions to make the scroll experience feel cinematic while still keeping the content readable.",
+        "Verified dates and measurements against the original mission records and JPL data.",
+        "Used Hubble’s source image for the Saturn cover and kept its ring detail with a lossless WebP crop.",
       ],
       architecture:
-        "The site is structured as a modular Next.js frontend with reusable section components, shared design tokens, and animation-driven presentation layers that can scale as more content is added.",
-      lessons: [
-        "A strong portfolio project needs a narrative, not just clean code. The structure of the experience matters as much as the implementation.",
-        "Breaking visual sections into reusable pieces made iteration much faster because I could refine pacing and hierarchy without destabilizing the rest of the page.",
-        "Motion feels strongest when it supports attention and rhythm instead of competing with the content.",
-      ],
+        "Next.js renders archive content on the server. The APOD feed refreshes every 30 minutes, and a React component handles planet selection and orbit playback in the browser.",
       liveUrl: "https://galexora.vercel.app",
       githubUrl: "https://github.com/Zolb646/galexora",
-      image: "/projects/galexora.png",
-      images: ["/projects/galexora.png"],
+      image: "/projects/galexora.webp",
+      images: ["/projects/galexora.webp", "/projects/galexora-orbits.webp"],
       imageLayout: "desktop",
       featured: true,
     },

@@ -62,6 +62,6 @@ for (const path of ["/missing-page", "/projects/missing-page", "/mn/missing-page
   console.log(`404 SEO OK: ${path}`);
 }
 
-const optimized = await get("/_next/image?url=%2Fprojects%2Fgalexora.png&w=640&q=75");
+const optimized = await get("/_next/image?url=%2Fprojects%2Fgalexora.webp&w=640&q=75");
 assert.ok(optimized.headers.get("content-type")?.startsWith("image/"), "Project image optimization must remain reachable");
 console.log("Project image optimizer OK");
