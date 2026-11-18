@@ -1,133 +1,87 @@
 const panels = [...document.querySelectorAll('.panel')];
-const canvas = document.querySelector('canvas');
-const pen = canvas.getContext('2d');
+const scenes = panels.map(panel => panel.querySelector('.scene'));
+const exhibits = panels.map(panel => panel.querySelector('.exhibit'));
 const nav = document.querySelector('nav');
 const jump = nav.querySelector('select');
+const stops = [...nav.querySelectorAll('.track a')];
 const prev = document.querySelector('#prev');
 const next = document.querySelector('#next');
 const counter = document.querySelector('#counter');
-const flatLayout = matchMedia('(prefers-reduced-motion: reduce), (max-height: 455px), (max-width: 680px) and (max-height: 620px)');
-
-let width, height, stride, current = -1, frame = 0;
-
-// Project a repeating set of beams and floor tiles toward a single vanishing point.
-function drawRoom(position) {
-  const horizon = height * .47;
-  const center = width * .56;
-  const project = (x, y, z) => [center + x * width / z, horizon + y * height / z];
-  function polygon(color, points) {
-    pen.fillStyle = color;
-    pen.beginPath();
-    for (const [i, [x, y]] of points.entries()) {
-      if (i === 0) pen.moveTo(x, y);
-      else pen.lineTo(x, y);
-    }
-    pen.closePath();
-    pen.fill();
-  }
-  function line(color, a, b, weight = 1) {
-    pen.strokeStyle = color;
-    pen.lineWidth = weight;
-    pen.beginPath();
-    pen.moveTo(...a);
-    pen.lineTo(...b);
-    pen.stroke();
-  }
-  const near = .35, far = 18;
-  const face = (color, a, b) => polygon(color, [project(...a, near), project(...a, far), project(...b, far), project(...b, near)]);
-  pen.fillStyle = '#a3aaa0';
-  pen.fillRect(0, 0, width, height);
-  face('#d3d4c5', [-1,-.72], [1,-.72]);
-  face('#c2bdb0', [-1,-.72], [-1,.68]);
-  face('#d6caba', [1,-.72], [1,.68]);
-  face('#202332', [-1,.68], [1,.68]);
-  face('#ff7848', [-1,.27], [-1,.30]);
-  face('#f78857', [1,.27], [1,.30]);
-  for (let i = -4; i <= 4; i++) {
-    line('#838582', project(i/4,.68,near), project(i/4,.68,far));
-    line('#919386', project(i/4,-.72,near), project(i/4,-.72,far));
-  }
-  const offset = (position * 2.4) % 1;
-  for (let i = 18; i >= 1; i--) {
-    const z = i - offset;
-    if (z < near) continue;
-    const p = (x,y) => project(x,y,z);
-    line('#747879',p(-1,.68),p(1,.68));
-    polygon('#94958c',[p(-1,-.72),p(1,-.72),p(1,-.665),p(-1,-.665)]);
-    for (const dir of [-1,1]) {
-      polygon(dir < 0 ? '#96988e' : '#a79d91',[p(dir,-.72),p(dir*.957,-.665),p(dir*.957,.68),p(dir,.68)]);
-      polygon('#fef9ef',[p(dir*.48,-.665),p(dir*.33,-.665),project(dir*.33,-.665,z+.5),project(dir*.48,-.665,z+.5)]);
-      line('#ff8456', p(dir*.70,.68),project(dir*.70,.68,z+.55),Math.max(1,4/z));
-    }
-  }
-}
+const viewer = document.querySelector('dialog');
+const flatLayout = matchMedia('(prefers-reduced-motion: reduce), (max-height: 455px), (max-width: 760px) and (max-height: 650px)');
+let stride = 0;
+let current = -1;
+let frame = 0;
 
 function render() {
   frame = 0;
-  if (!document.body.classList.contains('tour')) return;
+  if (nav.hidden) return;
   const position = Math.max(0, Math.min(panels.length - 1, scrollY / stride));
-  drawRoom(position);
+  const outgoing = Math.floor(position);
+  const fraction = position - outgoing;
+  const transition = Math.max(0, Math.min(1, (fraction - .24) / .52));
+  const wipe = transition * transition * (3 - 2 * transition);
   const active = Math.round(position);
-  for (const [i, panel] of panels.entries()) {
-    const distance = i - position;
-    const visible = distance > -.87 && distance < 1.68;
-    panel.style.visibility = visible ? 'visible' : 'hidden';
-    if (visible) {
-      const scale = 1 / (1 + (distance >= 0 ? 1.95 : .78) * distance);
-      const opacity = Math.max(0, 1 - Math.abs(distance) * (distance >= 0 ? .76 : 1.9));
-      panel.style.transform = `translateX(${distance * 14}%) scale(${scale})`;
-      panel.style.opacity = opacity;
-      panel.style.zIndex = panels.length - i;
-    }
-    panel.inert = i !== active;
-  }
-  if (current !== active) {
-    current = active;
-    jump.value = String(active);
-    counter.textContent = active === panels.length-1 ? 'EXIT' : String(active).padStart(2,'0') + ' / 04';
-    prev.disabled = active === 0;
-    next.disabled = active === panels.length-1;
-  }
-}
 
-function scheduleRender() {
-  if (!frame) frame = requestAnimationFrame(render);
+  for (const [i, panel] of panels.entries()) {
+    const entering = i === outgoing + 1;
+    const visible = (i === outgoing && wipe < 1) || (entering && wipe > 0);
+    panel.style.visibility = visible ? 'visible' : 'hidden';
+    panel.inert = i !== active;
+    if (!visible) continue;
+    panel.style.zIndex = entering ? 2 : 1;
+    const edge = 110 - wipe * 120;
+    panel.style.clipPath = entering && wipe < 1
+      ? `polygon(${edge + 7}% 0,100% 0,100% 100%,${edge - 7}% 100%)`
+      : 'none';
+    const travel = entering ? wipe - 1 : fraction;
+    scenes[i].style.transform = `scale(${1 + Math.abs(travel) * .19}) translateX(${-travel * 2}%)`;
+    exhibits[i].style.transform = `perspective(1600px) translateX(${-travel * 6}%) rotateY(${travel * -3}deg)`;
+  }
+  if (current === active) return;
+  current = active;
+  jump.value = String(active);
+  counter.textContent = active === panels.length - 1 ? 'EXIT' : String(active).padStart(2,'0') + ' / 04';
+  for (const [i, stop] of stops.entries()) {
+    if (i === active) stop.setAttribute('aria-current', 'step');
+    else stop.removeAttribute('aria-current');
+  }
+  prev.disabled = active === 0;
+  next.disabled = active === panels.length - 1;
 }
 
 function go(index, smooth = true) {
-  if (!panels[index]) return;
-  scrollTo({top:index * stride, behavior:smooth ? 'smooth' : 'instant'});
+  if (panels[index]) scrollTo({top:index * stride, behavior:smooth ? 'smooth' : 'instant'});
 }
 
 function arrange() {
-  const tour = Boolean(pen) && !flatLayout.matches;
+  const previousPosition = stride && !nav.hidden ? scrollY / stride : null;
+  const tour = !flatLayout.matches;
   document.body.classList.toggle('tour', tour);
   nav.hidden = !tour;
   if (!tour) {
-    for (const panel of panels) {
+    for (const [i, panel] of panels.entries()) {
       panel.inert = false;
       panel.removeAttribute('style');
+      exhibits[i].removeAttribute('style');
+      scenes[i].removeAttribute('style');
     }
+    if (current >= 0) panels[current].scrollIntoView({behavior:'instant'});
     current = -1;
     return;
   }
-  width = canvas.clientWidth;
-  height = canvas.clientHeight;
-  const density = Math.min(devicePixelRatio || 1, 1.75);
-  canvas.width = Math.round(width * density);
-  canvas.height = Math.round(height * density);
-  pen.setTransform(density, 0, 0, density, 0, 0);
-  stride = Math.max(460, height * .95);
-  document.body.style.setProperty('--tour-height', (innerHeight + (panels.length-1) * stride) + 'px');
+  stride = Math.max(460, document.querySelector('.viewport').clientHeight * .95);
+  document.body.style.setProperty('--tour-height', (innerHeight + (panels.length - 1) * stride) + 'px');
+  if (previousPosition !== null) scrollTo({top:previousPosition * stride, behavior:'instant'});
   render();
 }
 
-prev.addEventListener('click', () => go(current-1));
-next.addEventListener('click', () => go(current+1));
+prev.addEventListener('click', () => go(current - 1));
+next.addEventListener('click', () => go(current + 1));
 jump.addEventListener('change', () => go(Number(jump.value)));
 document.addEventListener('click', event => {
   const anchor = event.target.closest('a[href^="#"]');
-  if (!anchor || nav.hidden) return;
+  if (!anchor || nav.hidden || event.metaKey || event.ctrlKey) return;
   const index = panels.findIndex(panel => '#' + panel.id === anchor.hash);
   if (index !== -1) {
     event.preventDefault();
@@ -135,7 +89,7 @@ document.addEventListener('click', event => {
   }
 });
 addEventListener('keydown', event => {
-  if (nav.hidden || event.altKey || event.ctrlKey || event.metaKey || event.target.closest('select,input,textarea')) return;
+  if (viewer.open || nav.hidden || event.altKey || event.ctrlKey || event.metaKey || event.target.closest('select,input,textarea')) return;
   if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
     event.preventDefault();
     go(current + (event.key === 'ArrowRight' ? 1 : -1));
@@ -143,6 +97,40 @@ addEventListener('keydown', event => {
 });
 addEventListener('resize', arrange);
 flatLayout.addEventListener('change', arrange);
-addEventListener('scroll', scheduleRender, {passive:true});
+addEventListener('scroll', () => {
+  if (!frame && !nav.hidden) frame = requestAnimationFrame(render);
+}, {passive:true});
 arrange();
 if (!nav.hidden && location.hash) go(panels.findIndex(panel => '#' + panel.id === location.hash), false);
+
+const largeImage = viewer.querySelector('img');
+const switchImage = viewer.querySelector('.switch');
+const description = viewer.querySelector('#viewer-caption');
+let images = [];
+let viewIndex = 0;
+function showImage(index) {
+  viewIndex = index;
+  const { src, alt } = images[index];
+  largeImage.src = src;
+  largeImage.alt = alt;
+  description.textContent = alt;
+}
+document.querySelectorAll('[data-preview]').forEach(link => {
+  link.addEventListener('click', event => {
+    if (typeof viewer.showModal !== 'function' || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    images = [{ src:link.href, alt:link.dataset.primaryAlt }];
+    if (link.dataset.alternate) images.push({src:link.dataset.alternate, alt:link.dataset.alt});
+    viewer.querySelector('h2').textContent = link.closest('.panel').querySelector('h2').textContent;
+    switchImage.hidden = images.length === 1;
+    showImage(0);
+    viewer.showModal();
+  });
+});
+switchImage.addEventListener('click', () => showImage((viewIndex + 1) % images.length));
+viewer.querySelector('.close').addEventListener('click', () => viewer.close());
+viewer.addEventListener('click', event => {
+  if (event.target !== viewer) return;
+  const bounds = viewer.getBoundingClientRect();
+  if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) viewer.close();
+});

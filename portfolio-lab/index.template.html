@@ -1,12 +1,22 @@
 <!doctype html>
 <html lang="en"><head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#1a1a2e"><meta name="description" content="Walk through Zozo’s workroom, a spatial portfolio of four frontend and mobile projects from Ulaanbaatar.">
-  <title>The Workroom — Zozo</title>
+  <meta name="theme-color" content="#151513"><meta name="description" content="Walk through Zozo’s workroom, a spatial portfolio of four web and mobile projects from Ulaanbaatar.">
+  <title>The Workroom — Zozo</title><link rel="icon" href="media/mark.svg" type="image/svg+xml">
+  <link rel="preload" href="media/atrium.webp" as="image" fetchpriority="high">
   <link rel="stylesheet" href="room.css"><script src="room.js" defer></script>
 </head><body>
-<header><a class="brand" href="#entrance" aria-label="Zozo, entrance"><b aria-hidden="true">Z.</b> Zozo <span>/ Workroom</span></a><a class="portfolio" href="https://new.zolbayrr.com">Full portfolio ↗</a></header>
-<main><div class="viewport"><canvas aria-hidden="true"></canvas><div class="panels"><!-- panels --></div></div></main>
-<nav aria-label="Gallery navigation" hidden><div class="index"><span id="counter" aria-hidden="true">00 / 04</span><select aria-label="Jump to a gallery stop"><!-- stops --></select></div>
-<span class="hint">Scroll to explore ↓</span><div class="arrows"><button type="button" id="prev" aria-label="Previous stop">←</button><button type="button" id="next" aria-label="Next stop">→</button></div></nav>
+<header>
+  <a class="brand" href="#entrance" aria-label="Zozo, entrance"><img src="media/mark.svg" width="32" height="32" alt="">Zozo<span>/ Workroom</span></a>
+  <a class="portfolio" href="https://new.zolbayrr.com">Full portfolio <span aria-hidden="true">↗</span></a>
+</header>
+<main><div class="viewport"><!-- panels --></div></main>
+<nav aria-label="Gallery navigation" hidden>
+  <div class="index"><span id="counter" aria-hidden="true">00 / 04</span><select aria-label="Jump to a gallery stop"><!-- stops --></select></div>
+  <div class="track" aria-label="Gallery stops"><!-- track --></div>
+  <div class="arrows"><button type="button" id="prev" aria-label="Previous stop">←</button><button type="button" id="next" aria-label="Next stop">→</button></div>
+</nav>
+<dialog aria-labelledby="viewer-title"><header class="viewer-bar"><h2 id="viewer-title"></h2><button type="button" class="close">Close ×</button></header>
+  <div class="viewer-stage"><img alt=""></div><footer><p id="viewer-caption" aria-live="polite"></p><button type="button" class="switch">Next image →</button></footer>
+</dialog>
 </body></html>

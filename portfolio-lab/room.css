@@ -1,75 +1,125 @@
-:root { --ink:#1a1a2e; --paper:#fef9ef; --orange:#ff6b35; --mono:Consolas,"Liberation Mono",monospace; color:var(--ink); background:var(--paper); font-family:"Avenir Next",Arial,sans-serif }
+:root {
+  color-scheme:dark;
+  --ink:#141411;
+  --paper:#faf7ef;
+  --orange:#ff6b39;
+  --edge:clamp(20px,4.6vw,88px);
+  --mono:Consolas,"Liberation Mono",monospace;
+  color:var(--paper);
+  background:var(--ink);
+  font-family:"Avenir Next","Helvetica Neue",Arial,sans-serif;
+}
 * { box-sizing:border-box }
-body, h1, h2, p, figure { margin:0 }
-a { color:inherit }
-a:focus-visible, button:focus-visible, select:focus-visible { outline:3px solid #c2410c; outline-offset:4px }
-header, nav { display:flex; align-items:center; justify-content:space-between; gap:1rem; background:var(--paper); padding:0 clamp(16px,4vw,70px); position:relative; z-index:9 }
-header { height:66px; border-bottom:2px solid var(--ink) }
-.brand { display:flex; align-items:center; gap:.6rem; font-weight:800; text-decoration:none; font-size:1.05rem }
-.brand b { background:var(--ink); color:var(--paper); width:34px; height:34px; line-height:34px; text-align:center; font-size:24px; letter-spacing:-2px }
-.brand span { font-weight:500 }
-.portfolio, .stamp, figcaption, .index, .hint, select { font:600 .75rem/1.35 var(--mono) }
-.portfolio { text-underline-offset:4px }
-.panel { --accent:var(--orange); position:relative; display:grid; grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr); align-items:center; gap:clamp(24px,6vw,112px); width:min(82vw,1440px); margin:auto; padding:75px 0 }
-.panel.teal { --accent:#4ecdc4 }
-.panel.yellow { --accent:#ffe66d }
-.panel.violet { --accent:#c4a0ff }
-.copy { padding:clamp(20px,3vw,52px); background:var(--paper); border:2px solid var(--ink); box-shadow:7px 7px var(--ink); position:relative }
-.copy::before { content:""; position:absolute; top:-7px; left:24px; width:52px; height:11px; transform:rotate(-4deg); background:var(--accent); border:1px solid var(--ink) }
-.stamp { text-transform:uppercase; letter-spacing:.13em; margin:0 0 20px }
-h1,h2 { font-size:clamp(44px,5.7vw,104px); font-weight:850; line-height:.94; letter-spacing:-.068em; overflow-wrap:break-word }
-.intro { font-size:clamp(15px,1.13vw,20px); line-height:1.5; max-width:36ch; margin:20px 0 }
-.action { display:inline-flex; align-items:center; justify-content:space-between; gap:1rem; background:var(--accent); border:2px solid var(--ink); padding:10px 15px; box-shadow:3px 3px var(--ink); text-decoration:none; font-weight:700 }
-.action:hover { transform:translate(2px,2px); box-shadow:1px 1px var(--ink) }
-figure { position:relative; border:3px solid var(--ink); background:var(--accent); box-shadow:9px 10px var(--ink); transform:perspective(1100px) rotateY(-12deg) rotateZ(2deg); padding:clamp(8px,1.1vw,18px) }
-.mat { background:var(--ink); border:2px solid var(--ink); width:100%; aspect-ratio:1.55; display:grid; place-items:center; overflow:hidden }
-figure img { display:block; width:100%; height:100%; object-fit:contain; min-height:0 }
-#entrance figure { max-width:min(450px,53vh); justify-self:center; width:90%; transform:perspective(1000px) rotateY(-15deg) rotateZ(4deg) }
-#entrance .mat { aspect-ratio:1.1; background:var(--paper) }
-#entrance img { object-fit:cover; object-position:center 35% }
-figcaption { display:flex; align-items:center; justify-content:space-between; text-transform:uppercase; padding-top:8px; letter-spacing:.12em }
-#entrance figcaption { font:900 clamp(36px,5.4vw,92px)/.95 "Avenir Next",Arial,sans-serif; text-transform:none; letter-spacing:-.07em }
-.figure-num { font:700 1.4rem/1 var(--mono) }
-#entrance .figure-num { font:400 clamp(42px,6vw,96px)/.8 Arial }
-.endmark { font:bold clamp(110px,20vw,300px)/1 Arial; color:var(--paper); letter-spacing:-.11em }
-.endmark span { color:var(--orange) }
-canvas, [hidden] { display:none }
-.tour header, .tour nav { position:fixed; left:0; right:0 }
-.tour header { top:0 }
-.tour nav { bottom:0 }
+body,h1,h2,p,figure { margin:0 }
+a { color:inherit; text-decoration:none }
+button,select { color:inherit; font:inherit; cursor:pointer }
+:focus-visible { outline:3px solid #ffa775; outline-offset:4px }
+[hidden] { display:none!important }
+body > header, nav { display:flex; align-items:center; justify-content:space-between; gap:16px; padding-inline:var(--edge); z-index:8 }
+body > header { height:76px; border-bottom:1px solid #ffffff30; background:#151513 }
+.brand,.portfolio,.index,.arrows { display:flex; align-items:center }
+.brand { gap:10px; font-weight:800; font-size:18px }
+.brand span { color:#d0cdc6; font-size:14px; font-weight:500 }
+.portfolio { gap:12px; font-size:14px; font-weight:600 }
+.portfolio:hover { text-decoration:underline; text-underline-offset:4px }
+.panel { --accent:var(--orange); position:relative; isolation:isolate; overflow:hidden; min-height:75vh; display:grid; align-items:center }
+.panel.yellow { --accent:#e5f873 }
+.panel.teal { --accent:#7ce4ce }
+.panel.violet { --accent:#c4adf0 }
+.scene { position:absolute; z-index:-1; inset:-2%; background:#252623 url('media/gallery.webp') center/cover }
+.scene::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(8,9,9,.86),rgba(10,11,11,.47) 42%,transparent 79%),linear-gradient(0deg,#10100f77,transparent 29%) }
+#entrance .scene { background-image:url('media/atrium.webp'); background-position:55% 52% }
+#entrance .scene::after { background:linear-gradient(90deg,#080907aa,rgba(8,9,7,.5) 28%,transparent 62%),linear-gradient(0deg,#080909aa,transparent 32%) }
+.exhibit { width:100%; max-width:2000px; margin:auto; padding:clamp(68px,9vh,130px) var(--edge); display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.35fr); gap:clamp(30px,4.5vw,86px); align-items:center }
+#entrance .exhibit { display:block }
+#entrance .copy { max-width:56% }
+.stamp,figcaption,#counter,.track,.viewer-bar,.switch { font:600 .75rem/1.4 var(--mono) }
+.stamp { display:flex; align-items:center; gap:12px; color:#e7e3da; letter-spacing:.12em; text-transform:uppercase; margin-bottom:clamp(16px,2.6vh,30px) }
+.stamp::before { content:""; width:27px; height:3px; background:var(--accent) }
+h1,h2 { font-weight:750; letter-spacing:-.075em; text-wrap:balance; line-height:.95 }
+h1 { font-size:clamp(68px,min(9.5vw,15vh),177px); line-height:.86 }
+h1 span { color:var(--orange) }
+h2 { font-size:clamp(44px,min(6.5vw,11vh),112px) }
+.intro { font-size:clamp(16px,1.22vw,22px); line-height:1.55; max-width:38ch; color:#e3e0d9; margin:clamp(18px,2.8vh,36px) 0 }
+.action { display:inline-flex; align-items:center; gap:22px; min-height:44px; padding:10px 17px; background:var(--accent); color:#171713; font-size:15px; font-weight:750 }
+.action span { font-size:1.25em }
+.action:hover { filter:brightness(1.1) }
+figure { min-width:0; transform:perspective(1300px) rotateY(-8deg); transform-origin:center }
+.screen { display:block; padding:5px; position:relative; background:#424340; border:1px solid #a7aaa3; box-shadow:6px 10px 0 #171816,10px 26px 40px #0009; cursor:zoom-in }
+.screen img { width:100%; max-height:51svh; object-fit:contain; display:block; background:#131412 }
+.screen span { display:grid; place-items:center; position:absolute; right:12px; bottom:12px; border:1px solid #ffffff75; background:#151613ed; width:36px; height:36px; font-size:24px }
+#galexora .screen { padding:clamp(8px,1.4vw,26px); background:#d2cbbd; border-color:#ded9ca; box-shadow:7px 8px 0 #57574e,10px 26px 40px #0008 }
+#wordgym .screen { padding:12px; border:0; background:transparent; box-shadow:none }
+.phones { display:flex; align-items:center; justify-content:center; gap:3%; }
+.phones img { width:29%; height:auto; max-height:44svh; object-fit:contain; border:3px solid #555652; border-radius:13px; box-shadow:4px 8px 16px #0008 }
+.phones img:first-child { transform:rotate(-7deg) translateY(6%); }
+.phones img:last-child { transform:rotate(7deg) translateY(4%); }
+#wordgym figure { transform:none }
+figcaption { text-align:right; letter-spacing:.08em; color:#f1eee8; margin-top:17px; text-shadow:0 1px 4px #000 }
+#galexora figure { transform:perspective(1300px) rotateY(7deg); }
+#contact figure { justify-self:center; width:min(57%,320px); transform:rotate(3deg); background:#ebe6da; color:var(--ink); padding:10px 10px 15px; box-shadow:6px 8px 0 var(--orange) }
+#contact figure img { display:block; width:100%; max-height:42svh; object-fit:cover; object-position:50% 34%; filter:grayscale(1) }
+#contact figcaption { color:inherit; text-shadow:none; margin-top:10px; text-align:left }
+#contact .scene::after { background:linear-gradient(105deg,#231713ee,#2e130db0 65%,#79352288) }
+.tour > header { position:fixed; inset:0 0 auto; background:linear-gradient(#11120fbb,#11120f55) }
+.tour nav { position:fixed; inset:auto 0 0 }
 .tour main { height:var(--tour-height) }
-.tour .viewport { position:sticky; top:0; height:100vh; height:100svh; overflow:hidden; isolation:isolate }
-.tour canvas { display:block; position:absolute; width:100%; height:100%; inset:0 }
-.tour .panels { position:absolute; inset:66px 0 56px; perspective:none }
-.tour .panel { position:absolute; inset:0; height:max-content; padding:0; transform-origin:59% 50%; will-change:transform,opacity }
-nav { height:56px; border-top:2px solid var(--ink) }
-.index, .arrows { display:flex; align-items:center; gap:12px }
-.index > span { background:var(--ink); color:var(--paper); padding:.25rem .5rem }
-select { background:var(--paper); color:var(--ink); border:0; padding:7px 1px; width:auto }
-.arrows button { border:2px solid var(--ink); color:var(--ink); background:var(--orange); height:34px; width:42px; font:700 24px/1 Arial; cursor:pointer }
-.arrows button:disabled { background:transparent; opacity:.4; cursor:default }
-@media(max-width:680px){
-  header { height:52px }
-  .tour .panels { inset:52px 0 52px }
-  nav { height:52px }
-  .panel { grid-template-columns:1fr; gap:20px; width:min(83vw,450px); padding:42px 0 }
-  figure, #entrance figure { grid-row:1; width:80%; max-width:none; justify-self:center; padding:7px; transform:rotate(2deg); box-shadow:5px 6px var(--ink) }
-  .mat, #entrance .mat { aspect-ratio:2.25 }
-  #entrance img { object-position:center 28% }
-  #entrance figcaption { font-size:30px }
-  #entrance .figure-num { font-size:28px }
-  h1,h2 { font-size:clamp(35px,9.2vw,52px) }
-  .intro { margin:10px 0 13px; font-size:15px }
-  .stamp { margin-bottom:9px; font-size:.65rem }
-  .copy { padding:18px 20px; box-shadow:4px 5px var(--ink) }
-  .hint { display:none }
-  .index,.arrows { gap:5px }
-  .action { font-size:.9rem; padding:8px 12px }
+.tour .viewport { position:sticky; top:0; height:100vh; height:100svh; overflow:hidden; background:#181917; isolation:isolate }
+.tour .panel { position:absolute; inset:0; min-height:0; padding-top:76px; padding-bottom:72px }
+.tour .exhibit { padding-block:0 }
+nav { height:72px; background:#171816; border-top:1px solid #ffffff26 }
+.index { gap:16px }
+#counter { color:#ff9d78; font-variant-numeric:tabular-nums }
+select { border:0; padding:8px 4px; background:var(--ink); font-size:14px; font-weight:650 }
+.track { position:absolute; left:50%; transform:translateX(-50%); display:flex; gap:6px }
+.track a { display:grid; align-items:center; width:clamp(18px,3vw,55px); height:38px }
+.track a::before { content:""; height:3px; background:#595a53 }
+.track a[aria-current]::before,.track a:hover::before { background:var(--orange) }
+.arrows { gap:7px }
+.arrows button,.close,.switch { border:1px solid #ffffff55; background:transparent; min-width:42px; min-height:39px; font-size:18px }
+.arrows button:disabled { opacity:.3; cursor:default }
+.arrows button:hover:enabled,.close:hover,.switch:hover { background:#383a34 }
+dialog { width:min(94vw,1320px); border:1px solid #84847b; padding:0; background:#161715; color:var(--paper); box-shadow:0 24px 80px #0008 }
+dialog::backdrop { background:#070808de }
+.viewer-bar,dialog footer { padding:12px 18px; display:flex; gap:16px; align-items:center; justify-content:space-between }
+.viewer-bar h2 { font:650 20px/1.1 Arial; letter-spacing:-.03em }
+.close,.switch { padding:6px 13px; font:600 14px/1.2 Arial }
+.viewer-stage { background:#090a09; display:grid; place-items:center }
+.viewer-stage img { display:block; max-height:67svh; max-width:100%; object-fit:contain }
+dialog footer p { font-size:14px; color:#dbdad1 }
+body:has(dialog[open]) { overflow:hidden }
+@media(max-width:760px) {
+  body > header { height:58px }
+  .brand { font-size:16px }
+  .brand img { width:27px; height:27px }
+  .brand span,.portfolio { font-size:12px }
+  .exhibit { grid-template-columns:1fr; gap:22px; padding-block:42px }
+  #entrance .copy { max-width:100% }
+  #entrance { align-items:end; min-height:88svh }
+  #entrance .exhibit { align-self:end; margin:0 auto; padding-bottom:clamp(20px,4.4svh,44px) }
+  #entrance .scene { background-size:auto 62%; background-repeat:no-repeat; background-position:74% 2%; background-color:#151513 }
+  #entrance .scene::after { background:linear-gradient(0deg,#151513 0%,#151513 37%,rgba(21,21,19,.76) 46%,transparent 65%) }
+  h1 { font-size:clamp(60px,15.5vw,98px) }
+  h2 { font-size:clamp(37px,10.6vw,60px) }
+  .intro { font-size:15px; margin:12px 0 16px; max-width:38ch }
+  .stamp { font-size:10px; margin-bottom:12px }
+  figure { grid-row:1; width:min(100%,560px); margin-inline:auto }
+  .screen img { max-height:29svh }
+  .phones img { max-height:24svh; width:auto; max-width:28% }
+  figcaption { margin-top:9px; font-size:10px }
+  #contact figure { width:min(45%,190px) }
+  #contact figure img { max-height:22svh }
+  .tour .panel { padding-top:60px; padding-bottom:58px }
+  .tour #entrance { min-height:0 }
+  nav { height:58px }
+  .index { gap:6px }
+  .track { display:none }
 }
-@media(max-height:640px) and (min-width:681px){
-  .copy { padding:18px }
-  h1,h2 { font-size:clamp(38px,5vw,64px) }
-  .intro,.stamp { margin:10px 0 }
-  figure { max-width:63vh; justify-self:center }
+@media(min-width:761px) and (max-height:610px) {
+  .tour > header { height:52px }
+  .tour .panel { padding:54px 0 }
+  nav { height:50px }
+  .stamp { margin-bottom:10px }
+  .intro { margin:12px 0 }
 }
-@media(prefers-reduced-motion:reduce){ figure,#entrance figure { transform:none } }
+@media(prefers-reduced-motion:reduce){ figure,#galexora figure,#contact figure { transform:none } }
