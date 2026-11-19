@@ -1,3 +1,4 @@
+import './workbench.js';
 import { drawJourney, drawScan } from './journey.js';
 const panels = [...document.querySelectorAll('.panel')];
 const exhibits = panels.map(panel => panel.querySelector('.exhibit'));
@@ -12,6 +13,19 @@ const flatLayout = matchMedia('(prefers-reduced-motion: reduce), (max-height: 45
 let stride = 0;
 let current = -1;
 let frame = 0;
+let monitorBox;
+
+// Read layout coordinates before transforms so reversing a scroll follows the same lens path.
+function measureMonitor() {
+  const glass = document.querySelector('.glass');
+  let x = glass.offsetWidth / 2, y = glass.offsetHeight / 2;
+  for (let el = glass; el && el !== panels[0]; el = el.offsetParent) {
+    x += el.offsetLeft;
+    y += el.offsetTop;
+  }
+  monitorBox = {x, y, width:glass.offsetWidth, height:glass.offsetHeight};
+}
+
 
 const journey = document.querySelector('.journey');
 const scan = document.querySelector('.scan');
@@ -27,6 +41,7 @@ function render() {
   frame = 0;
   if (nav.hidden) return;
   const position = Math.max(0, Math.min(panels.length - 1, scrollY / stride));
+  document.body.classList.toggle('at-entrance', position < .5);
   const outgoing = Math.floor(position);
   const fraction = position - outgoing;
   const transition = Math.max(0, Math.min(1, (fraction - .24) / .52));
@@ -49,7 +64,24 @@ function render() {
     panel.style.transform = 'none';
     panel.style.clipPath = 'none';
     exhibits[i].style.transform = 'none';
-    if(outgoing < 4) {
+    if(outgoing === 0 && wipe > 0 && monitorBox?.width) {
+      const {x,y,width,height} = monitorBox;
+      const vw = journey.clientWidth || document.documentElement.clientWidth;
+      const vh = panels[0].clientHeight;
+      const zoom = 1 + (Math.max(vw/width,vh/height)*1.12-1)*wipe*wipe;
+      const dx = (vw/2-x)*wipe, dy = (vh/2-y)*wipe;
+      if (!entering) {
+        panel.style.transformOrigin = `${x}px ${y}px`;
+        panel.style.transform = `translate(${dx}px,${dy}px) scale(${zoom})`;
+      } else {
+        const top = Math.max(0,y+dy-height*zoom/2);
+        const right = Math.max(0,vw-x-dx-width*zoom/2);
+        const bottom = Math.max(0,vh-y-dy-height*zoom/2);
+        const left = Math.max(0,x+dx-width*zoom/2);
+        panel.style.clipPath = `inset(${top}px ${right}px ${bottom}px ${left}px round ${(1-wipe)*26}px)`;
+        panel.style.opacity = String(wipe);
+      }
+    } else if(outgoing < 4) {
       panel.style.transform = `translateY(${-travel*100}%)`;
       exhibits[i].style.transform = `perspective(1300px) rotateX(${travel*16}deg) scale(${1-.06*Math.abs(travel)})`;
     } else if(outgoing === 4 && !entering) {
@@ -89,12 +121,13 @@ function arrange() {
       exhibits[i].removeAttribute('style');
 
     }
-    document.body.classList.remove('light-room');
+    document.body.classList.remove('light-room','at-entrance');
     journey.hidden = true;
     if (current >= 0) panels[current].scrollIntoView({behavior:'instant'});
     current = -1;
     return;
   }
+  measureMonitor();
   stride = Math.max(460, document.querySelector('.viewport').clientHeight * .95);
   document.body.style.setProperty('--tour-height', (innerHeight + (panels.length - 1) * stride) + 'px');
   if (previousPosition !== null) scrollTo({top:previousPosition * stride, behavior:'instant'});
@@ -110,15 +143,21 @@ document.addEventListener('click', event => {
   const index = panels.findIndex(panel => '#' + panel.id === anchor.hash);
   if (index !== -1) {
     event.preventDefault();
-    go(index);
+    if (location.hash !== anchor.hash) history.pushState(null, '', anchor.hash);
+    go(index, !anchor.hasAttribute('data-channel'));
   }
 });
 addEventListener('keydown', event => {
-  if (viewer.open || nav.hidden || event.altKey || event.ctrlKey || event.metaKey || event.target.closest('select,input,textarea')) return;
+  if (viewer.open || nav.hidden || event.altKey || event.ctrlKey || event.metaKey || event.target.closest('select,input,textarea,.tuner')) return;
   if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
     event.preventDefault();
     go(current + (event.key === 'ArrowRight' ? 1 : -1));
   }
+});
+addEventListener('popstate', () => {
+  if (nav.hidden) return;
+  const index = location.hash ? panels.findIndex(panel => '#' + panel.id === location.hash) : 0;
+  if (index >= 0) go(index,false);
 });
 addEventListener('resize', arrange);
 flatLayout.addEventListener('change', arrange);

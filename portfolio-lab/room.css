@@ -28,11 +28,11 @@ body > header { height:76px; border-bottom:1px solid #ffffff30; background:#1515
 .panel.violet { --accent:#c4adf0 }
 .scene { position:absolute; z-index:-1; inset:-2%; background:#252623 url('media/gallery.webp') center/cover }
 .scene::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(8,9,9,.86),rgba(10,11,11,.47) 42%,transparent 79%),linear-gradient(0deg,#10100f77,transparent 29%) }
-#entrance .scene { background-image:url('media/atrium.webp'); background-position:55% 52% }
-#entrance .scene::after { background:linear-gradient(90deg,#080907aa,rgba(8,9,7,.5) 28%,transparent 62%),linear-gradient(0deg,#080909aa,transparent 32%) }
+
+
 .exhibit { width:100%; max-width:2000px; margin:auto; padding:clamp(68px,9vh,130px) var(--edge); display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.35fr); gap:clamp(30px,4.5vw,86px); align-items:center }
-#entrance .exhibit { display:block }
-#entrance .copy { max-width:56% }
+
+
 .stamp,figcaption,#counter,.track,.viewer-bar,.switch { font:600 .75rem/1.4 var(--mono) }
 .stamp { display:flex; align-items:center; gap:12px; color:#e7e3da; letter-spacing:.12em; text-transform:uppercase; margin-bottom:clamp(16px,2.6vh,30px) }
 .stamp::before { content:""; width:27px; height:3px; background:var(--accent) }
@@ -94,11 +94,10 @@ body:has(dialog[open]) { overflow:hidden }
   .brand img { width:27px; height:27px }
   .brand span,.portfolio { font-size:12px }
   .exhibit { grid-template-columns:1fr; gap:22px; padding-block:42px }
-  #entrance .copy { max-width:100% }
-  #entrance { align-items:end; min-height:88svh }
-  #entrance .exhibit { align-self:end; margin:0 auto; padding-bottom:clamp(20px,4.4svh,44px) }
-  #entrance .scene { background-size:auto 62%; background-repeat:no-repeat; background-position:74% 2%; background-color:#151513 }
-  #entrance .scene::after { background:linear-gradient(0deg,#151513 0%,#151513 37%,rgba(21,21,19,.76) 46%,transparent 65%) }
+
+
+
+
   h1 { font-size:clamp(60px,15.5vw,98px) }
   h2 { font-size:clamp(37px,10.6vw,60px) }
   .intro { font-size:15px; margin:12px 0 16px; max-width:38ch }
@@ -110,7 +109,7 @@ body:has(dialog[open]) { overflow:hidden }
   #contact figure { width:min(45%,190px) }
   #contact figure img { max-height:22svh }
   .tour .panel { padding-top:60px; padding-bottom:58px }
-  .tour #entrance { min-height:0 }
+
   nav { height:58px }
   .index { gap:6px }
   .track { display:none }
@@ -124,25 +123,9 @@ body:has(dialog[open]) { overflow:hidden }
 }
 @media(prefers-reduced-motion:reduce){ figure,#galexora figure,#contact figure { transform:none } }
 
-/* A scanned portrait opens the tour, then the work scrolls on a light contact sheet. */
-#entrance .scene {
-  background-color:#101313;
-  background-image:linear-gradient(#9abab31a 1px,transparent 1px),linear-gradient(90deg,#9abab31a 1px,transparent 1px);
-  background-size:clamp(38px,5vw,94px) clamp(38px,5vw,94px);
-  background-repeat:repeat;
-}
-#entrance .scene::after { background:linear-gradient(90deg,#101313c9,transparent 58%); pointer-events:none }
-.scan { position:absolute; bottom:-4%; left:49%; width:min(49%,70vh); aspect-ratio:4/5;
-  clip-path:polygon(0 100%,2% 80%,6% 67%,12% 60%,24% 54%,33% 48%,32% 40%,31% 34%,31% 23%,33% 17%,39% 12%,46% 10%,53% 10%,60% 12%,65% 18%,68% 25%,67% 34%,64% 42%,60% 46%,65% 49%,75% 54%,86% 59%,91% 65%,95% 84%,97% 100%); }
-.scan img,.scan canvas { width:100%; height:100%; display:block; position:absolute; inset:0 }
-.scan img { filter:grayscale(1) contrast(1.18) brightness(.93) }
-.scan canvas { opacity:.18; mix-blend-mode:screen }
-@media(prefers-reduced-motion:no-preference) {
-  .scan.ready img { animation:resolve-scan 2s both }
-  .scan.ready canvas { animation:resolve-lines 2s both }
-  @keyframes resolve-scan { 0%,12%{opacity:.06} 70%,100%{opacity:1} }
-  @keyframes resolve-lines { 0%,28%{opacity:1} 100%{opacity:.18} }
-}
+
+
+
 .catalogue { color:#22241f; background:#eeeae0 }
 .catalogue .scene { background:repeating-linear-gradient(0deg,#dedcd080 0 1px,transparent 1px 5px),#eeeae0 }
 .catalogue .scene::after { background:radial-gradient(ellipse at 70% 50%,#fff9,transparent 65%) }
@@ -175,8 +158,7 @@ dialog { width:min(98vw,1650px); overflow:hidden }
   .viewer-stage { min-height:48vh }
 }
 @media(max-width:760px) {
-  #entrance .scene::after { background:linear-gradient(0deg,#101313 0%,#101313fa 31%,#10131364 52%,transparent 78%) }
-  .scan { left:auto; right:-3%; top:4%; bottom:auto; width:min(95%,47svh) }
+
   .viewer-stage { grid-template-columns:1fr 1fr; gap:12px; padding:16px }
   .viewer-stage .featured { grid-row:1; grid-column:1/-1 }
   .flank.previous,.flank.following { transform:none; grid-row:2; border:1px solid #686c60 }
