@@ -49,7 +49,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav ref={navRef} className="fixed inset-x-0 top-0 z-50 border-b-3 border-navy bg-cream">
+      <nav ref={navRef} className="fixed inset-x-0 top-0 z-50 border-b-3 border-line bg-cream">
         <Container wide>
           <div className="flex h-[var(--site-nav-height)] items-center justify-between gap-3">
             <a
@@ -64,7 +64,7 @@ export default function Navbar() {
                   <a
                     key={link.href}
                     href={isHomePage ? link.href : localizePath(`/${link.href}`)}
-                    className={`text-sm font-bold transition-colors duration-150 ${link.key === "contact" ? "border-2 border-navy bg-accent-yellow px-4 py-2 text-on-accent shadow-brutal-sm" : "text-navy"} ${
+                    className={`text-sm font-bold transition-colors duration-150 ${link.key === "contact" ? "border-2 border-line bg-accent-yellow px-4 py-2 text-on-accent shadow-brutal-sm" : "text-navy"} ${
                       displayedActiveSection === link.href
                         ? "underline decoration-2 underline-offset-4"
                         : "hover:underline hover:decoration-2 hover:underline-offset-4"
@@ -77,7 +77,7 @@ export default function Navbar() {
               <ThemeToggle />
               <button
                 type="button"
-                className="grid size-11 shrink-0 place-items-center border-2 border-navy bg-accent-yellow text-on-accent shadow-brutal-sm lg:hidden"
+                className="grid size-11 shrink-0 place-items-center border-2 border-line bg-accent-yellow text-on-accent shadow-brutal-sm dark:bg-surface dark:text-navy dark:border-control-line lg:hidden"
                 onClick={() => setIsMenuOpen(true)}
                 aria-haspopup="dialog"
                 aria-controls="mobile-menu"

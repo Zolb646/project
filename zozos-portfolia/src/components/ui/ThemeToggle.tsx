@@ -16,7 +16,7 @@ export default function ThemeToggle() {
       aria-label={ui.common.darkMode}
       aria-pressed={dark}
       onClick={toggleTheme}
-      className="grid size-11 shrink-0 cursor-pointer place-items-center border-2 border-navy bg-cream text-navy shadow-brutal-sm transition-[transform,box-shadow] duration-150 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none">
+      className="grid size-11 shrink-0 cursor-pointer place-items-center border-2 border-control-line bg-cream text-navy shadow-brutal-sm transition-[transform,box-shadow] duration-150 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none">
       <Icon aria-hidden="true" className="size-5" />
     </button>
   );

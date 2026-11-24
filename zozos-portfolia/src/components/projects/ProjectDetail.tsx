@@ -50,7 +50,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
             className="inline-flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted transition-colors duration-150 hover:text-accent-orange-ink">
             <span
               aria-hidden="true"
-              className="inline-flex h-8 w-8 items-center justify-center border-3 border-navy bg-accent-yellow text-sm text-on-accent shadow-brutal-sm">
+              className="inline-flex h-8 w-8 items-center justify-center border-3 border-line bg-accent-yellow text-sm text-on-accent shadow-brutal-sm">
               ←
             </span>
             {ui.projectDetail.backToProjects}
@@ -78,7 +78,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
             <div>
               <div className="flex flex-wrap items-center gap-3">
                 {project.role ? (
-                  <span className="inline-flex border-3 border-navy bg-accent-yellow px-3 py-1 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-on-accent shadow-brutal-sm">
+                  <span className="inline-flex border-3 border-line bg-accent-yellow px-3 py-1 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-on-accent shadow-brutal-sm">
                     {project.role}
                   </span>
                 ) : null}
@@ -126,9 +126,9 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                 project.imageLayout !== "mobile" ? "max-w-4xl" : ""
               }`}>
               <div className="space-y-6">
-                <div className="grid gap-3 border-b-3 border-navy/10 pb-6 @lg:grid-cols-[minmax(7rem,0.36fr)_minmax(0,1fr)] @lg:gap-6">
+                <div className="grid gap-3 border-b-3 border-line/10 pb-6 @lg:grid-cols-[minmax(7rem,0.36fr)_minmax(0,1fr)] @lg:gap-6">
                   <div>
-                    <div className="h-3 w-14 border-2 border-navy bg-accent-orange" />
+                    <div className="h-3 w-14 border-2 border-line bg-accent-orange" />
                     <p className="mt-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
                       {ui.projectDetail.challenge}
                     </p>
@@ -138,9 +138,9 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                   </p>
                 </div>
 
-                <div className="grid gap-3 border-b-3 border-navy/10 pb-6 @lg:grid-cols-[minmax(7rem,0.36fr)_minmax(0,1fr)] @lg:gap-6">
+                <div className="grid gap-3 border-b-3 border-line/10 pb-6 @lg:grid-cols-[minmax(7rem,0.36fr)_minmax(0,1fr)] @lg:gap-6">
                   <div>
-                    <div className="h-3 w-14 border-2 border-navy bg-accent-teal" />
+                    <div className="h-3 w-14 border-2 border-line bg-accent-teal" />
                     <p className="mt-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
                       {ui.projectDetail.whatIOwned}
                     </p>
@@ -152,7 +152,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
 
                 <div className="grid gap-3 @lg:grid-cols-[minmax(7rem,0.36fr)_minmax(0,1fr)] @lg:gap-6">
                   <div>
-                    <div className="h-3 w-14 border-2 border-navy bg-accent-yellow" />
+                    <div className="h-3 w-14 border-2 border-line bg-accent-yellow" />
                     <p className="mt-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
                       {ui.projectDetail.outcome}
                     </p>
@@ -167,11 +167,11 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
 
           {project.imageLayout === "mobile" ? (
             <div className="relative mx-auto w-full max-w-[min(58vw,34dvh,20rem)]">
-              <div className="absolute -top-3 -right-3 z-0 aspect-square w-1/4 border-3 border-navy bg-accent-yellow shadow-brutal-sm" />
-              <div className="absolute -bottom-3 -left-3 z-0 aspect-square w-1/4 border-3 border-navy bg-accent-teal shadow-brutal-sm" />
+              <div className="absolute -top-3 -right-3 z-0 aspect-square w-1/4 border-3 border-line bg-accent-yellow shadow-brutal-sm" />
+              <div className="absolute -bottom-3 -left-3 z-0 aspect-square w-1/4 border-3 border-line bg-accent-teal shadow-brutal-sm" />
 
               {heroImage ? (
-                <div className="relative z-10 aspect-[9/19.5] overflow-hidden border-3 border-navy bg-cream shadow-brutal-lg">
+                <div className="relative z-10 aspect-[9/19.5] overflow-hidden border-3 border-line bg-cream shadow-brutal-lg">
                   <ScreenshotZoom src={heroImage} alt={project.imageTitles?.[0] ?? ui.projectDetail.heroScreenshotAlt(project.title)} portrait>
                     <Image src={heroImage} alt="" fill priority sizes="min(58vw, 34dvh, 320px)" className="object-cover object-top" />
                   </ScreenshotZoom>
@@ -180,7 +180,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                 <Card
                   hover={false}
                   className="relative z-10 ml-auto p-5 sm:p-6">
-                  <div className="h-3 w-14 border-2 border-navy bg-accent-orange" />
+                  <div className="h-3 w-14 border-2 border-line bg-accent-orange" />
                   <p className="mt-4 font-mono text-xs uppercase tracking-[0.2em] text-muted">
                     {ui.projectDetail.projectType}
                   </p>
@@ -195,14 +195,14 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
             </div>
           ) : (
             <div className="relative mx-auto hidden w-full max-w-[280px] pb-8 lg:block">
-              <div className="absolute -top-4 right-4 z-0 h-20 w-20 border-3 border-navy bg-accent-yellow shadow-brutal-sm" />
-              <div className="absolute -bottom-2 left-3 z-0 h-18 w-18 border-3 border-navy bg-accent-teal shadow-brutal-sm" />
+              <div className="absolute -top-4 right-4 z-0 h-20 w-20 border-3 border-line bg-accent-yellow shadow-brutal-sm" />
+              <div className="absolute -bottom-2 left-3 z-0 h-18 w-18 border-3 border-line bg-accent-teal shadow-brutal-sm" />
 
               <Card
                 hover={false}
                 className="relative z-10 ml-auto space-y-5 p-5 sm:p-6">
                 <div>
-                  <div className="h-3 w-14 border-2 border-navy bg-accent-orange" />
+                  <div className="h-3 w-14 border-2 border-line bg-accent-orange" />
                   <p className="mt-4 font-mono text-xs uppercase tracking-[0.2em] text-muted">
                     {ui.projectDetail.projectType}
                   </p>
@@ -260,7 +260,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                 <li
                   key={highlight}
                   className="flex gap-4 text-sm leading-7 text-muted sm:text-base">
-                  <span className="mt-2 h-3 w-3 shrink-0 border-2 border-navy bg-accent-orange" />
+                  <span className="mt-2 h-3 w-3 shrink-0 border-2 border-line bg-accent-orange" />
                   <span>{highlight}</span>
                 </li>
               ))}
@@ -269,7 +269,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
 
           {project.architecture ? (
             <Card hover={false} className="self-start">
-              <div className="h-3 w-14 border-2 border-navy bg-accent-teal" />
+              <div className="h-3 w-14 border-2 border-line bg-accent-teal" />
               <p className="mt-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
                 {ui.projectDetail.architecture}
               </p>
@@ -282,7 +282,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
 
         {project.lessons?.length ? (
           <Card hover={false}>
-            <div className="h-3 w-14 border-2 border-navy bg-accent-yellow" />
+            <div className="h-3 w-14 border-2 border-line bg-accent-yellow" />
             <p className="mt-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
               {ui.projectDetail.lessonsLearned}
             </p>
@@ -291,7 +291,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                 <li
                   key={lesson}
                   className="flex gap-3 text-sm leading-7 text-muted sm:text-base">
-                  <span className="mt-2 h-2.5 w-2.5 shrink-0 border-2 border-navy bg-accent-yellow" />
+                  <span className="mt-2 h-2.5 w-2.5 shrink-0 border-2 border-line bg-accent-yellow" />
                   <span>{lesson}</span>
                 </li>
               ))}
@@ -302,7 +302,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
         {project.process?.length ? (
           <div>
             <div className="mb-6 flex items-center gap-4">
-              <span className="h-3 w-14 border-2 border-navy bg-accent-orange" />
+              <span className="h-3 w-14 border-2 border-line bg-accent-orange" />
               <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
                 {ui.projectDetail.process}
               </p>
@@ -326,7 +326,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
         {relatedProjects.length ? (
           <div>
             <div className="mb-6 flex items-center gap-4">
-              <span className="h-3 w-14 border-2 border-navy bg-accent-teal" />
+              <span className="h-3 w-14 border-2 border-line bg-accent-teal" />
               <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted">
                 {ui.projectDetail.moreProjects}
               </p>
@@ -348,7 +348,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                             ? ` | ${relatedProject.period}`
                             : ""}
                         </p>
-                        <div className="h-3 w-14 border-2 border-navy bg-accent-yellow" />
+                        <div className="h-3 w-14 border-2 border-line bg-accent-yellow" />
                       </div>
                       <h2 className="text-2xl font-black text-navy">
                         {relatedProject.title}

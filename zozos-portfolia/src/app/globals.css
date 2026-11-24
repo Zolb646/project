@@ -16,6 +16,8 @@
   --color-cream: #fffdf5;
   --color-surface: #fff;
   --color-navy: #202027;
+  --color-line: #202027;
+  --color-control-line: var(--color-line);
   --color-muted: #56565e;
   --color-on-accent: #202027;
   --color-accent-orange: #ff7a45;
@@ -74,6 +76,7 @@
 html {
   color-scheme: light;
   --shadow-color: #202027;
+  --portrait-grid-color: rgb(32 32 39 / 12%);
   --site-nav-height: 5rem;
   --page-top-space: calc(var(--site-nav-height) + clamp(1.5rem, 7dvh, 4rem));
   --section-space: clamp(2.5rem, min(9vw, 12dvh), 6rem);
@@ -82,15 +85,22 @@ html {
 
   @variant dark {
     color-scheme: dark;
-    --color-cream: #1b1b23;
-    --color-surface: #262630;
-    --color-navy: #eee7dd;
-    --color-muted: #c4becb;
-    --color-accent-orange-ink: #ffad8e;
-    --color-accent-teal-ink: #99e4d2;
-    --color-accent-yellow-ink: #ffe566;
-    --color-accent-violet-ink: #d9b8ff;
-    --shadow-color: #08080c;
+    --color-cream: #191816;
+    --color-surface: #24221f;
+    --color-navy: #eee8df;
+    --color-line: #514b44;
+    --color-control-line: #80776b;
+    --color-muted: #bdb4a8;
+    --color-accent-orange: #e4a07e;
+    --color-accent-teal: #9abbab;
+    --color-accent-yellow: #dfbf82;
+    --color-accent-violet: #bca3cb;
+    --color-accent-orange-ink: #f0ad91;
+    --color-accent-teal-ink: #adcdbc;
+    --color-accent-yellow-ink: #e9cd97;
+    --color-accent-violet-ink: #d0b7df;
+    --shadow-color: #0d0c0b;
+    --portrait-grid-color: rgb(238 232 223 / 6%);
   }
 }
 
@@ -109,8 +119,8 @@ body {
 
 .portrait-stage {
   background-image:
-    linear-gradient(rgba(32, 32, 39, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(32, 32, 39, 0.12) 1px, transparent 1px);
+    linear-gradient(var(--portrait-grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--portrait-grid-color) 1px, transparent 1px);
   background-size: 28px 28px;
   background-position: 0 0;
 }

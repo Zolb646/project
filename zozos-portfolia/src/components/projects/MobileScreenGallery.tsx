@@ -6,7 +6,7 @@ import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import ScreenshotZoom from "@/components/projects/ScreenshotZoom";
 import { useContent } from "@/lib/i18n/useContent";
 
-const arrowClass = "grid size-11 shrink-0 cursor-pointer place-items-center border-2 border-navy bg-surface text-xl hover:bg-accent-yellow hover:text-on-accent";
+const arrowClass = "grid size-11 shrink-0 cursor-pointer place-items-center border-2 border-control-line bg-surface text-xl hover:bg-accent-yellow hover:text-on-accent";
 
 export default function MobileScreenGallery({
   images,
@@ -53,9 +53,9 @@ export default function MobileScreenGallery({
         </p>
       </div>
 
-      <div className="grid min-w-0 border-3 border-navy bg-surface shadow-brutal sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
-        <div className="portrait-stage grid min-w-0 place-items-center border-b-3 border-navy bg-accent-teal p-[clamp(0.75rem,3dvh,2rem)] sm:border-r-3 sm:border-b-0 [@media(max-height:500px)]:items-start">
-          <div className="w-[min(62vw,30dvh,16rem)] max-w-full rounded-[1.8rem] border-3 border-navy bg-surface p-1.5 shadow-brutal">
+      <div className="grid min-w-0 border-3 border-line bg-surface shadow-brutal sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+        <div className="portrait-stage grid min-w-0 place-items-center border-b-3 border-line bg-accent-teal dark:bg-accent-teal/14 p-[clamp(0.75rem,3dvh,2rem)] sm:border-r-3 sm:border-b-0 [@media(max-height:500px)]:items-start">
+          <div className="w-[min(62vw,30dvh,16rem)] max-w-full rounded-[1.8rem] border-3 border-line bg-surface p-1.5 shadow-brutal">
             <div className="relative aspect-[9/19.5] overflow-hidden rounded-[1.25rem] bg-on-accent">
               <ScreenshotZoom src={images[activeIndex]} alt={screenTitle(activeIndex)} portrait>
                 <Image
@@ -71,7 +71,7 @@ export default function MobileScreenGallery({
         </div>
 
         <div className="min-w-0 p-3 sm:p-5 lg:p-6">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-navy pb-3">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-line pb-3">
             <div role="status" aria-atomic="true">
               <p className="font-mono text-xs text-muted">{ui.gallery.screenOf(activeIndex + 1, images.length)}</p>
               <p className="mt-1 font-display text-xl font-extrabold leading-tight sm:text-2xl">
@@ -102,7 +102,7 @@ export default function MobileScreenGallery({
                     type="button"
                     aria-pressed={activeIndex === index}
                     onClick={() => setActiveIndex(index)}
-                    className="flex min-h-11 min-w-0 cursor-pointer items-center gap-2 border-2 border-navy/20 bg-cream px-2 py-1 text-left text-xs font-semibold hover:border-navy aria-pressed:border-navy aria-pressed:bg-accent-yellow aria-pressed:text-on-accent sm:text-sm">
+                    className="flex min-h-11 min-w-0 cursor-pointer items-center gap-2 border-2 border-line/20 bg-cream px-2 py-1 text-left text-xs font-semibold hover:border-control-line aria-pressed:border-control-line aria-pressed:bg-accent-yellow aria-pressed:text-on-accent sm:text-sm">
                     <span className="relative h-8 w-4 shrink-0 overflow-hidden rounded-sm bg-on-accent">
                       <Image src={src} alt="" fill sizes="16px" className="object-cover object-top" />
                     </span>

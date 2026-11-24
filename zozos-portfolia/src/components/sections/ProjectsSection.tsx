@@ -22,13 +22,13 @@ function ProjectPreview({ project, ui, lead = false }: { project: Project; ui: U
     <Link
       href={localizePath(`/projects/${project.slug}`)}
       aria-label={ui.common.viewCaseStudyFor(project.title)}
-      className={`group grid h-full border-3 border-navy bg-surface shadow-brutal transition-[transform,box-shadow] duration-150 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-brutal-sm ${lead ? "lg:grid-cols-[1.2fr_1fr]" : ""}`}>
-      <div className={`flex min-w-0 items-center border-b-3 border-navy p-5 sm:p-7 ${lead ? "bg-cream lg:border-b-0 lg:border-r-3" : mobile ? "bg-accent-orange" : "bg-accent-teal"}`}>
-        <div className="w-full overflow-hidden border-2 border-navy bg-surface shadow-brutal-sm">
-          <div className="flex h-7 items-center gap-1.5 border-b-2 border-navy px-2.5" aria-hidden="true">
-            <span className="h-2 w-2 rounded-full border border-navy bg-accent-orange" />
-            <span className="h-2 w-2 rounded-full border border-navy bg-accent-yellow" />
-            <span className="h-2 w-2 rounded-full border border-navy bg-accent-teal" />
+      className={`group grid h-full border-3 border-line bg-surface shadow-brutal transition-[transform,box-shadow] duration-150 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-brutal-sm ${lead ? "lg:grid-cols-[1.2fr_1fr]" : ""}`}>
+      <div className={`flex min-w-0 items-center border-b-3 border-line p-5 sm:p-7 ${lead ? "bg-cream lg:border-b-0 lg:border-r-3" : mobile ? "bg-accent-orange dark:bg-accent-orange/14" : "bg-accent-teal dark:bg-accent-teal/14"}`}>
+        <div className="w-full overflow-hidden border-2 border-line bg-surface shadow-brutal-sm">
+          <div className="flex h-7 items-center gap-1.5 border-b-2 border-line px-2.5" aria-hidden="true">
+            <span className="h-2 w-2 rounded-full border border-line bg-accent-orange" />
+            <span className="h-2 w-2 rounded-full border border-line bg-accent-yellow" />
+            <span className="h-2 w-2 rounded-full border border-line bg-accent-teal" />
           </div>
           <div className="relative aspect-[16/9] overflow-hidden bg-cream">
             {previewImage ? <Image src={previewImage} alt={project.title} fill sizes={lead ? "(min-width: 1024px) 570px, 90vw" : "(min-width: 1024px) 520px, 90vw"} className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.025]" /> : null}
@@ -46,7 +46,7 @@ function ProjectPreview({ project, ui, lead = false }: { project: Project; ui: U
         </div>
         <div className="mt-auto flex items-center justify-between gap-4 pt-7">
           <span className="text-sm font-extrabold underline decoration-2 underline-offset-4">{ui.projects.viewCaseStudy}</span>
-          <span aria-hidden="true" className="flex h-10 w-10 items-center justify-center border-2 border-navy bg-accent-yellow text-xl text-on-accent transition-colors group-hover:bg-navy group-hover:text-surface">↗</span>
+          <span aria-hidden="true" className="flex h-10 w-10 items-center justify-center border-2 border-line bg-accent-yellow text-xl text-on-accent transition-colors group-hover:bg-navy group-hover:text-surface">↗</span>
         </div>
       </div>
     </Link>
@@ -76,7 +76,7 @@ export default function ProjectsSection() {
                 type="button"
                 onClick={() => setFilter(category)}
                 aria-pressed={filter === category}
-                className="min-h-11 cursor-pointer border-2 border-navy bg-surface px-3 text-sm font-bold hover:bg-accent-yellow/25 aria-pressed:bg-accent-yellow aria-pressed:text-on-accent aria-pressed:shadow-brutal-sm">
+                className="min-h-11 cursor-pointer border-2 border-control-line bg-surface px-3 text-sm font-bold hover:bg-accent-yellow/25 aria-pressed:bg-accent-yellow aria-pressed:text-on-accent aria-pressed:shadow-brutal-sm">
                 {ui.projects.filters[category]}
               </button>
             ))}
@@ -90,9 +90,9 @@ export default function ProjectsSection() {
           </div>
         ) : null}
         {more.length > 0 ? (
-          <div className="mt-10 border-t-3 border-navy">
+          <div className="mt-10 border-t-3 border-line">
             {more.map((project) => (
-              <Link key={project.slug} href={localizePath(`/projects/${project.slug}`)} aria-label={ui.common.viewCaseStudyFor(project.title)} className="group grid items-center gap-4 border-b-3 border-navy py-6 sm:grid-cols-[1fr_1.6fr_auto] sm:gap-8">
+              <Link key={project.slug} href={localizePath(`/projects/${project.slug}`)} aria-label={ui.common.viewCaseStudyFor(project.title)} className="group grid items-center gap-4 border-b-3 border-line py-6 sm:grid-cols-[1fr_1.6fr_auto] sm:gap-8">
                 <div><p className="mb-2 text-xs font-bold text-muted">{project.role}</p><h3 className="font-display text-2xl font-extrabold tracking-tight group-hover:underline group-hover:underline-offset-4">{project.title}</h3></div>
                 <p className="max-w-[60ch] text-sm leading-relaxed text-muted">{project.description}</p>
                 <span className="flex items-center gap-3 text-sm font-extrabold">{ui.projects.viewCaseStudy}<span aria-hidden="true" className="text-2xl">↗</span></span>

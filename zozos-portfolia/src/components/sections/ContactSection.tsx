@@ -63,7 +63,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id={SECTION_IDS.contact} className="bg-accent-orange/25 py-[var(--section-space)]">
+    <section id={SECTION_IDS.contact} className="bg-accent-orange/25 dark:bg-accent-orange/7 py-[var(--section-space)]">
       <Container>
         <AnimateOnScroll>
           <SectionHeading
@@ -77,7 +77,7 @@ export default function ContactSection() {
         <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14">
           <AnimateOnScroll>
             <div className="h-full">
-              <span className="inline-flex border-3 border-navy bg-accent-yellow px-3 py-1 text-xs font-bold text-on-accent shadow-brutal-sm">
+              <span className="inline-flex border-3 border-line bg-accent-yellow px-3 py-1 text-xs font-bold text-on-accent shadow-brutal-sm">
                 {PERSONAL.employmentStatus}
               </span>
               <h3 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-navy">
@@ -122,7 +122,7 @@ export default function ContactSection() {
                 {contactFacts.map((fact) => (
                   <div
                     key={fact}
-                    className="border-3 border-navy bg-cream px-4 py-3 text-xs font-bold text-navy shadow-brutal-sm">
+                    className="border-3 border-line bg-cream px-4 py-3 text-xs font-bold text-navy shadow-brutal-sm">
                     {fact}
                   </div>
                 ))}

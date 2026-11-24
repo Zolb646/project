@@ -33,12 +33,12 @@ export default function HeroSection() {
   }
 
   return (
-    <section id={SECTION_IDS.hero} className="flex flex-col justify-center border-b-3 border-navy pb-[var(--section-space)] pt-[var(--page-top-space)] lg:min-h-svh">
+    <section id={SECTION_IDS.hero} className="flex flex-col justify-center border-b-3 border-line pb-[var(--section-space)] pt-[var(--page-top-space)] lg:min-h-svh">
       <Container wide>
         <div className="grid items-center gap-[clamp(2.5rem,5vw,6rem)] md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
           <div>
             <p className="mb-7 flex items-center gap-3 text-sm font-bold sm:text-base">
-              <span className="h-3 w-3 border-2 border-navy bg-accent-orange" aria-hidden="true" />
+              <span className="h-3 w-3 border-2 border-line bg-accent-orange" aria-hidden="true" />
               {ui.hero.greeting}
             </p>
             <h1 className="font-display text-[clamp(2.35rem,min(7vw,13dvh),6.75rem)] font-extrabold leading-[0.99] tracking-[-0.055em]">
@@ -62,11 +62,11 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="portrait-stage relative mx-auto w-full max-w-[clamp(15rem,60dvh,32.5rem)] border-2 border-navy/20 bg-accent-orange/30 p-[clamp(1rem,4vw,2.25rem)]">
+          <div className="portrait-stage relative mx-auto w-full max-w-[clamp(15rem,60dvh,32.5rem)] border-2 border-line/20 bg-accent-orange/30 dark:bg-accent-orange/12 p-[clamp(1rem,4vw,2.25rem)]">
             <div ref={portraitFrame} className="portrait-window">
               <div className="portrait-card relative" data-flipped={showProfile}>
-                <figure className="portrait-face relative border-3 border-navy bg-surface p-3 shadow-brutal-lg" aria-hidden={showProfile}>
-                  <div className="relative aspect-[4/4.6] overflow-hidden border-2 border-navy bg-cream">
+                <figure className="portrait-face relative border-3 border-line bg-surface p-3 shadow-brutal-lg" aria-hidden={showProfile}>
+                  <div className="relative aspect-[4/4.6] overflow-hidden border-2 border-line bg-cream">
                     <Image
                       src={portraitSrc}
                       alt={`${personal.name} portrait`}
@@ -87,8 +87,8 @@ export default function HeroSection() {
                     <span aria-hidden="true" className="font-mono text-3xl font-bold text-accent-orange-ink">&lt;/&gt;</span>
                   </figcaption>
                 </figure>
-                <div id="hero-profile" aria-hidden={!showProfile} inert={!showProfile} className="portrait-face portrait-back absolute inset-0 border-3 border-navy bg-surface p-3 shadow-brutal-lg">
-                  <div className="h-full overflow-y-auto border-2 border-navy bg-cream p-[clamp(0.75rem,3vw,2rem)]">
+                <div id="hero-profile" aria-hidden={!showProfile} inert={!showProfile} className="portrait-face portrait-back absolute inset-0 border-3 border-line bg-surface p-3 shadow-brutal-lg">
+                  <div className="h-full overflow-y-auto border-2 border-line bg-cream p-[clamp(0.75rem,3vw,2rem)]">
                     <div className="flex min-h-full flex-col justify-center gap-[clamp(0.65rem,2vw,1.5rem)]">
                       <p className="font-display text-[clamp(1.2rem,3vw,2rem)] font-extrabold leading-tight">{ui.hero.profileDetails}</p>
                       <dl className="space-y-2 text-xs sm:text-sm">
@@ -101,15 +101,15 @@ export default function HeroSection() {
                 </div>
               </div>
             </div>
-            <a href={`#${SECTION_IDS.contact}`} className="absolute -top-4 left-4 max-w-[calc(100%-2rem)] rotate-[3deg] border-3 border-navy bg-accent-yellow px-3 py-2 text-xs font-extrabold text-on-accent shadow-brutal-sm hover:underline sm:left-7 sm:text-sm" title={personal.employmentStatus}>
-              <span className="mr-2 inline-block h-2.5 w-2.5 rounded-full border-2 border-navy bg-accent-teal-ink" aria-hidden="true" />
+            <a href={`#${SECTION_IDS.contact}`} className="absolute -top-4 left-4 max-w-[calc(100%-2rem)] rotate-[3deg] border-3 border-line bg-accent-yellow px-3 py-2 text-xs font-extrabold text-on-accent shadow-brutal-sm hover:underline sm:left-7 sm:text-sm" title={personal.employmentStatus}>
+              <span className="mr-2 inline-block h-2.5 w-2.5 rounded-full border-2 border-line bg-accent-teal-ink" aria-hidden="true" />
               {ui.hero.projectAvailability}
             </a>
             <button type="button" aria-controls="hero-profile" aria-pressed={showProfile} aria-label={ui.hero.flipPortrait} title={ui.hero.flipPortrait} onClick={flipPortrait} className="absolute -bottom-5 -right-2 grid size-[clamp(3.75rem,8vw,7rem)] cursor-pointer place-items-center transition-transform hover:rotate-12 active:scale-95">
               <svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true" className="absolute inset-0 size-full rotate-[8deg] text-accent-orange">
-                <path d="m50 2 9 25 24-13-7 27 24 9-24 9 7 27-24-13-9 25-9-25-24 13 7-27-24-9 24-9-7-27 24 13Z" stroke="var(--color-navy)" strokeWidth="2.5" strokeLinejoin="miter" />
+                <path d="m50 2 9 25 24-13-7 27 24 9-24 9 7 27-24-13-9 25-9-25-24 13 7-27-24-9 24-9-7-27 24 13Z" stroke="var(--color-line)" strokeWidth="2.5" strokeLinejoin="miter" />
               </svg>
-              <span aria-hidden="true" className={`relative text-xl font-extrabold transition-transform duration-[620ms] sm:text-2xl ${showProfile ? "rotate-180" : ""}`}>↻</span>
+              <span aria-hidden="true" className={`relative text-xl font-extrabold text-on-accent transition-transform duration-[620ms] sm:text-2xl ${showProfile ? "rotate-180" : ""}`}>↻</span>
             </button>
           </div>
         </div>

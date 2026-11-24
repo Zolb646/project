@@ -13,9 +13,9 @@ export default function ExperienceSection() {
     <section id={SECTION_IDS.experience} className="py-[var(--section-space)]">
       <Container>
         <SectionHeading color="orange" eyebrow={ui.experience.eyebrow} description={ui.experience.description}>{ui.experience.heading}</SectionHeading>
-        <div className="border-t-3 border-navy">
+        <div className="border-t-3 border-line">
           {experiences.map((experience) => (
-            <article key={`${experience.company}-${experience.period}`} className="grid gap-5 border-b-3 border-navy py-7 sm:py-9 lg:grid-cols-[0.7fr_1.3fr] lg:gap-14">
+            <article key={`${experience.company}-${experience.period}`} className="grid gap-5 border-b-3 border-line py-7 sm:py-9 lg:grid-cols-[0.7fr_1.3fr] lg:gap-14">
               <div>
                 <p className="mb-3 text-xs font-bold text-muted">{experience.period}</p>
                 <h3 className="font-display text-2xl font-extrabold tracking-tight sm:text-3xl">{experience.company}</h3>

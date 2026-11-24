@@ -30,7 +30,7 @@ export default function Textarea({
         rows={rows}
         value={value}
         onChange={onChange}
-        className="w-full px-4 py-3 bg-cream border-3 border-navy text-navy placeholder:text-muted focus:shadow-brutal focus:outline-none transition-shadow duration-200 resize-none"
+        className="w-full px-4 py-3 bg-cream border-3 border-control-line text-navy dark:focus:border-accent-orange-ink placeholder:text-muted focus:shadow-brutal focus:outline-none transition-shadow duration-200 resize-none"
       />
     </div>
   );

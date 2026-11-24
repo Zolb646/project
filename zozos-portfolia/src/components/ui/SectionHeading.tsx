@@ -18,7 +18,7 @@ export default function SectionHeading({ children, color = "orange", eyebrow, de
       <div>
         {eyebrow ? (
           <p className="mb-3 flex items-center gap-2.5 text-sm font-bold">
-            <span className={`h-3 w-3 border-2 border-navy ${colors[color]}`} aria-hidden="true" />
+            <span className={`h-3 w-3 border-2 border-line ${colors[color]}`} aria-hidden="true" />
             {eyebrow}
           </p>
         ) : null}
