@@ -1,9 +1,23 @@
 @import "tailwindcss";
 
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme]), :root:not([data-theme]) *) {
+      @slot;
+    }
+  }
+}
+
 @theme {
   --color-cream: #fffdf5;
+  --color-surface: #fff;
   --color-navy: #202027;
   --color-muted: #56565e;
+  --color-on-accent: #202027;
   --color-accent-orange: #ff7a45;
   --color-accent-teal: #99e4d2;
   --color-accent-yellow: #ffe566;
@@ -18,9 +32,9 @@
   --color-accent-yellow-ink: #92400e;
   --color-accent-violet-ink: #7e22ce;
 
-  --shadow-brutal: 6px 6px 0 0 #202027;
-  --shadow-brutal-lg: 10px 10px 0 0 #202027;
-  --shadow-brutal-sm: 3px 3px 0 0 #202027;
+  --shadow-brutal: 6px 6px 0 0 var(--shadow-color);
+  --shadow-brutal-lg: 10px 10px 0 0 var(--shadow-color);
+  --shadow-brutal-sm: 3px 3px 0 0 var(--shadow-color);
 
   --font-sans: var(--font-manrope), "Segoe UI", sans-serif;
   --font-display: var(--font-bricolage), var(--font-manrope), sans-serif;
@@ -54,15 +68,30 @@
 
 ::selection {
   background-color: var(--color-accent-yellow);
-  color: var(--color-navy);
+  color: var(--color-on-accent);
 }
 
 html {
+  color-scheme: light;
+  --shadow-color: #202027;
   --site-nav-height: 5rem;
   --page-top-space: calc(var(--site-nav-height) + clamp(1.5rem, 7dvh, 4rem));
   --section-space: clamp(2.5rem, min(9vw, 12dvh), 6rem);
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--site-nav-height) + 1rem);
+
+  @variant dark {
+    color-scheme: dark;
+    --color-cream: #1b1b23;
+    --color-surface: #262630;
+    --color-navy: #eee7dd;
+    --color-muted: #c4becb;
+    --color-accent-orange-ink: #ffad8e;
+    --color-accent-teal-ink: #99e4d2;
+    --color-accent-yellow-ink: #ffe566;
+    --color-accent-violet-ink: #d9b8ff;
+    --shadow-color: #08080c;
+  }
 }
 
 @media (max-height: 520px) {

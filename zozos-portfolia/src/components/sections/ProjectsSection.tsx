@@ -22,9 +22,9 @@ function ProjectPreview({ project, ui, lead = false }: { project: Project; ui: U
     <Link
       href={localizePath(`/projects/${project.slug}`)}
       aria-label={ui.common.viewCaseStudyFor(project.title)}
-      className={`group grid h-full border-3 border-navy bg-white shadow-brutal transition-[transform,box-shadow] duration-150 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-brutal-sm ${lead ? "lg:grid-cols-[1.2fr_1fr]" : ""}`}>
+      className={`group grid h-full border-3 border-navy bg-surface shadow-brutal transition-[transform,box-shadow] duration-150 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-brutal-sm ${lead ? "lg:grid-cols-[1.2fr_1fr]" : ""}`}>
       <div className={`flex min-w-0 items-center border-b-3 border-navy p-5 sm:p-7 ${lead ? "bg-cream lg:border-b-0 lg:border-r-3" : mobile ? "bg-accent-orange" : "bg-accent-teal"}`}>
-        <div className="w-full overflow-hidden border-2 border-navy bg-white shadow-brutal-sm">
+        <div className="w-full overflow-hidden border-2 border-navy bg-surface shadow-brutal-sm">
           <div className="flex h-7 items-center gap-1.5 border-b-2 border-navy px-2.5" aria-hidden="true">
             <span className="h-2 w-2 rounded-full border border-navy bg-accent-orange" />
             <span className="h-2 w-2 rounded-full border border-navy bg-accent-yellow" />
@@ -46,7 +46,7 @@ function ProjectPreview({ project, ui, lead = false }: { project: Project; ui: U
         </div>
         <div className="mt-auto flex items-center justify-between gap-4 pt-7">
           <span className="text-sm font-extrabold underline decoration-2 underline-offset-4">{ui.projects.viewCaseStudy}</span>
-          <span aria-hidden="true" className="flex h-10 w-10 items-center justify-center border-2 border-navy bg-accent-yellow text-xl transition-colors group-hover:bg-navy group-hover:text-white">↗</span>
+          <span aria-hidden="true" className="flex h-10 w-10 items-center justify-center border-2 border-navy bg-accent-yellow text-xl text-on-accent transition-colors group-hover:bg-navy group-hover:text-surface">↗</span>
         </div>
       </div>
     </Link>
@@ -76,7 +76,7 @@ export default function ProjectsSection() {
                 type="button"
                 onClick={() => setFilter(category)}
                 aria-pressed={filter === category}
-                className="min-h-11 cursor-pointer border-2 border-navy bg-white px-3 text-sm font-bold hover:bg-accent-yellow/40 aria-pressed:bg-accent-yellow aria-pressed:shadow-brutal-sm">
+                className="min-h-11 cursor-pointer border-2 border-navy bg-surface px-3 text-sm font-bold hover:bg-accent-yellow/25 aria-pressed:bg-accent-yellow aria-pressed:text-on-accent aria-pressed:shadow-brutal-sm">
                 {ui.projects.filters[category]}
               </button>
             ))}

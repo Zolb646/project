@@ -65,7 +65,7 @@ export default function HeroSection() {
           <div className="portrait-stage relative mx-auto w-full max-w-[clamp(15rem,60dvh,32.5rem)] border-2 border-navy/20 bg-accent-orange/30 p-[clamp(1rem,4vw,2.25rem)]">
             <div ref={portraitFrame} className="portrait-window">
               <div className="portrait-card relative" data-flipped={showProfile}>
-                <figure className="portrait-face relative border-3 border-navy bg-white p-3 shadow-brutal-lg" aria-hidden={showProfile}>
+                <figure className="portrait-face relative border-3 border-navy bg-surface p-3 shadow-brutal-lg" aria-hidden={showProfile}>
                   <div className="relative aspect-[4/4.6] overflow-hidden border-2 border-navy bg-cream">
                     <Image
                       src={portraitSrc}
@@ -87,7 +87,7 @@ export default function HeroSection() {
                     <span aria-hidden="true" className="font-mono text-3xl font-bold text-accent-orange-ink">&lt;/&gt;</span>
                   </figcaption>
                 </figure>
-                <div id="hero-profile" aria-hidden={!showProfile} inert={!showProfile} className="portrait-face portrait-back absolute inset-0 border-3 border-navy bg-white p-3 shadow-brutal-lg">
+                <div id="hero-profile" aria-hidden={!showProfile} inert={!showProfile} className="portrait-face portrait-back absolute inset-0 border-3 border-navy bg-surface p-3 shadow-brutal-lg">
                   <div className="h-full overflow-y-auto border-2 border-navy bg-cream p-[clamp(0.75rem,3vw,2rem)]">
                     <div className="flex min-h-full flex-col justify-center gap-[clamp(0.65rem,2vw,1.5rem)]">
                       <p className="font-display text-[clamp(1.2rem,3vw,2rem)] font-extrabold leading-tight">{ui.hero.profileDetails}</p>
@@ -101,7 +101,7 @@ export default function HeroSection() {
                 </div>
               </div>
             </div>
-            <a href={`#${SECTION_IDS.contact}`} className="absolute -top-4 left-4 max-w-[calc(100%-2rem)] rotate-[3deg] border-3 border-navy bg-accent-yellow px-3 py-2 text-xs font-extrabold shadow-brutal-sm hover:underline sm:left-7 sm:text-sm" title={personal.employmentStatus}>
+            <a href={`#${SECTION_IDS.contact}`} className="absolute -top-4 left-4 max-w-[calc(100%-2rem)] rotate-[3deg] border-3 border-navy bg-accent-yellow px-3 py-2 text-xs font-extrabold text-on-accent shadow-brutal-sm hover:underline sm:left-7 sm:text-sm" title={personal.employmentStatus}>
               <span className="mr-2 inline-block h-2.5 w-2.5 rounded-full border-2 border-navy bg-accent-teal-ink" aria-hidden="true" />
               {ui.hero.projectAvailability}
             </a>

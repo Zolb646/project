@@ -50,7 +50,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
             className="inline-flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted transition-colors duration-150 hover:text-accent-orange-ink">
             <span
               aria-hidden="true"
-              className="inline-flex h-8 w-8 items-center justify-center border-3 border-navy bg-accent-yellow text-sm text-navy shadow-brutal-sm">
+              className="inline-flex h-8 w-8 items-center justify-center border-3 border-navy bg-accent-yellow text-sm text-on-accent shadow-brutal-sm">
               ←
             </span>
             {ui.projectDetail.backToProjects}
@@ -78,7 +78,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
             <div>
               <div className="flex flex-wrap items-center gap-3">
                 {project.role ? (
-                  <span className="inline-flex border-3 border-navy bg-accent-yellow px-3 py-1 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-navy shadow-brutal-sm">
+                  <span className="inline-flex border-3 border-navy bg-accent-yellow px-3 py-1 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-on-accent shadow-brutal-sm">
                     {project.role}
                   </span>
                 ) : null}

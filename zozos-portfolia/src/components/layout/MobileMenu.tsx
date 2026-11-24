@@ -47,7 +47,7 @@ export default function MobileMenu({
       ref={dialogRef}
       id="mobile-menu"
       aria-label={ui.common.openMenu}
-      className="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none bg-transparent p-0 text-navy backdrop:bg-navy/50"
+      className="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none bg-transparent p-0 text-navy backdrop:bg-on-accent/50"
       onCancel={(event) => { event.preventDefault(); onClose(); }}
       onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}>
       <div className="absolute inset-y-0 right-0 w-[min(100%,18rem)] overflow-y-auto overscroll-contain border-l-3 border-navy bg-cream pb-[max(1rem,env(safe-area-inset-bottom))] animate-slide-in">

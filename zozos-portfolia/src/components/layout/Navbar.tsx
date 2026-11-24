@@ -6,6 +6,7 @@ import { NAV_SECTIONS } from "@/lib/constants";
 import { useContent } from "@/lib/i18n/useContent";
 import Container from "@/components/ui/Container";
 import LanguageToggle from "@/components/ui/LanguageToggle";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 import MobileMenu from "./MobileMenu";
 
 export default function Navbar() {
@@ -57,27 +58,26 @@ export default function Navbar() {
               Zozo<span className="text-accent-orange-ink">.</span>
             </a>
 
-            <div className="hidden items-center gap-6 lg:flex">
-              {NAV_SECTIONS.map((link) => (
-                <a
-                  key={link.href}
-                  href={isHomePage ? link.href : localizePath(`/${link.href}`)}
-                  className={`text-sm font-bold transition-colors duration-150 ${link.key === "contact" ? "border-2 border-navy bg-accent-yellow px-4 py-2 shadow-brutal-sm" : ""} ${
-                    displayedActiveSection === link.href
-                      ? "text-navy underline decoration-2 underline-offset-4"
-                      : "text-navy hover:underline hover:decoration-2 hover:underline-offset-4"
-                  }`}>
-                  {ui.nav[link.key]}
-                </a>
-              ))}
+            <div className="flex items-center gap-2 sm:gap-3 lg:gap-6">
+              <div className="hidden items-center gap-6 lg:flex">
+                {NAV_SECTIONS.map((link) => (
+                  <a
+                    key={link.href}
+                    href={isHomePage ? link.href : localizePath(`/${link.href}`)}
+                    className={`text-sm font-bold transition-colors duration-150 ${link.key === "contact" ? "border-2 border-navy bg-accent-yellow px-4 py-2 text-on-accent shadow-brutal-sm" : "text-navy"} ${
+                      displayedActiveSection === link.href
+                        ? "underline decoration-2 underline-offset-4"
+                        : "hover:underline hover:decoration-2 hover:underline-offset-4"
+                    }`}>
+                    {ui.nav[link.key]}
+                  </a>
+                ))}
+              </div>
               <LanguageToggle />
-            </div>
-
-            <div className="flex items-center gap-2 sm:gap-3 lg:hidden">
-              <LanguageToggle />
+              <ThemeToggle />
               <button
                 type="button"
-                className="grid size-11 shrink-0 place-items-center border-2 border-navy bg-accent-yellow text-navy shadow-brutal-sm"
+                className="grid size-11 shrink-0 place-items-center border-2 border-navy bg-accent-yellow text-on-accent shadow-brutal-sm lg:hidden"
                 onClick={() => setIsMenuOpen(true)}
                 aria-haspopup="dialog"
                 aria-controls="mobile-menu"

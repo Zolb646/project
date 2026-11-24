@@ -39,9 +39,9 @@ export default function NotFoundScreen({ locale }: { locale: Locale }) {
             </div>
           </div>
 
-          <div className="mx-auto w-full max-w-[min(85%,24rem)] rotate-[3deg] border-3 border-navy bg-accent-yellow p-7 text-center shadow-brutal-lg sm:p-10">
-            <svg aria-hidden="true" viewBox="0 0 160 120" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" className="mx-auto h-auto w-36 max-w-full text-navy">
-              <path d="M42 43h69v35a25 25 0 0 1-25 25H67a25 25 0 0 1-25-25V43Z" fill="var(--color-cream)" />
+          <div className="mx-auto w-full max-w-[min(85%,24rem)] rotate-[3deg] border-3 border-navy bg-accent-yellow p-7 text-center text-on-accent shadow-brutal-lg sm:p-10">
+            <svg aria-hidden="true" viewBox="0 0 160 120" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" className="mx-auto h-auto w-36 max-w-full">
+              <path d="M42 43h69v35a25 25 0 0 1-25 25H67a25 25 0 0 1-25-25V43Z" fill="#fffdf5" />
               <path d="M111 52h11a15 15 0 0 1 0 30h-12M30 105h94M61 31c-12-13 12-13 0-26M80 31c-12-13 12-13 0-26M99 31c-12-13 12-13 0-26" />
               <path d="m64 68 8 8-8 8m25-16-8 8 8 8" />
             </svg>

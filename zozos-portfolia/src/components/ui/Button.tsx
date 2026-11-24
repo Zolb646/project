@@ -13,9 +13,9 @@ interface ButtonProps {
 
 const variants = {
   primary:
-    "bg-accent-orange text-navy border-3 border-navy shadow-brutal hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none",
+    "bg-accent-orange text-on-accent border-3 border-navy shadow-brutal hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none",
   secondary:
-    "bg-accent-yellow text-navy border-3 border-navy shadow-brutal hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none",
+    "bg-accent-yellow text-on-accent border-3 border-navy shadow-brutal hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none",
   outline:
     "bg-cream text-navy border-3 border-navy shadow-brutal hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none",
 };

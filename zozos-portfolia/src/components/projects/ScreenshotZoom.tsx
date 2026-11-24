@@ -33,7 +33,7 @@ export default function ScreenshotZoom({
           setIsOpen(true);
         }}>
         {children}
-        <span aria-hidden="true" className="absolute bottom-2 right-2 grid size-9 place-items-center border-2 border-navy bg-accent-yellow text-navy">
+        <span aria-hidden="true" className="absolute bottom-2 right-2 grid size-9 place-items-center border-2 border-navy bg-accent-yellow text-on-accent">
           <FiMaximize2 />
         </span>
       </button>

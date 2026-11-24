@@ -201,7 +201,7 @@ function DialogContent({
         {children}
         {showCloseButton ? (
           <DialogClose
-            className="absolute right-7 top-7 shadow-brutal hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] flex h-8 w-8 items-center justify-center border-2 border-navy bg-accent-yellow text-lg leading-none transition-all duration-150"
+            className="absolute right-7 top-7 shadow-brutal hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] flex h-8 w-8 items-center justify-center border-2 border-navy bg-accent-yellow text-lg leading-none text-on-accent transition-all duration-150"
             aria-label="Close dialog">
             <FiX />
           </DialogClose>

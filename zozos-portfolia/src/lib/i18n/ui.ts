@@ -13,6 +13,7 @@ export interface UIDictionary {
     openMenu: string;
     closeMenu: string;
     languageToggleLabel: string;
+    darkMode: string;
     viewCaseStudyFor: (title: string) => string;
   };
   hero: {
@@ -139,6 +140,7 @@ const en: UIDictionary = {
     openMenu: "Open menu",
     closeMenu: "Close menu",
     languageToggleLabel: "Switch language",
+    darkMode: "Dark mode",
     viewCaseStudyFor: (title) => `View case study for ${title}`,
   },
   hero: {
@@ -284,6 +286,7 @@ const mn: UIDictionary = {
     openMenu: "Цэс нээх",
     closeMenu: "Цэс хаах",
     languageToggleLabel: "Хэл солих",
+    darkMode: "Бараан горим",
     viewCaseStudyFor: (title) => `${title} төслийн дэлгэрэнгүйг үзэх`,
   },
   hero: {

@@ -65,7 +65,7 @@ export default function ProjectGallery({
           </h2>
         </div>
         {images.length > 1 ? (
-          <div className="inline-flex border-3 border-navy bg-accent-yellow px-3 py-2 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-navy shadow-brutal-sm">
+          <div className="inline-flex border-3 border-navy bg-accent-yellow px-3 py-2 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-on-accent shadow-brutal-sm">
             {ui.gallery.shotOf(activeIndex + 1, images.length)}
           </div>
         ) : null}
@@ -87,8 +87,8 @@ export default function ProjectGallery({
           <div className="relative mx-auto w-full">
             <div className="absolute -top-3 right-4 z-0 h-16 w-16 border-3 border-navy bg-accent-yellow shadow-brutal-sm sm:h-20 sm:w-20" />
 
-            <div className="relative z-10 mx-auto w-full max-w-[19rem] rounded-[1.8rem] border-3 border-navy bg-white p-2 shadow-brutal-lg sm:max-w-[20rem] lg:max-w-[21rem]">
-              <div className="relative aspect-[9/19.5] overflow-hidden rounded-[1.15rem] border-2 border-navy bg-white">
+            <div className="relative z-10 mx-auto w-full max-w-[19rem] rounded-[1.8rem] border-3 border-navy bg-surface p-2 shadow-brutal-lg sm:max-w-[20rem] lg:max-w-[21rem]">
+              <div className="relative aspect-[9/19.5] overflow-hidden rounded-[1.15rem] border-2 border-navy bg-surface">
                 <ScreenshotZoom src={activeImage} alt={activeAlt}>
                   <Image
                     src={activeImage}
@@ -123,7 +123,7 @@ export default function ProjectGallery({
           </div>
         </div>
       ) : (
-        <div className="relative overflow-hidden border-3 border-navy bg-white shadow-brutal">
+        <div className="relative overflow-hidden border-3 border-navy bg-surface shadow-brutal">
           <div className="flex items-center justify-between gap-3 border-b-3 border-navy/20 bg-cream px-4 py-3">
             <div className="flex items-center gap-2">
               <span className="h-3 w-3 rounded-full border border-navy/20 bg-accent-orange/80" />
@@ -136,7 +136,7 @@ export default function ProjectGallery({
           </div>
 
           <div className="p-3 sm:p-5">
-            <div className="relative mx-auto aspect-video w-full overflow-hidden border-3 border-navy bg-white shadow-brutal-sm">
+            <div className="relative mx-auto aspect-video w-full overflow-hidden border-3 border-navy bg-surface shadow-brutal-sm">
               <ScreenshotZoom src={activeImage} alt={activeAlt}>
                 <Image
                   src={activeImage}
@@ -187,14 +187,14 @@ export default function ProjectGallery({
                 key={`${title}-thumb-${index}`}
                 type="button"
                 onClick={() => setActiveIndex(index)}
-                className={`relative overflow-hidden border-3 bg-white transition-all duration-150 ${
+                className={`relative overflow-hidden border-3 bg-surface transition-all duration-150 ${
                   index === activeIndex
                     ? "border-navy shadow-brutal-sm -translate-y-1"
                     : "border-navy/20 opacity-80 hover:border-navy/60 hover:opacity-100"
                 }`}
                 aria-label={ui.gallery.showScreenshot(index + 1, title)}>
                 <div
-                  className={`relative bg-white ${
+                  className={`relative bg-surface ${
                     isMobileLayout
                       ? "h-24 w-[3.85rem] snap-start sm:h-28 sm:w-[4.35rem]"
                       : "h-24 w-40 sm:h-28 sm:w-44"

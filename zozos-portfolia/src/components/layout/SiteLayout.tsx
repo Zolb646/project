@@ -5,6 +5,7 @@ import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import type { Locale } from "@/lib/i18n/types";
 import StructuredData from "@/components/StructuredData";
 import { getSiteStructuredData } from "@/lib/structured-data";
+import { themeInitScript } from "@/lib/theme";
 import "@/app/globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -37,6 +38,10 @@ export default function SiteLayout({
       lang={locale}
       className={`scroll-smooth ${jetbrainsMono.variable} ${manrope.variable} ${bricolage.variable}`}
       suppressHydrationWarning>
+      {/* eslint-disable-next-line @next/next/no-head-element -- The App Router needs this inline script in the head before paint. */}
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body
         className="min-h-screen bg-cream text-navy antialiased"
         suppressHydrationWarning>

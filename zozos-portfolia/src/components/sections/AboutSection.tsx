@@ -29,12 +29,12 @@ export default function AboutSection() {
               ))}
             </dl>
           </div>
-          <div className="self-start border-3 border-navy bg-white p-6 shadow-brutal sm:p-8">
+          <div className="self-start border-3 border-navy bg-surface p-6 shadow-brutal sm:p-8">
             <h3 className="font-display text-2xl font-extrabold">{ui.about.whatIBring}</h3>
             <ul className="mt-5 space-y-6">
               {personal.aboutHighlights.map((highlight) => (
                 <li key={highlight} className="flex gap-4 text-sm leading-[1.8] text-muted sm:text-base">
-                  <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center border-2 border-navy bg-accent-yellow text-sm font-bold text-navy">↗</span>
+                  <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center border-2 border-navy bg-accent-yellow text-sm font-bold text-on-accent">↗</span>
                   <span>{highlight}</span>
                 </li>
               ))}

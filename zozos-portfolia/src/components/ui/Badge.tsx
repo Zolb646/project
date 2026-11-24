@@ -4,10 +4,10 @@ interface BadgeProps {
 }
 
 const colors = {
-  yellow: "bg-accent-yellow text-navy",
-  teal: "bg-accent-teal text-navy",
-  orange: "bg-accent-orange text-navy",
-  violet: "bg-accent-violet-ink text-white",
+  yellow: "bg-accent-yellow text-on-accent",
+  teal: "bg-accent-teal text-on-accent",
+  orange: "bg-accent-orange text-on-accent",
+  violet: "bg-[#7e22ce] text-white",
 };
 
 export default function Badge({ children, color = "yellow" }: BadgeProps) {
